@@ -80,3 +80,108 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત - ઓનલાઇન પોર્ટલ</title>
+    <style>
+        /* મુખ્ય ડિઝાઇન */
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #34a853;
+            --text-dark: #333;
+            --bg-light: #f8f9fa;
+        }
+
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+        /* હેડર અને બેનર */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        header h1 { font-size: 3rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        header p { font-size: 1.2rem; font-style: italic; }
+
+        /* નેવિગેશન બાર */
+        nav { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); sticky: top; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; padding: 15px; }
+        nav a { color: var(--text-dark); text-decoration: none; margin: 0 20px; font-weight: 600; transition: 0.3s; }
+        nav a:hover { color: var(--primary-color); }
+
+        /* કન્ટેનર અને કાર્ડ્સ */
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: transform 0.3s; border-top: 5px solid var(--primary-color); }
+        .card:hover { transform: translateY(-10px); }
+        .card h2 { color: var(--primary-color); margin-top: 0; }
+        
+        .notice-list { list-style: none; padding: 0; }
+        .notice-list li { background: #e8f0fe; margin-bottom: 10px; padding: 10px; border-radius: 5px; font-size: 0.95rem; }
+
+        /* બટન ડિઝાઇન */
+        .btn { display: inline-block; background: var(--primary-color); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; margin-top: 15px; transition: 0.3s; }
+        .btn:hover { background: #1557b0; box-shadow: 0 5px 15px rgba(26,115,232,0.4); }
+
+        footer { text-align: center; padding: 40px; background: #202124; color: white; margin-top: 50px; }
+
+        /* મોબાઈલ માટે સેટિંગ */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            nav { flex-wrap: wrap; }
+            nav a { margin: 5px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</h1>
+    <p>વિદ્યા વિનયેન શોભતે - જ્ઞાનનો દીવો પ્રગટાવો</p>
+</header>
+
+<nav>
+    <a href="#">હોમ</a>
+    <a href="#notices">નોટિસ બોર્ડ</a>
+    <a href="#activities">પ્રવૃત્તિઓ</a>
+    <a href="#contact">સંપર્ક</a>
+</nav>
+
+<div class="container">
+    <div class="card" id="notices">
+        <h2>તાજી સૂચનાઓ 🔔</h2>
+        <ul class="notice-list">
+            <li>📌 સોમવારથી યુનિફોર્મ ફરજિયાત છે.</li>
+            <li>📌 શનિવારે વકતૃત્વ સ્પર્ધાનું આયોજન.</li>
+            <li>📌 વેકેશનના સમાચાર અહીં જોવા મળશે.</li>
+        </ul>
+        <a href="#" class="btn">બધી સૂચનાઓ</a>
+    </div>
+
+    <div class="card" id="activities">
+        <h2>શાળા પ્રવૃત્તિઓ 🎨</h2>
+        <p>અમારી શાળામાં વિજ્ઞાન મેળો, રમત-ગમત મહોત્સવ અને સાંસ્કૃતિક કાર્યક્રમો દ્વારા બાળકોનો સર્વાંગી વિકાસ કરવામાં આવે છે.</p>
+        <a href="#" class="btn">ફોટા જુઓ</a>
+    </div>
+
+    <div class="card" id="contact">
+        <h2>સંપર્ક કરો 📞</h2>
+        <p>📍 મુ. ફલુ, તા. વિજાપુર, જિ. મહેસાણા]</p>
+        <p>📧 ઈમેલ: faluschool@email.com</p>
+        <a href="tel:+919574456156" class="btn">કોલ કરો</a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત. તમામ હકો અબાધિત છે.</p>
+    <p>Design with ❤️ by Falu School Team</p>
+</footer>
+
+</body>
+</html>
