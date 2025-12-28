@@ -60,7 +60,44 @@
         <div class="dias-code-header">DISE Code: 24040801701</div>
     </div>
 </header>
+<div id="thought-section" style="background: linear-gradient(90deg, #1e3c72, #2a5298); color: white; padding: 10px 0; overflow: hidden; white-space: nowrap; box-shadow: 0 2px 10px rgba(0,0,0,0.2); margin-bottom: 20px;">
+    <div style="display: flex; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+        <span style="background: #ff9800; color: #fff; padding: 2px 12px; border-radius: 4px; font-weight: bold; margin-right: 15px; font-size: 0.9rem; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);">આજનો સુવિચાર</span>
+        <marquee behavior="scroll" direction="left" scrollamount="6" id="daily-thought" style="font-size: 1.1rem; font-weight: 500; font-family: 'Gujarati', sans-serif;">
+            લોડ થઈ રહ્યો છે...
+        </marquee>
+    </div>
+</div>
 
+<script>
+    // સુવિચારોનું લિસ્ટ
+    const thoughts = [
+        "શિક્ષણ એ દુનિયાને બદલવા માટેનું સૌથી શક્તિશાળી હથિયાર છે.",
+        "પુસ્તકો જેવો કોઈ મિત્ર નથી અને જ્ઞાન જેવો કોઈ ગુરુ નથી.",
+        "સફળતા એ મહેનતનું પરિણામ છે, નસીબનું નહીં.",
+        "વિનમ્રતા એ જ્ઞાનનું પ્રથમ ફળ છે.",
+        "શાળા એ સંસ્કારનું મંદિર છે.",
+        "કરેલી મહેનત કદી એળે જતી નથી.",
+        "સારા વિચારો એ જ સાચું જીવન છે.",
+        "જ્ઞાન વહેંચવાથી વધે છે.",
+        "સમયની કિંમત સમજનાર જ સફળ થાય છે.",
+        "સાચું શિક્ષણ એ છે જે ચરિત્રનું ઘડતર કરે."
+    ];
+
+    // દરરોજ નવો સુવિચાર બતાવવા માટેનું લોજિક
+    function displayDailyThought() {
+        const date = new Date();
+        const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+        const thoughtIndex = dayOfYear % thoughts.length;
+        document.getElementById('daily-thought').innerText = thoughts[thoughtIndex];
+    }
+
+    // પેજ લોડ થાય ત્યારે ફંક્શન ચલાવો
+    window.onload = function() {
+        displayDailyThought();
+        // જો પહેલાથી કોઈ window.onload હોય તો તેની સાથે આને જોડવું
+    };
+</script>
 <nav>
     <a href="#">🏠 હોમ</a>
     <a href="#about">🏫 શાળા વિશે</a>
@@ -209,6 +246,7 @@
 
 </body>
 </html>
+
 
 
 
