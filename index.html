@@ -6,95 +6,46 @@
     <title>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --primary: #1e3c72; 
-            --secondary: #ff9800; 
-            --accent: #00d2ff;
-            --bg: #f4f7f6; 
-        }
+        :root { --primary: #1e3c72; --secondary: #ff9800; --accent: #00d2ff; --bg: #f4f7f6; }
         * { box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Hind Vadodara', sans-serif; margin: 0; background-color: var(--bg); color: #333; }
 
-        /* હેડર - બાળકો ભણતા હોય તેવા બેકગ્રાઉન્ડ સાથે */
         header {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
-                        url('https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('faluschool.jpg.jpg');
             background-size: cover; background-position: center;
-            height: 70vh; display: flex; justify-content: center; align-items: center;
-            color: white; text-align: center; padding: 20px;
-            border-bottom: 8px solid var(--secondary);
+            height: 60vh; display: flex; justify-content: center; align-items: center;
+            color: white; text-align: center; padding: 20px; border-bottom: 8px solid var(--secondary);
         }
 
-        .hero-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 30px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            max-width: 95%;
-        }
+        .hero-box { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 30px; border-radius: 25px; border: 2px solid rgba(255, 255, 255, 0.2); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+        .school-name { font-size: 2.2rem; margin: 0; font-weight: 700; }
+        .color-white { color: #ffffff; } .color-orange { color: #ff9800; } .color-blue { color: #00d2ff; } 
+        .pm-badge { background: var(--secondary); color: white; padding: 5px 20px; border-radius: 50px; font-weight: bold; margin-top: 15px; display: inline-block; }
+        .dias-code-header { margin-top: 10px; font-size: 1rem; background: rgba(0,0,0,0.5); padding: 5px 15px; border-radius: 8px; border: 1px dashed var(--accent); display: inline-block; }
 
-        /* એક લાઈનમાં મલ્ટીકલર નામ */
-        .school-name { 
-            font-size: 2.2rem; /* સાઈઝ થોડી ઘટાડી જેથી એક લાઈનમાં આવે */
-            margin: 0; 
-            font-weight: 700; 
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            white-space: nowrap; /* નામ તોડશે નહીં */
-        }
-        
-        /* મોબાઈલ માટે નામની સાઈઝ વધુ ઘટાડી */
-        @media (max-width: 600px) {
-            .school-name { font-size: 1.4rem; }
-        }
-
-        .color-white { color: #ffffff; } 
-        .color-orange { color: #ff9800; } 
-        .color-blue { color: #00d2ff; } 
-
-        .pm-badge { 
-            background: var(--secondary); color: white; 
-            padding: 8px 25px; border-radius: 50px; 
-            font-weight: bold; margin-top: 20px; 
-            display: inline-block; font-size: 1rem;
-            box-shadow: 0 4px 15px rgba(255,152,0,0.4);
-        }
-
-        .dias-code-header {
-            margin-top: 15px; font-size: 1.1rem; font-weight: 600;
-            background: rgba(0,0,0,0.5); padding: 5px 20px;
-            border-radius: 10px; border: 1px dashed var(--accent);
-            display: inline-block;
-        }
-
-        /* બાકીની ડિઝાઇન અગાઉ મુજબ જ... */
-        nav {
-            background: white; position: sticky; top: 0;
-            display: flex; overflow-x: auto; padding: 10px; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1); z-index: 1000;
-        }
-        nav a {
-            text-decoration: none; color: var(--primary); padding: 10px 18px;
-            margin: 0 5px; font-weight: 600; border-radius: 12px; white-space: nowrap;
-        }
+        nav { background: white; position: sticky; top: 0; display: flex; overflow-x: auto; padding: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 1000; }
+        nav a { text-decoration: none; color: var(--primary); padding: 10px 15px; margin: 0 5px; font-weight: 600; border-radius: 10px; white-space: nowrap; }
         nav a:hover { background: var(--primary); color: white; }
 
-        .container { padding: 25px; max-width: 900px; margin: auto; }
-        .card {
-            background: white; border-radius: 25px; padding: 30px;
-            margin-bottom: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
-        }
-        h2 { color: var(--primary); border-left: 6px solid var(--secondary); padding-left: 15px; }
+        .container { padding: 20px; max-width: 900px; margin: auto; }
+        .card { background: white; border-radius: 20px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 6px solid var(--primary); }
+        h2 { color: var(--primary); margin-top: 0; display: flex; align-items: center; gap: 10px; }
 
-        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 25px; }
-        .btn { padding: 15px; border-radius: 15px; text-decoration: none; font-weight: bold; text-align: center; color: white; }
-        .btn-call-1 { background: #28a745; }
-        .btn-call-2 { background: #007bff; }
+        /* પ્રવૃત્તિ સેક્શન ડિઝાઇન */
+        .activity-box { margin-top: 15px; display: grid; grid-template-columns: 1fr; gap: 12px; }
+        details { background: #f9f9f9; padding: 15px; border-radius: 12px; border: 1px solid #ddd; transition: 0.3s; }
+        details[open] { border-color: var(--secondary); background: #fffdf9; }
+        summary { font-weight: bold; cursor: pointer; outline: none; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary::after { content: "➕"; font-size: 0.8rem; }
+        details[open] summary::after { content: "➖"; }
+
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .btn { padding: 12px; border-radius: 12px; text-decoration: none; font-weight: bold; text-align: center; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-call { background: #28a745; }
+        .btn-wa { background: #25D366; grid-column: span 2; }
         .btn-email { background: var(--secondary); grid-column: span 2; }
 
-        footer { background: var(--primary); color: white; text-align: center; padding: 40px 20px; border-top-left-radius: 40px; border-top-right-radius: 40px; }
+        footer { background: var(--primary); color: white; text-align: center; padding: 30px; margin-top: 40px; border-radius: 30px 30px 0 0; }
     </style>
 </head>
 <body>
@@ -102,146 +53,72 @@
 <header>
     <div class="hero-box">
         <h1 class="school-name">
-            <span class="color-white">ફલુ</span> 
-            <span class="color-orange">અનુપમ</span> 
-            <span class="color-white">પ્રાથમિક</span> 
-            <span class="color-blue">શાળા</span>
+            <span class="color-white">ફલુ</span> <span class="color-orange">અનુપમ</span> <span class="color-white">પ્રાથમિક</span> <span class="color-blue">શાળા</span>
         </h1>
-        <div class="pm-badge">પીએમશ્રી-ગુજરાત</div>
-        <br>
-        <div class="dise-code-header">ડાયસકોડ: 24040801701</div>
+        <div class="pm-badge">પીએમશ્રી-ગુજરાત</div><br>
+        <div class="dias-code-header">DISE Code: 24040801701</div>
     </div>
 </header>
 
 <nav>
     <a href="#">🏠 હોમ</a>
     <a href="#about">🏫 શાળા વિશે</a>
-    <a href="#staff">👨‍🏫 સ્ટાફ</a>
-    <a href="#notice">📢 નોટિસ</a>
-    <a href="#gallery">📸 ગેલેરી</a>
     <a href="#activities">🎨 પ્રવૃત્તિઓ</a>
     <a href="#contact">📞 સંપર્ક</a>
 </nav>
 
 <div class="container">
-  <div class="card" id="about">
-        <h2>શાળા વિશે અને સરકારી પ્રકલ્પો</h2>
-        <p>અમારી શાળા 'પીએમશ્રી-ગુજરાત' યોજના અંતર્ગત કાર્યરત છે. નીચેના પ્રકલ્પો અને પરીક્ષાઓ વિશે વધુ માહિતી માટે તેના પર ક્લિક કરો:</p>
-        
-        <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr; gap: 15px;">
-            
-            <a href="https://pmshrischools.education.gov.in/" target="_blank" style="text-decoration: none; color: inherit;">
-                <div style="background: #f0f4f8; padding: 15px; border-radius: 12px; border-left: 4px solid #1e3c72; cursor: pointer;">
-                    <strong>🚀 PM SHRI યોજના:</strong> આધુનિક લેબ અને સ્માર્ટ શિક્ષણની વિગતો માટે.
-                </div>
+    <div class="card" id="about">
+        <h2>🏫 શાળા વિશે અને સરકારી પ્રકલ્પો</h2>
+        <div class="activity-box">
+            <a href="https://pmshrischools.education.gov.in/" target="_blank" style="text-decoration:none; color:inherit;">
+                <div style="background:#e3f2fd; padding:12px; border-radius:10px; border-left:4px solid #1e3c72;">🚀 PM SHRI યોજના (માહિતી માટે ક્લિક કરો)</div>
             </a>
-
-            <a href="https://gshala.schoolnetindia.com//" target="_blank" style="text-decoration: none; color: inherit;">
-                <div style="background: #e8f5e9; padding: 15px; border-radius: 12px; border-left: 4px solid #2e7d32; cursor: pointer;">
-                    <strong>📱 G-SHALA (જી-શાલા):</strong> ઈ-કન્ટેન્ટ અને લર્નિંગ મેનેજમેન્ટ એપ વિશે જાણવા માટે.
-                </div>
+            <a href="https://gshala.school/" target="_blank" style="text-decoration:none; color:inherit;">
+                <div style="background:#e8f5e9; padding:12px; border-radius:10px; border-left:4px solid #2e7d32;">📱 G-SHALA એપ લિંક</div>
             </a>
-
-            <a href="https://diksha.gov.in/" target="_blank" style="text-decoration: none; color: inherit;">
-                <div style="background: #e3f2fd; padding: 15px; border-radius: 12px; border-left: 4px solid #00d2ff; cursor: pointer;">
-                    <strong>💻 DIKSHA પોર્ટલ:</strong> ડિજિટલ પાઠ્યપુસ્તકો અને શૈક્ષણિક વિડીયો માટે.
-                </div>
+            <a href="http://www.sebexam.org/" target="_blank" style="text-decoration:none; color:inherit;">
+                <div style="background:#fff3e0; padding:12px; border-radius:10px; border-left:4px solid #e65100;">📝 પરીક્ષાઓ અને શિષ્યવૃત્તિ (SEB)</div>
             </a>
-
-            <a href="http://www.sebexam.org/" target="_blank" style="text-decoration: none; color: inherit;">
-                <div style="background: #fff3e0; padding: 15px; border-radius: 12px; border-left: 4px solid #e65100; cursor: pointer;">
-                    <strong>📝 સ્પર્ધાત્મક પરીક્ષાઓ (SEB):</strong> NMMS, PSE અને અન્ય શિષ્યવૃત્તિ પરીક્ષાઓની વિગતો અને પરિણામ માટે.
-                </div>
-            </a>
-
-            <a href="https://pmposhan.education.gov.in/" target="_blank" style="text-decoration: none; color: inherit;">
-                <div style="background: #fce4ec; padding: 15px; border-radius: 12px; border-left: 4px solid #c2185b; cursor: pointer;">
-                    <strong>🥗 PM POSHAN:</strong> મધ્યાહ્ન ભોજન યોજના વિશેની સત્તાવાર માહિતી.
-                </div>
-            </a>
-
         </div>
     </div>
-            </a>
 
-            <a href="https://diksha.gov.in/" target="_blank" style="text-decoration: none; color: inherit;">
-                <div style="background: #e3f2fd; padding: 15px; border-radius: 12px; border-left: 4px solid #00d2ff; cursor: pointer; transition: 0.3s;" onmouseover="this.style.backgroundColor='#d1e9ff'" onmouseout="this.style.backgroundColor='#e3f2fd'">
-                    <strong>💻 DIKSHA (ડિજિટલ શિક્ષણ):</strong> ઈ-લર્નિંગ અને ડિજિટલ પાઠ્યપુસ્તકો માટેનું રાષ્ટ્રીય પોર્ટલ. <span style="color: #00d2ff; font-size: 0.8rem;">(વધુ જાણવા ક્લિક કરો 🔗)</span>
-                </div>
-            </a>
-
-            <a href="https://ગશાલા.ગુજરાત.gov.in/" target="_blank" style="text-decoration: none; color: inherit;">
-                <div style="background: #f1f8e9; padding: 15px; border-radius: 12px; border-left: 4px solid #4caf50; cursor: pointer; transition: 0.3s;" onmouseover="this.style.backgroundColor='#e1eedb'" onmouseout="this.style.backgroundColor='#f1f8e9'">
-                    <strong>📚 મિશન સ્કૂલ્સ ઓફ એક્સેલન્સ:</strong> ગુજરાત સરકારનો શિક્ષણની ગુણવત્તા સુધારવાનો મહત્વકાંક્ષી પ્રકલ્પ. <span style="color: #4caf50; font-size: 0.8rem;">(વધુ જાણવા ક્લિક કરો 🔗)</span>
-                </div>
-            </a>
-
+    <div class="card" id="activities">
+        <h2>🎨 ધોરણ વાઈઝ પ્રવૃત્તિઓ</h2>
+        <div class="activity-box">
+            <details>
+                <summary>ધોરણ ૧ અને ૨ (પ્રજ્ઞા)</summary>
+                <p>રમત-ગમત દ્વારા શિક્ષણ, ચિત્રકામ, ગીત-વાર્તા અને પાયાનું ભાષા જ્ઞાન.</p>
+            </details>
+            <details>
+                <summary>ધોરણ ૩ થી ૫</summary>
+                <p>FLN પ્રવૃત્તિઓ, પર્યાવરણ લક્ષી પ્રોજેક્ટ અને વાંચન-લેખન સજ્જતા.</p>
+            </details>
+            <details>
+                <summary>ધોરણ ૬ થી ૮</summary>
+                <p>વિજ્ઞાન પ્રયોગો, ગણિત ક્લબ, રમત-ગમત મહોત્સવ અને કમ્પ્યુટર શિક્ષણ.</p>
+            </details>
         </div>
     </div>
-<div class="card" id="activities">
-        <h2>ધોરણ વાઈઝ શૈક્ષણિક પ્રવૃત્તિઓ</h2>
-        
-        <div style="display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 20px;">
-            
-            <details style="background: #fff9c4; padding: 15px; border-radius: 12px; border: 1px solid #fbc02d;">
-                <summary style="font-weight: bold; cursor: pointer; color: #f57f17;">🎨 ધોરણ ૧ અને ૨: પ્રજ્ઞા અભિગમ</summary>
-                <ul style="margin-top: 10px; padding-left: 20px;">
-                    <li>રમત-ગમત સાથે શિક્ષણ (Activity Based Learning)</li>
-                    <li>શબ્દ કાર્ડ અને ચિત્ર કાર્ડ દ્વારા વાંચન</li>
-                    <li>ગીત, વાર્તા અને અભિનય દ્વારા સમજ</li>
-                </ul>
-            </details>
 
-            <details style="background: #e1f5fe; padding: 15px; border-radius: 12px; border: 1px solid #03a9f4;">
-                <summary style="font-weight: bold; cursor: pointer; color: #01579b;">📚 ધોરણ ૩ થી ૫: પાયાનું શિક્ષણ</summary>
-                <ul style="margin-top: 10px; padding-left: 20px;">
-                    <li>FLN (પાયાની સાક્ષરતા અને સંખ્યાજ્ઞાન) પ્રવૃત્તિઓ</li>
-                    <li>પર્યાવરણ પ્રોજેક્ટ અને પ્રકૃતિ દર્શન</li>
-                    <li>પ્રાદેશિક ભાષા અને ગણિતનું સંગીત સાથે શિક્ષણ</li>
-                </ul>
-            </details>
-
-            <details style="background: #ede7f6; padding: 15px; border-radius: 12px; border: 1px solid #673ab7;">
-                <summary style="font-weight: bold; cursor: pointer; color: #4527a0;">🧪 ધોરણ ૬ થી ૮: ઉચ્ચ પ્રાથમિક</summary>
-                <ul style="margin-top: 10px; padding-left: 20px;">
-                    <li>વિજ્ઞાનના પ્રયોગો અને STEM શિક્ષણ</li>
-                    <li>ભાષા સજ્જતા અને વ્યાકરણ ક્લબ</li>
-                    <li>કોમ્પ્યુટર શિક્ષણ અને ડિજિટલ સાક્ષરતા</li>
-                </ul>
-            </details>
-
-        </div>
-    </div>
     <div class="card" id="contact">
-        <h2>સંપર્ક</h2>
+        <h2>📞 સંપર્ક માહિતી</h2>
         <p>📍 મુ.પો. ફલુ, તા. વિજાપુર, જિ. મહેસાણા - 384570</p>
         <div class="btn-group">
-            <a href="tel:9624010410" class="btn btn-call-1">📞 કોલ કરો ૧</a>
-            <a href="tel:9574456156" class="btn btn-call-2">📞 કોલ કરો ૨</a>
-            <a href="https://wa.me/919624010410" class="btn" style="background: #25D366; grid-column: span 2; margin-top: 10px;">
-    <i class="fab fa-whatsapp"></i> 💬 WhatsApp મેસેજ કરો 
-                <a href="https://wa.me/919574456156" class="btn" style="background: #25D366; grid-column: span 2; margin-top: 10px;">
-    <i class="fab fa-whatsapp"></i> 💬 WhatsApp મેસેજ કરો
-</a>
+            <a href="tel:9624010410" class="btn btn-call">📞 કોલ કરો ૧</a>
+            <a href="tel:9574456156" class="btn btn-call">📞 કોલ કરો ૨</a>
+            <a href="https://wa.me/919624010410" class="btn btn-wa">💬 WhatsApp મેસેજ કરો</a>
+            <a href="https://wa.me/919574456156" class="btn btn-wa">💬 WhatsApp મેસેજ કરો</a>
             <a href="mailto:faluschool@gmail.com" class="btn btn-email">📧 ઈમેઈલ મોકલો</a>
         </div>
     </div>
 </div>
 
 <footer>
-    <h3>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</h3>
-    <p>DISE CODE: 24040801701</p>
-    <p>© 2024 સર્વ હક અબાધિત</p>
+    <h3>ફલુ અનુપમ પ્રાથમિક શાળા</h3>
+    <p>DISE Code: 24040801701 | Pin: 384570</p>
+    <p>© 2025 સર્વ હક અબાધિત</p>
 </footer>
 
 </body>
-
 </html>
-
-
-
-
-
-
-
-
