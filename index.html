@@ -22,13 +22,12 @@
         .hero-box { 
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); 
             padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.3); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .school-title { font-size: 2.2rem; font-weight: 700; color: white; }
         .school-subtitle { color: var(--secondary); display: block; margin-top: 5px; }
 
-        /* આધુનિક ફ્લોટિંગ મેનુ */
+        /* આધુનિક ફ્લોટિંગ મેનુ - લિન્કેજ સાથે */
         .modern-nav {
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
             background: rgba(30, 60, 114, 0.95); backdrop-filter: blur(15px);
@@ -47,12 +46,16 @@
         .card { background: white; border-radius: 15px; padding: 30px; margin-bottom: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-left: 8px solid var(--primary); }
         
         h2 { color: var(--primary); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px; }
-        footer { background: var(--primary); color: white; text-align: center; padding: 40px 20px; }
-
-        @media (max-width: 600px) {
-            .school-title { font-size: 1.5rem; }
-            .modern-nav { width: 95%; gap: 10px; padding: 10px; }
+        
+        /* સ્ટાફ કાર્ડ ડિઝાઈન - ચોખ્ખો ફોટો */
+        .staff-card {
+            border: 1px solid #ddd; padding: 20px; border-radius: 15px; max-width: 320px; margin: auto; text-align: center; background: #fff;
         }
+        .staff-img {
+            width: 180px; height: 210px; border-radius: 10px; object-fit: cover; border: 3px solid var(--primary); margin-bottom: 15px;
+        }
+
+        footer { background: var(--primary); color: white; text-align: center; padding: 40px 20px; }
     </style>
 </head>
 <body>
@@ -77,8 +80,8 @@
 </div>
 
 <div class="iks-container">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-        <div style="background: #d35400; color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; min-width: 180px; text-align: center;">ભારતીય જ્ઞાન પરંપરા (IKS)</div>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 20px;">
+        <div style="background: #d35400; color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; min-width: 180px; text-align: center;">IKS - જ્ઞાન પરંપરા</div>
         <div style="flex: 1; overflow: hidden; font-size: 1.1rem;">
             <marquee behavior="scroll" direction="left" scrollamount="4" id="iks-wisdom">માહિતી લોડ થઈ રહી છે...</marquee>
         </div>
@@ -88,23 +91,24 @@
 <div class="container">
     <div class="card" id="about">
         <h2>🏫 શાળા વિશે</h2>
-        <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b> આધુનિક શિક્ષણ અને પરંપરાગત મૂલ્યોનો સમન્વય છે.</p>
+        <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b> આધુનિક શિક્ષણ અને પરંપરાગત મૂલ્યોનો સંગમ છે. અમારી શાળા બાળકોના સર્વાંગી વિકાસ માટે કટિબદ્ધ છે.</p>
         <p>📍 મુ.પો. ફલુ, તા. વિજાપુર, જિ. મહેસાણા - 384570</p>
     </div>
 
     <div class="card" id="staff">
         <h2>👨‍🏫 શાળા પરિવાર</h2>
-        <div style="border: 1px solid #eee; padding: 20px; border-radius: 15px; max-width: 300px; margin: auto; text-align: center;">
-            <img src="https://lh3.googleusercontent.com/d/12xNIww0_1DaVi_10FBMmumTWBEO6T0ig" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--primary); margin-bottom: 10px;">
-            <h3>શ્રી નિલેશકુમાર પી. પટેલ</h3>
-            <p style="color:var(--secondary); font-weight:bold;">ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
+        <div class="staff-card">
+            <img src="https://files.catbox.moe/8b8w7y.jpg" class="staff-img" alt="શ્રી નિલેશકુમાર પી. પટેલ">
+            <h3 style="color: var(--primary);">શ્રી નિલેશકુમાર પી. પટેલ</h3>
+            <p style="color: var(--secondary); font-weight: bold; margin-top: 5px;">ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
+            <div style="margin-top: 10px; font-size: 0.9rem; color: #555;">B.Sc., B.Ed.</div>
         </div>
     </div>
 </div>
 
 <footer>
     <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b></p>
-    <p>DISE Code: 24040801701</p>
+    <p>DISE Code: 24040801701 | પિનકોડ: 384570</p>
 </footer>
 
 <script>
@@ -126,16 +130,13 @@
         const d = new Date();
         const idx = d.getDate() - 1;
 
-        const thoughtEl = document.getElementById('daily-thought');
-        if(thoughtEl) thoughtEl.innerText = "🌟 આજનો સુવિચાર: " + (thoughts[idx % thoughts.length]);
+        document.getElementById('daily-thought').innerText = "🌟 આજનો સુવિચાર: " + (thoughts[idx % thoughts.length]);
 
-        const iksEl = document.getElementById('iks-wisdom');
-        if(iksEl) {
-            const item = iksQuotes[idx % iksQuotes.length];
-            iksEl.innerHTML = `<span style="color:#b83b1d; font-weight:800;">"${item.s}"</span> 
-                               <span style="color:#666;"> [${item.ref || item.r}] </span> 
-                               <span style="color:#1e3c72; font-weight:bold;"> ➤ અર્થ: ${item.a}</span>`;
-        }
+        const item = iksQuotes[idx % iksQuotes.length];
+        document.getElementById('iks-wisdom').innerHTML = `
+            <span style="color:#b83b1d; font-weight:800;">"${item.s}"</span> 
+            <span style="color:#666;"> [${item.r}] </span> 
+            <span style="color:#1e3c72; font-weight:bold;"> ➤ અર્થ: ${item.a}</span>`;
     }
     window.onload = updateContent;
 </script>
