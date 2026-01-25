@@ -10,43 +10,74 @@
         * { box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Hind Vadodara', sans-serif; margin: 0; background-color: var(--bg); color: #333; }
 
-       /* હેડર - બાળકો ભણતા હોય તેવા બેકગ્રાઉન્ડ સાથે */
+        /* હેડર - ઓરિજિનલ ગ્લાસ ઇફેક્ટ સાથે */
         header {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
                         url('https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
             background-size: cover; background-position: center;
-            height: 70vh; display: flex; justify-content: center; align-items: center;
+            height: 60vh; display: flex; justify-content: center; align-items: center;
             color: white; text-align: center; padding: 20px;
             border-bottom: 8px solid var(--secondary);
         }
 
-        .hero-box { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 30px; border-radius: 25px; border: 2px solid rgba(255, 255, 255, 0.2); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
-        .school-name { font-size: 2.2rem; margin: 0; font-weight: 700; }
-        .color-white { color: #ffffff; } .color-orange { color: #ff9800; } .color-blue { color: #00d2ff; } 
-        .pm-badge { background: var(--secondary); color: white; padding: 5px 20px; border-radius: 50px; font-weight: bold; margin-top: 15px; display: inline-block; }
-        .dias-code-header { margin-top: 10px; font-size: 1.1rem; background: rgba(0,0,0,0.5); padding: 5px 15px; border-radius: 8px; border: 1px dashed var(--accent); display: inline-block; }
+        .hero-box { 
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(12px); 
+            padding: 35px; 
+            border-radius: 25px; 
+            border: 2px solid rgba(255, 255, 255, 0.2); 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4); 
+        }
 
-        nav { background: white; position: sticky; top: 0; display: flex; overflow-x: auto; padding: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 1000; }
-        nav a { text-decoration: none; color: var(--primary); padding: 10px 15px; margin: 0 5px; font-weight: 600; border-radius: 10px; white-space: nowrap; }
+        .school-name { font-size: 2.5rem; margin: 0; font-weight: 700; line-height: 1.2; }
+        .color-white { color: #ffffff; } .color-orange { color: #ff9800; } .color-blue { color: #00d2ff; } 
+        
+        .pm-badge { 
+            background: var(--secondary); color: white; padding: 6px 25px; 
+            border-radius: 50px; font-weight: bold; margin-top: 15px; display: inline-block; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .dias-code-header { 
+            margin-top: 10px; font-size: 1.1rem; background: rgba(0,0,0,0.5); 
+            padding: 5px 15px; border-radius: 8px; border: 1px dashed var(--accent); display: inline-block; 
+        }
+
+        nav { 
+            background: white; position: sticky; top: 0; display: flex; 
+            justify-content: center; overflow-x: auto; padding: 12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 1000; 
+        }
+        nav a { text-decoration: none; color: var(--primary); padding: 8px 18px; font-weight: 600; border-radius: 10px; transition: 0.3s; }
         nav a:hover { background: var(--primary); color: white; }
 
-        .container { padding: 20px; max-width: 900px; margin: auto; }
-        .card { background: white; border-radius: 20px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 6px solid var(--primary); }
-        h2 { color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        .container { padding: 25px; max-width: 1000px; margin: auto; }
+        
+        .card { 
+            background: white; border-radius: 20px; padding: 30px; margin-bottom: 30px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 8px solid var(--primary); 
+        }
 
-        .scheme-box { background: #f9f9f9; padding: 12px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #ddd; display: block; text-decoration: none; color: inherit; }
-        details { background: #fffdf9; padding: 12px; border-radius: 10px; border: 1px solid #ffecb3; margin-bottom: 10px; }
-        summary { font-weight: bold; cursor: pointer; color: #e65100; }
+        h2 { color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
 
-        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
-        .btn { padding: 12px; border-radius: 12px; text-decoration: none; font-weight: bold; text-align: center; color: white; }
-        .btn-call-1 { background: #28a745; }
-        .btn-call-2 { background: #007bff; }
-        .btn-wa-1 { background: #25D366; }
-        .btn-wa-2 { background: #128C7E; }
+        /* સ્ટાફ કાર્ડ્સ માટે સુધારેલ ગ્રીડ */
+        .staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .staff-card { 
+            background: #fff; border-radius: 15px; padding: 20px; border: 1px solid #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; transition: 0.3s;
+        }
+        .staff-card:hover { transform: translateY(-5px); border-color: var(--secondary); }
+        .staff-img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--primary); object-fit: cover; margin-bottom: 15px; }
+
+        /* બટન્સ */
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .btn { padding: 12px; border-radius: 12px; text-decoration: none; font-weight: bold; text-align: center; color: white; transition: 0.3s; }
+        .btn:hover { opacity: 0.9; transform: scale(1.02); }
+        .btn-call { background: #007bff; }
+        .btn-wa { background: #25D366; }
         .btn-email { background: var(--secondary); grid-column: span 2; }
 
-        footer { background: var(--primary); color: white; text-align: center; padding: 30px; margin-top: 40px; }
+        footer { background: var(--primary); color: white; text-align: center; padding: 40px 20px; margin-top: 50px; }
     </style>
 </head>
 <body>
@@ -60,286 +91,86 @@
         <div class="dias-code-header">DISE Code: 24040801701</div>
     </div>
 </header>
-<div id="thought-section" style="background: linear-gradient(90deg, #1e3c72, #2a5298); color: white; padding: 10px 0; overflow: hidden; white-space: nowrap; box-shadow: 0 2px 10px rgba(0,0,0,0.2); margin-bottom: 20px;">
-    <div style="display: flex; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
-        <span style="background: #ff9800; color: #fff; padding: 2px 12px; border-radius: 4px; font-weight: bold; margin-right: 15px; font-size: 0.9rem; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);">આજનો સુવિચાર</span>
-        <marquee behavior="scroll" direction="left" scrollamount="6" id="daily-thought" style="font-size: 1.1rem; font-weight: 500; font-family: 'Gujarati', sans-serif;">
-            લોડ થઈ રહ્યો છે...
-        </marquee>
-    </div>
+
+<div style="background: #1e3c72; color: white; padding: 10px 0;">
+    <marquee behavior="scroll" direction="left" scrollamount="6" id="daily-thought">લોડ થઈ રહ્યો છે...</marquee>
 </div>
 
-<script>
-    // સુવિચારોનું લિસ્ટ
-    const thoughts = [
-        "શિક્ષણ એ દુનિયાને બદલવા માટેનું સૌથી શક્તિશાળી હથિયાર છે.",
-        "પુસ્તકો જેવો કોઈ મિત્ર નથી અને જ્ઞાન જેવો કોઈ ગુરુ નથી.",
-        "સફળતા એ મહેનતનું પરિણામ છે, નસીબનું નહીં.",
-        "વિનમ્રતા એ જ્ઞાનનું પ્રથમ ફળ છે.",
-        "શાળા એ સંસ્કારનું મંદિર છે.",
-        "કરેલી મહેનત કદી એળે જતી નથી.",
-        "સારા વિચારો એ જ સાચું જીવન છે.",
-        "જ્ઞાન વહેંચવાથી વધે છે.",
-        "સમયની કિંમત સમજનાર જ સફળ થાય છે.",
-        "સાચું શિક્ષણ એ છે જે ચરિત્રનું ઘડતર કરે."
-    ];
-
-    // દરરોજ નવો સુવિચાર બતાવવા માટેનું લોજિક
-    function displayDailyThought() {
-        const date = new Date();
-        const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
-        const thoughtIndex = dayOfYear % thoughts.length;
-        document.getElementById('daily-thought').innerText = thoughts[thoughtIndex];
-    }
-
-    // પેજ લોડ થાય ત્યારે ફંક્શન ચલાવો
-    window.onload = function() {
-        displayDailyThought();
-        // જો પહેલાથી કોઈ window.onload હોય તો તેની સાથે આને જોડવું
-    };
-</script>
 <nav>
     <a href="#">🏠 હોમ</a>
     <a href="#about">🏫 શાળા વિશે</a>
-    <a href="#about">🏫 શાળા પરિવાર</a>
+    <a href="#staff">👨‍🏫 પરિવાર</a>
     <a href="#activities">🎨 પ્રવૃત્તિઓ</a>
     <a href="#contact">📞 સંપર્ક</a>
 </nav>
-<div style="background: #fffcf5; border-top: 4px solid #d35400; border-bottom: 4px solid #d35400; padding: 15px 0; margin: 25px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 20px;">
-        
-        <div style="background: #d35400; color: white; padding: 10px 15px; border-radius: 8px; font-weight: bold; text-align: center; min-width: 160px; line-height: 1.2;">
-            <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">Ancient Wisdom</div>
-            <div style="font-size: 1.1rem;">ભારતીય જ્ઞાન પરંપરા</div>
-        </div>
 
-        <div style="flex: 1; overflow: hidden;">
-            <marquee behavior="scroll" direction="left" scrollamount="5" id="iks-wisdom-ref" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                લોડ થઈ રહ્યું છે...
-            </marquee>
-        </div>
-    </div>
-</div>
-
-<script>
-    const iksRefQuotes = [
-        {
-            shlok: "न हि ज्ञानेन सदृशं पवित्रमिह विद्यते ।",
-            ref: "શ્રીમદ્ભગવદ્ગીતા: અધ્યાય-૪, શ્લોક-૩૮",
-            arth: "આ પૃથ્વી પર જ્ઞાન જેવું પવિત્ર બીજું કંઈ જ નથી.",
-            iks_link: "IKS સંબંધ: આ આજીવન શીખવાની વૃત્તિ (Lifelong Learning) અને બૌદ્ધિક શુદ્ધિનો પાયો છે."
-        },
-        {
-            shlok: "योग: कर्मसु कौशलम् ।",
-            ref: "શ્રીમદ્ભગવદ્ગીતા: અધ્યાય-૨, શ્લોક-૫૦",
-            arth: "કર્મોમાં કુશળતા એટલે જ યોગ.",
-            iks_link: "IKS સંબંધ: આ સૂત્ર 'કૌશલ્ય વિકાસ' (Skill Development) અને વ્યાવસાયિક શ્રેષ્ઠતાનું ભારતીય મોડેલ છે."
-        },
-        {
-            shlok: "विद्या ददाति विनयम् ।",
-            ref: "હિતોપદેશ: પ્રસ્તાવના, શ્લોક-૬",
-            arth: "વિદ્યા વિનય (નમ્રતા) આપે છે.",
-            iks_link: "IKS સંબંધ: શિક્ષણનો અંતિમ હેતુ ચારિત્ર્ય નિર્માણ (Holistic Character Building) છે."
-        },
-        {
-            shlok: "आनो भद्रा: क्रतवो यन्तु विश्वत: ।",
-            ref: "ઋગ્વેદ: ૧.૮૯.૧",
-            arth: "દરેક દિશાઓમાંથી અમને કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.",
-            iks_link: "IKS સંબંધ: આ વૈશ્વિક જ્ઞાનની સ્વીકાર્યતા અને સર્વસમાવેશક શિક્ષણ (Inclusive Education) દર્શાવે છે."
-        },
-        {
-            shlok: "स्वदेशे पूज्यते राजा विद्वान् सर्वत्र पूज्यते ।",
-            ref: "ચાણક્ય નીતિ: અધ્યાય-૮, શ્લોક-૨૦",
-            arth: "રાજા પોતાના દેશમાં પૂજાય છે, પણ વિદ્વાન આખા વિશ્વમાં પૂજાય છે.",
-            iks_link: "IKS સંબંધ: આ જ્ઞાનની વૈશ્વિક કિંમત અને 'વિશ્વગુરુ' બનવાની દિશા બતાવે છે."
-        }
-    ];
-
-    function loadIKSWithRef() {
-        const date = new Date();
-        const index = date.getDate() % iksRefQuotes.length; // દરરોજ તારીખ મુજબ બદલાશે
-        const item = iksRefQuotes[index];
-        
-        document.getElementById('iks-wisdom-ref').innerHTML = `
-            <span style="font-weight: bold; color: #b83b1d; font-size: 1.25rem;">"${item.shlok}"</span> 
-            <span style="color: #666; font-size: 0.9rem; font-style: italic; margin-left: 5px;">[સંદર્ભ: ${item.ref}]</span>
-            <span style="margin: 0 20px; color: #d35400; font-weight: bold;">➤</span> 
-            <span style="font-weight: 500; color: #1e3c72;">અર્થ: ${item.arth}</span> 
-            <span style="margin: 0 20px; color: #d35400; font-weight: bold;">➤</span> 
-            <span style="background: #fdf2e9; padding: 4px 12px; border-radius: 20px; border: 1px solid #d35400; color: #d35400; font-size: 0.95rem; font-weight: bold;">
-                ${item.iks_link}
-            </span>
-        `;
-    }
-
-    window.addEventListener('load', loadIKSWithRef);
-</script>
 <div class="container">
     <div class="card" id="about">
         <h2>🏫 શાળા વિશે અને સરકારી પ્રકલ્પો</h2>
-        <a href="https://pmshrischools.education.gov.in/" target="_blank" class="scheme-box">🚀 <strong>PM SHRI યોજના:</strong> આધુનિક લેબ અને સ્માર્ટ શિક્ષણ.</a>
-        <a href="https://gshala.schoolnetindia.com//" target="_blank" class="scheme-box">📱 <strong>G-SHALA (જી-શાલા):</strong> ઈ-કન્ટેન્ટ અને લર્નિંગ એપ.</a>
-        <a href="https://diksha.gov.in/" target="_blank" class="scheme-box">💻 <strong>DIKSHA પોર્ટલ:</strong> ડિજિટલ પાઠ્યપુસ્તકો માટે.</a>
-        <a href="http://www.sebexam.org/" target="_blank" class="scheme-box">📝 <strong>શિષ્યવૃત્તિ પરીક્ષાઓ (SEB):</strong> NMMS અને PSE પરીક્ષા વિગતો.</a>
-    </div>
-
-    <div class="card" id="activities">
-        <h2>🎨 ધોરણ વાઈઝ પ્રવૃત્તિઓ</h2>
-        <p>બાળકોની પ્રવૃત્તિઓના ફોટા જોવા માટે જે-તે ધોરણ પર ક્લિક કરો:</p>
-        
-        <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px;">
-            
-            <a href="https://drive.google.com/drive/folders/1PhXVSFdHKd7Fngo3_Y9reJOzIVTVmeXQ?usp=sharing" target="_blank" style="text-decoration: none;">
-                <div style="background: #fff9c4; padding: 15px; border-radius: 12px; border: 2px solid #fbc02d; color: #f57f17; display: flex; justify-content: space-between; align-items: center; font-weight: bold;">
-                    <span>👶 બાલવાટિકા અને ધોરણ ૧-૨</span>
-                    <span>📸 ફોટા જુઓ ➔</span>
-                </div>
-            </a>
-
-            <a href="https://drive.google.com/drive/folders/1iF3xODYgFKE4XuhW3qcVdMpJaDLbrM22?usp=sharing" target="_blank" style="text-decoration: none;">
-                <div style="background: #e1f5fe; padding: 15px; border-radius: 12px; border: 2px solid #03a9f4; color: #01579b; display: flex; justify-content: space-between; align-items: center; font-weight: bold;">
-                    <span>📚 ધોરણ ૩ થી ૫</span>
-                    <span>📸 ફોટા જુઓ ➔</span>
-                </div>
-            </a>
-
-            <a href="https://drive.google.com/drive/folders/1Ahnvg-RytiF67KpSE6rkHypq7YWcAQzl?usp=sharing" target="_blank" style="text-decoration: none;">
-                <div style="background: #ede7f6; padding: 15px; border-radius: 12px; border: 2px solid #673ab7; color: #4527a0; display: flex; justify-content: space-between; align-items: center; font-weight: bold;">
-                    <span>🔬 ધોરણ ૬ થી ૮</span>
-                    <span>📸 ફોટા જુઓ ➔</span>
-                </div>
-            </a>
-
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+            <a href="https://pmshrischools.education.gov.in/" target="_blank" style="text-decoration:none; color:inherit; background:#f9f9f9; padding:15px; border-radius:10px; border-left:4px solid var(--secondary);">🚀 <strong>PM SHRI:</strong> આધુનિક શિક્ષણ</a>
+            <a href="https://gshala.schoolnetindia.com/" target="_blank" style="text-decoration:none; color:inherit; background:#f9f9f9; padding:15px; border-radius:10px; border-left:4px solid var(--accent);">📱 <strong>G-SHALA:</strong> ડિજિટલ લર્નિંગ</a>
         </div>
     </div>
-<div class="card" id="staff" style="margin-top: 20px; padding: 20px; background: #f9f9f9; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
-    <h2 style="text-align: center; color: #1e3c72; border-bottom: 3px solid #ff9800; padding-bottom: 15px; font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 2.2em;">શાળા પરિવાર</h2>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px;">
 
-        <div style="background: #ffffff; border-radius: 15px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.12); border-left: 8px solid #1e3c72; border: 1px solid #eee; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; align-items: center;">
-            
-            <div style="margin-bottom: 15px;">
-                <img src="https://lh3.googleusercontent.com/d/12xNIww0_1DaVi_10FBMmumTWBEO6T0ig" 
-                     alt="શ્રી નિલેશકુમાર પ્રહલાદભાઈ પટેલ" 
-                     style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid #1e3c72; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background-color: white; padding: 3px;">
+    <div class="card" id="staff">
+        <h2>👨‍🏫 અમારો શાળા પરિવાર</h2>
+        <div class="staff-grid">
+            <div class="staff-card">
+                <img src="https://lh3.googleusercontent.com/d/12xNIww0_1DaVi_10FBMmumTWBEO6T0ig" alt="શ્રી નિલેશકુમાર પી. પટેલ" class="staff-img">
+                <h3 style="margin:0; color:var(--primary);">શ્રી નિલેશકુમાર પી. પટેલ</h3>
+                <p style="color:var(--secondary); font-weight:bold; margin:5px 0;">ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
+                <p style="font-size:0.9rem;">B.Sc., P.T.C, M.A., B.Ed</p>
+                <div style="display:flex; gap:10px; margin-top:15px;">
+                    <a href="tel:9574456156" class="btn btn-call" style="flex:1">📞 કોલ</a>
+                    <a href="https://wa.me/919574456156" class="btn btn-wa" style="flex:1">💬 WA</a>
+                </div>
             </div>
+            <div class="staff-card">
+                <img src="https://via.placeholder.com/120" class="staff-img" alt="શિક્ષક">
+                <h3 style="margin:0; color:var(--primary);">શ્રી આચાર્યશ્રીનું નામ</h3>
+                <p style="color:var(--secondary); font-weight:bold; margin:5px 0;">મુખ્ય શિક્ષક</p>
+                <div style="display:flex; gap:10px; margin-top:15px;">
+                    <a href="tel:9624010410" class="btn btn-call" style="flex:1">📞 કોલ</a>
+                    <a href="https://wa.me/919624010410" class="btn btn-wa" style="flex:1">💬 WA</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <div style="text-align: left; width: 100%;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px;">
-                    <h3 style="margin: 0; color: #1e3c72; font-size: 1.2em; font-weight: 600;">શ્રી નિલેશકુમાર પ્રહલાદભાઈ પટેલ</h3>
-                    <span style="background: #e0f2f7; padding: 4px 10px; border-radius: 20px; font-size: 0.75em; font-weight: bold; color: #1e3c72; white-space: nowrap;">ID: 10086328</span>
-                </div>
-                
-                <p style="margin: 5px 0 10px 0; color: #ff9800; font-weight: bold; font-size: 1em;">હોદ્દો: ઉપશિક્ષક</p>
-                
-                <div style="font-size: 0.95em; line-height: 1.8; color: #555; margin-top: 10px;">
-                    <div>🎓 <b>લાયકાત:</b> B.Sc., P.T.C, M.A.(Soc.), B.Ed</div>
-                    <div>🏫 <b>ધોરણ:</b> 6 થી 8 | 🧪 <b>વિષય:</b> ગણિત - વિજ્ઞાન</div>
-                </div>
-                
-                <div style="margin-top: 20px; display: flex; gap: 10px;">
-                    <a href="tel:9574456156" style="flex: 1; text-align: center; background: #1e3c72; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; transition: background 0.3s ease;">📞 કોલ કરો</a>
-                    <a href="https://wa.me/919574456156" target="_blank" style="background: #25D366; padding: 12px; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: background 0.3s ease;">
-                        <img src="https://img.icons8.com/color/28/whatsapp.png" alt="WhatsApp" style="width: 24px; height: 24px;">
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div style="background: #ffffff; border-radius: 15px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.12); border-left: 8px solid #a8c4d4; border: 1px solid #eee; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; align-items: center;">
-            <div style="margin-bottom: 15px;">
-                <img src="https://via.placeholder.com/140/f0f0f0/333333?text=ફોટો" alt="શિક્ષકનો ફોટો" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid #a8c4d4; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background-color: white; padding: 3px;">
-            </div>
-            <div style="text-align: left; width: 100%;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px;">
-                    <h3 style="margin: 0; color: #1e3c72; font-size: 1.2em; font-weight: 600;">શ્રી શિક્ષકનું નામ અહીં</h3>
-                    <span style="background: #e0f2f7; padding: 4px 10px; border-radius: 20px; font-size: 0.75em; font-weight: bold; color: #1e3c72; white-space: nowrap;">ID: XXXX</span>
-                </div>
-                <p style="margin: 5px 0 10px 0; color: #ff9800; font-weight: bold; font-size: 1em;">હોદ્દો: હોદ્દો અહીં</p>
-                <div style="font-size: 0.95em; line-height: 1.8; color: #555; margin-top: 10px;">
-                    <div>🎓 <b>લાયકાત:</b> લાયકાત અહીં</div>
-                    <div>🏫 <b>ધોરણ:</b> ધોરણ અહીં | 🧪 <b>વિષય:</b> વિષય અહીં</div>
-                </div>
-                <div style="margin-top: 20px; display: flex; gap: 10px;">
-                    <a href="tel:શિક્ષકનો_નંબર_અહીં" style="flex: 1; text-align: center; background: #a8c4d4; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; transition: background 0.3s ease;">📞 કોલ કરો</a>
-                    <a href="https://wa.me/91શિક્ષકનો_નંબર_અહીં" target="_blank" style="background: #25D366; padding: 12px; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: background 0.3s ease;">
-                        <img src="https://img.icons8.com/color/28/whatsapp.png" alt="WhatsApp" style="width: 24px; height: 24px;">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div style="background: #ffffff; border-radius: 15px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.12); border-left: 8px solid #a8c4d4; border: 1px solid #eee; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; align-items: center;">
-            <div style="margin-bottom: 15px;">
-                <img src="https://via.placeholder.com/140/f0f0f0/333333?text=ફોટો" alt="શિક્ષકનો ફોટો" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid #a8c4d4; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background-color: white; padding: 3px;">
-            </div>
-            <div style="text-align: left; width: 100%;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px;">
-                    <h3 style="margin: 0; color: #1e3c72; font-size: 1.2em; font-weight: 600;">શ્રી શિક્ષકનું નામ અહીં</h3>
-                    <span style="background: #e0f2f7; padding: 4px 10px; border-radius: 20px; font-size: 0.75em; font-weight: bold; color: #1e3c72; white-space: nowrap;">ID: XXXX</span>
-                </div>
-                <p style="margin: 5px 0 10px 0; color: #ff9800; font-weight: bold; font-size: 1em;">હોદ્દો: હોદ્દો અહીં</p>
-                <div style="font-size: 0.95em; line-height: 1.8; color: #555; margin-top: 10px;">
-                    <div>🎓 <b>લાયકાત:</b> લાયકાત અહીં</div>
-                    <div>🏫 <b>ધોરણ:</b> ધોરણ અહીં | 🧪 <b>વિષય:</b> વિષય અહીં</div>
-                </div>
-                <div style="margin-top: 20px; display: flex; gap: 10px;">
-                    <a href="tel:શિક્ષકનો_નંબર_અહીં" style="flex: 1; text-align: center; background: #a8c4d4; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9em; transition: background 0.3s ease;">📞 કોલ કરો</a>
-                    <a href="https://wa.me/91શિક્ષકનો_નંબર_અહીં" target="_blank" style="background: #25D366; padding: 12px; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: background 0.3s ease;">
-                        <img src="https://img.icons8.com/color/28/whatsapp.png" alt="WhatsApp" style="width: 24px; height: 24px;">
-                    </a>
-                </div>
-            </div>
-        </div>
-        </div>
-</div>
     <div class="card" id="contact">
         <h2>📞 સંપર્ક માહિતી</h2>
         <p>📍 મુ.પો. ફલુ, તા. વિજાપુર, જિ. મહેસાણા - 384570</p>
         <div class="btn-group">
-            <a href="tel:9624010410" class="btn btn-call-1">📞 કોલ: 9624010410</a>
-            <a href="https://wa.me/919624010410" target="_blank" class="btn btn-wa-1">💬 WhatsApp 1</a>
-            <a href="tel:9574456156" class="btn btn-call-2">📞 કોલ: 9574456156</a>
-            <a href="https://wa.me/919574456156" target="_blank" class="btn btn-wa-2">💬 WhatsApp 2</a>
+            <a href="tel:9624010410" class="btn btn-call">📞 આચાર્યશ્રી</a>
+            <a href="https://wa.me/919624010410" class="btn btn-wa">💬 WhatsApp 1</a>
             <a href="mailto:faluschool@gmail.com" class="btn btn-email">📧 ઈમેઈલ મોકલો</a>
         </div>
     </div>
 </div>
-<footer style="background: #1e3c72; color: white; padding: 30px 10px; margin-top: 50px; text-align: center; border-top: 5px solid #ff9800;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <h3 style="margin-bottom: 10px;">ફલુ પ્રાથમિક શાળા</h3>
-        <p style="font-size: 0.9rem; opacity: 0.8;">પિનકોડ: 384570 | તાલુકો: વિજાપુર | જિલ્લો: મહેસાણા</p>
-        
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
-        
-        <p style="font-size: 0.85rem;">
-            &copy; 2025 તમામ હકો ફલુ પ્રાથમિક શાળા હસ્તક છે. 
-            <br>
-            <span style="font-size: 0.75rem; color: #ff9800;">Designed with AI for Educational Excellence</span>
-        </p>
 
-        <div style="font-size: 0.7rem; margin-top: 15px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 5px; text-align: justify;">
-            <b>ડિસ્ક્લેમર:</b> આ વેબસાઈટ પર દર્શાવવામાં આવતા વિજ્ઞાન અને અંધશ્રદ્ધા નિવારણના વિડીયો માત્ર શૈક્ષણિક અને જાગૃતિના હેતુ માટે છે. વિડીયોના કોપીરાઈટ તેના મૂળ સર્જકો (YouTube Channels) પાસે સુરક્ષિત છે. અમે માત્ર 'એમ્બેડ' (Embed) લિંકનો ઉપયોગ કર્યો છે જે YouTube ની નીતિઓ મુજબ માન્ય છે.
-        </div>
-    </div>
-</footer>
 <footer>
     <h3>ફલુ અનુપમ પ્રાથમિક શાળા</h3>
-    <p>DISE Code: 24040801701 | Pin: 384570</p>
-    <p>© 2025 સર્વ હક અબાધિત</p>
+    <p>DISE Code: 24040801701 | પિનકોડ: 384570</p>
+    <p>© 2026 તમામ હકો અબાધિત | Educational Excellence</p>
+    <div style="font-size: 0.75rem; margin-top: 20px; opacity: 0.7;">
+        ડિસ્ક્લેમર: આ વેબસાઈટ શૈક્ષણિક હેતુ માટે બનાવવામાં આવી છે.
+    </div>
 </footer>
+
+<script>
+    const thoughts = [
+        "શિક્ષણ એ દુનિયાને બદલવા માટેનું સૌથી શક્તિશાળી હથિયાર છે.",
+        "પુસ્તકો જેવો કોઈ મિત્ર નથી અને જ્ઞાન જેવો કોઈ ગુરુ નથી.",
+        "સફળતા એ મહેનતનું પરિણામ છે, નસીબનું નહીં.",
+        "વિનમ્રતા એ જ્ઞાનનું પ્રથમ ફળ છે."
+    ];
+    function displayThought() {
+        const index = new Date().getDate() % thoughts.length;
+        document.getElementById('daily-thought').innerText = "આજનો સુવિચાર: " + thoughts[index];
+    }
+    window.onload = displayThought;
+</script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
