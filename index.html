@@ -3,190 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>સ્ટુડન્ટ પોર્ટલ - ફલુ અનુપમ પ્રાથમિક શાળા</title>
+    <title>પીએમશ્રી - ફલુ અનુપમ પ્રાથમિક શાળા</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --main: #003366; --gold: #d4af37; --bg: #f0f2f5; --white: #ffffff; }
+        :root { --primary: #1e3c72; --gold: #f39c12; --glass: rgba(255, 255, 255, 0.9); }
+        
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Hind Vadodara', sans-serif; }
         
-        body { background: var(--bg); color: #333; padding-bottom: 80px; }
+        body { 
+            /* હરિયાળી શાળા અને ભણાવતા શિક્ષકોનું બેકગ્રાઉન્ડ */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.pexels.com/photos/5212331/pexels-photo-5212331.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover; background-attachment: fixed; background-position: center;
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+        }
 
-        /* આધુનિક હેડર */
         header {
-            background: linear-gradient(135deg, #003366 0%, #00509d 100%);
-            color: white; padding: 60px 20px; text-align: center;
-            border-bottom: 5px solid var(--gold); box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center; color: white; padding: 40px 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
 
-        .container { max-width: 1200px; margin: auto; padding: 25px; display: flex; gap: 30px; flex-wrap: wrap; }
-        .main-content { flex: 2.5; min-width: 350px; }
-        .sidebar { flex: 1; min-width: 300px; }
-
-        /* લોગીન સિસ્ટમ કાર્ડ */
-        .login-card {
-            background: var(--white); border-radius: 20px; padding: 35px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 8px solid var(--main);
-            margin-bottom: 30px;
-        }
-        .login-card h2 { color: var(--main); margin-bottom: 20px; text-align: center; font-size: 1.8rem; }
-        .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; margin-bottom: 5px; font-weight: 600; color: #555; }
-        .input-group input { 
-            width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; 
-            font-size: 1rem; transition: 0.3s;
-        }
-        .input-group input:focus { border-color: var(--main); outline: none; }
-        .login-btn { 
-            width: 100%; padding: 15px; background: var(--main); color: white; 
-            border: none; border-radius: 10px; font-size: 1.1rem; font-weight: bold; 
-            cursor: pointer; transition: 0.3s;
-        }
-        .login-btn:hover { background: #002244; transform: translateY(-2px); }
-
-        /* સ્ટાફ સ્લાઇડર */
-        .staff-card {
-            background: white; border-radius: 20px; padding: 30px; text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-        .staff-img { 
-            width: 160px; height: 180px; border-radius: 50%; object-fit: cover; 
-            border: 5px solid var(--main); margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        /* મુખ્ય મેનુ ગ્રીડ */
+        .dashboard {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px; width: 90%; max-width: 1100px; margin-bottom: 50px;
         }
 
-        /* જમણી સાઇડની એપ્સ - નવી ડિઝાઇન */
-        .sidebar-app-card {
-            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);
-            border-radius: 20px; padding: 20px; border: 1px solid rgba(255,255,255,0.3);
-            margin-bottom: 20px; box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+        .menu-card {
+            background: var(--glass); backdrop-filter: blur(10px);
+            border-radius: 20px; padding: 30px; text-align: center;
+            cursor: pointer; transition: 0.4s; border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
-        .app-link {
-            display: flex; align-items: center; gap: 15px; text-decoration: none;
-            background: white; padding: 12px; border-radius: 12px; margin-bottom: 12px;
-            transition: 0.3s; border: 1px solid #eee;
+        .menu-card:hover { transform: translateY(-10px); background: #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .menu-card i { font-size: 3rem; display: block; margin-bottom: 15px; }
+        .menu-card h3 { color: var(--primary); font-size: 1.4rem; }
+
+        /* કન્ટેન્ટ સેક્શન (શરૂઆતમાં છુપાયેલું રહેશે) */
+        .content-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;
         }
-        .app-link:hover { transform: scale(1.03); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .app-link img { width: 45px; height: 45px; border-radius: 8px; }
-        .app-link span { font-weight: bold; color: var(--main); }
-
-        .nav-bar {
-            position: fixed; bottom: 0; left: 0; right: 0; background: var(--main);
-            display: flex; justify-content: space-around; padding: 15px; z-index: 1000;
+        .modal {
+            background: white; width: 90%; max-width: 600px; border-radius: 20px;
+            padding: 30px; position: relative; animation: slideUp 0.4s ease;
         }
-        .nav-bar a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: #666; }
 
-        #result-display { display: none; margin-top: 20px; padding: 20px; background: #e8f5e9; border-radius: 10px; border-left: 5px solid #2e7d32; }
+        /* લોગીન ફોર્મ */
+        .login-box input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; }
+        .btn { background: var(--primary); color: white; padding: 12px 25px; border: none; border-radius: 10px; cursor: pointer; width: 100%; font-weight: bold; }
 
-        @media (max-width: 768px) { .container { flex-direction: column; } }
+        /* સ્ટાફ ફોટો શૈલી */
+        .staff-img { width: 150px; height: 150px; border-radius: 50%; border: 5px solid var(--gold); object-fit: cover; margin-bottom: 15px; }
+
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* સાઇડબાર એપ્સની નવી પ્રોફેશનલ ડીઝાઇન */
+        .app-list { list-style: none; margin-top: 15px; }
+        .app-list li { margin-bottom: 10px; }
+        .app-list a { 
+            display: flex; align-items: center; gap: 15px; text-decoration: none; 
+            color: var(--primary); font-weight: bold; background: #f8f9fa; padding: 10px; border-radius: 12px;
+        }
+
+        @media (max-width: 600px) { .dashboard { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>ફલુ અનુપમ પ્રાથમિક શાળા</h1>
-    <p>પીએમશ્રી-ગુજરાત | ડિઝીટલ સ્ટુડન્ટ ડેશબોર્ડ</p>
+    <h1 style="font-size: 2.5rem;">ફલુ અનુપમ પ્રાથમિક શાળા</h1>
+    <p style="font-size: 1.2rem; font-weight: bold; color: var(--gold);">પીએમશ્રી-ગુજરાત | ડિઝીટલ એજ્યુકેશન હબ</p>
 </header>
 
-<div class="container">
-    <div class="main-content">
-        <div class="login-card">
-            <h2>🎓 પરિણામ લોગીન</h2>
-            <div class="input-group">
-                <label>આધાર UID નંબર</label>
-                <input type="number" id="uid" placeholder="૧૮ આંકડાનો UID નંબર નાખો">
-            </div>
-            <div class="input-group">
-                <label>GR નંબર</label>
-                <input type="number" id="grno" placeholder="જનરલ રજીસ્ટર નંબર નાખો">
-            </div>
-            <button class="login-btn" onclick="checkResult()">પરિણામ જુઓ</button>
-
-            <div id="result-display">
-                <h4 id="res-name">વિદ્યાર્થીનું નામ: </h4>
-                <p id="res-grade">પરિણામ: <b>A+ (ઉત્તીર્ણ)</b></p>
-                <button style="margin-top:10px; padding:5px 10px;">PDF ડાઉનલોડ કરો</button>
-            </div>
-        </div>
-
-        <div class="staff-card" id="family">
-            <h2 style="color: var(--main); margin-bottom: 20px;">શાળા પરિવાર</h2>
-            <img src="https://files.catbox.moe/8b8w7y.jpg" class="staff-img" id="s-img" alt="શિક્ષકનો ફોટો">
-            <h3 id="s-name">શ્રી નિલેશકુમાર પી. પટેલ</h3>
-            <p id="s-role" style="color: var(--gold); font-weight: bold;">ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
-            <div style="margin-top: 20px;">
-                <button onclick="changeStaff(-1)" style="padding: 10px 20px; cursor: pointer;">◀</button>
-                <button onclick="changeStaff(1)" style="padding: 10px 20px; cursor: pointer;">▶</button>
-            </div>
-        </div>
+<div class="dashboard">
+    <div class="menu-card" onclick="openModal('resultModal')">
+        <span>🎓</span>
+        <h3>પરીક્ષા પરિણામ</h3>
+        <p style="font-size: 0.8rem; color: #666;">લોગીન કરીને પરિણામ જુઓ</p>
     </div>
 
-    <div class="sidebar">
-        <div class="sidebar-app-card">
-            <h3 style="color: var(--main); margin-bottom: 15px; border-bottom: 2px solid var(--gold);">🌐 સરકારી પોર્ટલ્સ</h3>
-            
-            <a href="https://gshala.schoolnetindia.com/" target="_blank" class="app-link">
-                <img src="https://files.catbox.moe/o63p6p.png" alt="G">
-                <span>G-SHALA (લર્નિંગ)</span>
-            </a>
-            
-            <a href="https://diksha.gov.in/gj/" target="_blank" class="app-link">
-                <img src="https://files.catbox.moe/85u03l.png" alt="D">
-                <span>દીક્ષા (ગુજરાત)</span>
-            </a>
-            
-            <a href="https://web.swiftchat.ai/" target="_blank" class="app-link">
-                <img src="https://files.catbox.moe/8o5sc5.png" alt="S">
-                <span>SwiftChat (V.V.S.)</span>
-            </a>
+    <div class="menu-card" onclick="openModal('studyModal')">
+        <span>📚</span>
+        <h3>શૈક્ષણિક સાહિત્ય</h3>
+        <p style="font-size: 0.8rem; color: #666;">પાઠ્યપુસ્તકો અને મટીરીયલ</p>
+    </div>
 
-            <a href="https://gcert.gujarat.gov.in/" target="_blank" class="app-link">
-                <img src="https://files.catbox.moe/9f50s0.png" alt="GC">
-                <span>GCERT (ગાંધીનગર)</span>
-            </a>
-        </div>
+    <div class="menu-card" onclick="openModal('staffModal')">
+        <span>👨‍🏫</span>
+        <h3>શાળા પરિવાર</h3>
+        <p style="font-size: 0.8rem; color: #666;">અમારા શિક્ષકોની વિગત</p>
+    </div>
 
-        <div class="sidebar-app-card" style="background: var(--main); color: white; text-align: center;">
-            <h3>📞 સત્તાવાર સંપર્ક</h3>
-            <p style="font-size: 1.4rem; font-weight: bold; margin: 10px 0;">9624010410</p>
-            <p>શ્રી રાજેન્દ્રભાઈ (મુખ્ય શિક્ષક)</p>
+    <div class="menu-card" onclick="openModal('appModal')">
+        <span>🌐</span>
+        <h3>ઓથેન્ટિક એપ્સ</h3>
+        <p style="font-size: 0.8rem; color: #666;">G-SHALA, દીક્ષા, GCERT</p>
+    </div>
+</div>
+
+<div id="resultModal" class="content-overlay">
+    <div class="modal">
+        <span class="close-btn" onclick="closeModal('resultModal')">&times;</span>
+        <h2 style="color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid var(--gold);">🎓 વિદ્યાર્થી લોગીન</h2>
+        <div class="login-box">
+            <input type="number" id="uid" placeholder="આધાર UID નંબર નાખો">
+            <input type="number" id="grno" placeholder="GR નંબર નાખો">
+            <button class="btn" onclick="alert('પરિણામ પ્રોસેસિંગમાં છે...')">પરિણામ શોધો</button>
         </div>
     </div>
 </div>
 
-<nav class="nav-bar">
-    <a href="#">🏠 હોમ</a>
-    <a href="#family">👨‍🏫 પરિવાર</a>
-    <a href="tel:9624010410">📞 સંપર્ક</a>
-</nav>
+<div id="staffModal" class="content-overlay">
+    <div class="modal" style="text-align: center;">
+        <span class="close-btn" onclick="closeModal('staffModal')">&times;</span>
+        <h2 style="color: var(--primary); margin-bottom: 15px;">શાળા પરિવાર</h2>
+        <div id="staff-display">
+            <img src="https://files.catbox.moe/8b8w7y.jpg" class="staff-img" id="s-img">
+            <h3 id="s-name">શ્રી નિલેશકુમાર પી. પટેલ</h3>
+            <p id="s-role" style="color: var(--gold); font-weight: bold;">ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
+            <div style="margin-top: 20px;">
+                <button onclick="changeStaff(-1)" style="padding: 5px 15px; cursor: pointer;">◀ અગાઉ</button>
+                <button onclick="changeStaff(1)" style="padding: 5px 15px; cursor: pointer;">આગળ ▶</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="appModal" class="content-overlay">
+    <div class="modal">
+        <span class="close-btn" onclick="closeModal('appModal')">&times;</span>
+        <h2 style="color: var(--primary); margin-bottom: 15px;">🌐 સત્તાવાર લિંક્સ</h2>
+        <ul class="app-list">
+            <li><a href="https://gshala.schoolnetindia.com/" target="_blank"><img src="https://files.catbox.moe/o63p6p.png" width="30"> G-SHALA પોર્ટલ</a></li>
+            <li><a href="https://diksha.gov.in/" target="_blank"><img src="https://files.catbox.moe/85u03l.png" width="30"> દીક્ષા - ગુજરાત</a></li>
+            <li><a href="https://web.swiftchat.ai/" target="_blank"><img src="https://files.catbox.moe/8o5sc5.png" width="30"> SwiftChat (VVS)</a></li>
+            <li><a href="https://gcert.gujarat.gov.in/" target="_blank"><img src="https://files.catbox.moe/9f50s0.png" width="30"> GCERT ગાંધીનગર</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="studyModal" class="content-overlay">
+    <div class="modal">
+        <span class="close-btn" onclick="closeModal('studyModal')">&times;</span>
+        <h2 style="color: var(--primary); margin-bottom: 15px;">📚 શૈક્ષણિક સાહિત્ય</h2>
+        <a href="https://gcert.gujarat.gov.in/gcert/resource/TextBooks.htm" target="_blank" class="btn" style="text-decoration: none; display: block; margin-bottom: 10px; text-align: center;">પાઠ્યપુસ્તકો ડાઉનલોડ કરો</a>
+        <a href="https://www.ssagujarat.org/E_content.aspx" target="_blank" class="btn" style="text-decoration: none; display: block; text-align: center;">ઈ-કન્ટેન્ટ વિડિયો</a>
+    </div>
+</div>
 
 <script>
-    // સ્ટાફ ડેટા
     const staff = [
         { name: "શ્રી નિલેશકુમાર પી. પટેલ", role: "ઉપશિક્ષક (ગણિત-વિજ્ઞાન)", img: "https://files.catbox.moe/8b8w7y.jpg" },
-        { name: "શ્રી રાજેન્દ્રકુમાર બળદેવભાઈ પટેલ", role: "મુખ્ય શિક્ષક", img: "https://files.catbox.moe/vxtq6i.jpg" }
+        { name: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", role: "મુખ્ય શિક્ષક", img: "https://files.catbox.moe/vxtq6i.jpg" }
     ];
     let current = 0;
+
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
     function changeStaff(dir) {
         current = (current + dir + staff.length) % staff.length;
         document.getElementById('s-img').src = staff[current].img;
         document.getElementById('s-name').innerText = staff[current].name;
         document.getElementById('s-role').innerText = staff[current].role;
-    }
-
-    // લોગીન ફંક્શન
-    function checkResult() {
-        const uid = document.getElementById('uid').value;
-        const grno = document.getElementById('grno').value;
-
-        if(uid === "" || grno === "") {
-            alert("કૃપા કરીને બધી વિગતો ભરો!");
-            return;
-        }
-
-        // ડેમો લોજિક: અહીં તમે સાચો ડેટાબેઝ જોડી શકો
-        document.getElementById('result-display').style.display = 'block';
-        document.getElementById('res-name').innerText = "વિદ્યાર્થીનું નામ: (ડેટાબેઝ મુજબ આવશે)";
     }
 </script>
 
