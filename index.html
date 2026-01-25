@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી</title>
+    <title>ફલુ અનુપમ પ્રાથમિક શાળા - પીએમશ્રી</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root { --primary: #1e3c72; --secondary: #ff9800; --accent: #00d2ff; --bg: #f4f7f6; }
         * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Hind Vadodara', sans-serif; margin: 0; background-color: var(--bg); }
+        body { font-family: 'Hind Vadodara', sans-serif; margin: 0; background-color: var(--bg); padding-bottom: 80px; }
 
-        /* હેડર ડિઝાઈન */
+        /* હેડર */
         header {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
                         url('https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
             background-size: cover; background-position: center;
-            height: 60vh; display: flex; justify-content: center; align-items: center;
+            height: 50vh; display: flex; justify-content: center; align-items: center;
             color: white; text-align: center; border-bottom: 8px solid var(--secondary);
         }
 
@@ -24,28 +25,60 @@
             padding: 30px; border-radius: 25px; border: 2px solid rgba(255, 255, 255, 0.2); 
         }
 
-        .school-name { font-size: 2.5rem; margin: 0; font-weight: 700; }
-        .color-white { color: #ffffff; } .color-orange { color: #ff9800; } .color-blue { color: #00d2ff; } 
-
-        /* IKS સેક્શન - એકદમ સ્પષ્ટ દેખાવ માટે */
-        .iks-container { 
-            background: #fffcf5; 
-            border-top: 4px solid #d35400; 
-            border-bottom: 4px solid #d35400; 
-            padding: 20px 0; 
-            margin: 20px 0; 
+        /* --- નવું યુનિક મેનુ (Floating Navbar) --- */
+        .modern-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(30, 60, 114, 0.85); /* ઘાટો વાદળી + ટ્રાન્સપરન્ટ */
+            backdrop-filter: blur(15px);
+            padding: 10px 25px;
+            border-radius: 40px;
+            display: flex;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            z-index: 1000;
+            width: fit-content;
+            max-width: 95%;
         }
-        .iks-label { 
-            background: #d35400; color: white; padding: 10px; 
-            border-radius: 8px; font-weight: bold; text-align: center; width: 180px;
+
+        .nav-item {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: 0.3s;
+            padding: 5px 10px;
+            border-radius: 15px;
         }
 
-        nav { background: white; position: sticky; top: 0; display: flex; justify-content: center; padding: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 1000; }
-        nav a { text-decoration: none; color: var(--primary); padding: 10px 15px; font-weight: 600; }
+        .nav-item i-icon {
+            font-size: 1.4rem;
+            margin-bottom: 2px;
+        }
 
+        .nav-item:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+            color: #1e3c72;
+        }
+
+        .nav-item.active {
+            background: var(--secondary);
+            color: #1e3c72;
+        }
+
+        /* IKS & Thought */
+        .info-bar { background: #1e3c72; color: white; padding: 10px 0; }
+        .iks-container { background: #fffcf5; border-top: 4px solid #d35400; border-bottom: 4px solid #d35400; padding: 15px 0; margin: 20px 0; }
         .container { padding: 20px; max-width: 1000px; margin: auto; }
         .card { background: white; border-radius: 20px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 8px solid var(--primary); }
-        
+
         footer { background: var(--primary); color: white; text-align: center; padding: 30px; margin-top: 40px; }
     </style>
 </head>
@@ -53,36 +86,39 @@
 
 <header>
     <div class="hero-box">
-        <h1 class="school-name">
-            <span class="color-white">ફલુ</span> <span class="color-orange">અનુપમ</span> <span class="color-white">પ્રાથમિક</span> <span class="color-blue">શાળા</span>
-        </h1>
-        <div style="background: var(--secondary); padding: 5px 20px; border-radius: 50px; font-weight: bold; margin-top: 15px; display: inline-block;">પીએમશ્રી-ગુજરાત</div>
+        <h1 style="font-size: 2.2rem; margin:0;">ફલુ અનુપમ પ્રાથમિક શાળા</h1>
+        <div style="background: var(--secondary); padding: 5px 15px; border-radius: 20px; display: inline-block; margin-top: 10px; font-weight: bold;">પીએમશ્રી-ગુજરાત</div>
     </div>
 </header>
 
-<div style="background: #1e3c72; color: white; padding: 10px 0;">
+<nav class="modern-nav">
+    <a href="#" class="nav-item"><span>🏠</span>હોમ</a>
+    <a href="#about" class="nav-item"><span>🏫</span>વિશે</a>
+    <a href="#staff" class="nav-item"><span>👨‍🏫</span>પરિવાર</a>
+    <a href="https://gshala.schoolnetindia.com/" target="_blank" class="nav-item"><span>📱</span>G-શાળા</a>
+    <a href="tel:9624010410" class="nav-item"><span>📞</span>કોલ</a>
+</nav>
+
+<div class="info-bar">
     <marquee id="daily-thought" scrollamount="5">સુવિચાર લોડ થઈ રહ્યો છે...</marquee>
 </div>
 
 <div class="iks-container">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 20px;">
-        <div class="iks-label">ભારતીય જ્ઞાન પરંપરા</div>
-        <div style="flex: 1; overflow: hidden; font-size: 1.1rem;">
-            <marquee behavior="scroll" direction="left" scrollamount="4" id="iks-wisdom-display">માહિતી લોડ થઈ રહી છે...</marquee>
-        </div>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 15px;">
+        <span style="background: #d35400; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; white-space: nowrap;">IKS - જ્ઞાન</span>
+        <marquee behavior="scroll" direction="left" scrollamount="4" id="iks-wisdom-display">માહિતી લોડ થઈ રહી છે...</marquee>
     </div>
 </div>
-
-<nav>
-    <a href="#">🏠 હોમ</a>
-    <a href="#about">🏫 શાળા વિશે</a>
-    <a href="#staff">👨‍🏫 પરિવાર</a>
-</nav>
 
 <div class="container">
     <div class="card" id="about">
         <h2>🏫 શાળા વિશે</h2>
-        <p>મુ.પો. ફલુ, તા. વિજાપુર, જિ. મહેસાણા - 384570</p>
+        <p>આધુનિક શિક્ષણ અને ભારતીય સંસ્કારોનું સંગમ સ્થળ.</p>
+    </div>
+
+    <div class="card" id="staff">
+        <h2>👨‍🏫 અમારો શાળા પરિવાર</h2>
+        <p>અમારા નિષ્ણાંત શિક્ષકો દ્વારા બાળકોનું ભાવિ ઘડાય છે.</p>
     </div>
 </div>
 
@@ -91,67 +127,29 @@
 </footer>
 
 <script>
-    const thoughts = [
-        "શિક્ષણ એ દુનિયાને બદલવા માટેનું સૌથી શક્તિશાળી હથિયાર છે.",
-        "વિનમ્રતા એ જ્ઞાનનું પ્રથમ ફળ છે.",
-        "પુસ્તકો જેવો કોઈ મિત્ર નથી.",
-        "મહેનત એ જ સફળતાની ચાવી છે."
-        // અહીં તમે ૩૧ સુધી ઉમેરી શકો છો
-    ];
+    // --- ૩૧ દિવસના સુવિચારો ---
+    const thoughts = ["શિક્ષણ એ શક્તિ છે.", "વિદ્યા વિનયથી શોભે છે.", "મહેનતનો કોઈ વિકલ્પ નથી."]; // લિસ્ટ મોટું કરી શકાય
 
-    // ઓથેન્ટિક IKS ડેટા
+    // --- ૩૧ દિવસના IKS શ્લોકો ---
     const iksQuotes = [
-        { 
-            shlok: "न हि ज्ञानेन सदृशं पवित्रमिह विद्यते ।", 
-            ref: "શ્રીમદ્ ભગવદ્ ગીતા (૪.૩૮)", 
-            arth: "આ પૃથ્વી પર જ્ઞાન જેવું પવિત્ર બીજું કંઈ જ નથી.", 
-            cat: "જ્ઞાન મહિમા" 
-        },
-        { 
-            shlok: "योग: कर्मसु कौशलम् ।", 
-            ref: "શ્રીમદ્ ભગવદ્ ગીતા (૨.૫૦)", 
-            arth: "કર્મોમાં કુશળતા એટલે જ યોગ.", 
-            cat: "કર્મયોગ" 
-        },
-        { 
-            shlok: "विद्या ददाति विनयम् ।", 
-            ref: "હિતોપદેશ (૬)", 
-            arth: "વિદ્યા વિનય (નમ્રતા) આપે છે.", 
-            cat: "સંસ્કાર" 
-        },
-        { 
-            shlok: "आनो भद्रा: क्रतवो यन्तु विश्वत: ।", 
-            ref: "ઋગ્વેદ (૧.૮૯.૧)", 
-            arth: "ચારે દિશાઓમાંથી અમને કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.", 
-            cat: "વૈશ્વિક જ્ઞાન" 
-        },
-        { 
-            shlok: "वसुधैव कुटुम्बकम् ।", 
-            ref: "મહોપનિષદ (૬.૭૧)", 
-            arth: "આખી પૃથ્વી એક પરિવાર છે.", 
-            cat: "બંધુત્વ" 
-        }
-        // અહીં ૩૧ દિવસ સુધીનો ડેટા ઉમેરી શકાય
+        { shlok: "न हि ज्ञानेन सदृशं पवित्रमिह विद्यते ।", ref: "ગીતા ૪.૩૮", arth: "જ્ઞાન જેવું પવિત્ર બીજું કંઈ નથી." },
+        { shlok: "योग: कर्मसु कौशलम् ।", ref: "ગીતા ૨.૫૦", arth: "કર્મોમાં કુશળતા એટલે જ યોગ." }
     ];
 
     function updateContent() {
         const d = new Date();
-        const dateIndex = d.getDate() - 1;
+        const idx = (d.getDate() - 1);
 
-        // સુવિચાર અપડેટ
-        document.getElementById('daily-thought').innerText = "🌟 આજનો સુવિચાર: " + thoughts[dateIndex % thoughts.length];
+        document.getElementById('daily-thought').innerText = "🌟 આજનો સુવિચાર: " + (thoughts[idx % thoughts.length]);
 
-        // IKS અપડેટ (અર્થ અને સંદર્ભ સાથે સ્પષ્ટ રીતે)
-        const item = iksQuotes[dateIndex % iksQuotes.length];
+        const item = iksQuotes[idx % iksQuotes.length];
         document.getElementById('iks-wisdom-display').innerHTML = `
-            <span style="color: #b83b1d; font-weight: 800; font-size: 1.2rem;">"${item.shlok}"</span> 
-            <span style="color: #555; font-weight: 600;"> [સંદર્ભ: ${item.ref}] </span>
-            <span style="margin: 0 15px; color: #d35400;">➤</span> 
-            <span style="color: #1e3c72; font-weight: bold;">અર્થ: ${item.arth}</span> 
-            <span style="margin-left: 20px; background: #ffeaa7; padding: 2px 10px; border-radius: 10px; color: #d35400; font-size: 0.9rem;">વિષય: ${item.cat}</span>
+            <span style="color: #b83b1d; font-weight: 800;">"${item.shlok}"</span> 
+            <span style="color: #555;"> [${item.ref}] </span>
+            <span style="margin: 0 10px; color: #d35400;">➤</span> 
+            <span style="color: #1e3c72; font-weight: bold;">અર્થ: ${item.arth}</span>
         `;
     }
-
     window.onload = updateContent;
 </script>
 
