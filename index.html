@@ -10,7 +10,6 @@
         * { box-sizing: border-box; scroll-behavior: smooth; margin: 0; padding: 0; }
         body { font-family: 'Hind Vadodara', sans-serif; background-color: var(--bg); padding-bottom: 100px; line-height: 1.6; }
 
-        /* હેડર ડિઝાઈન */
         header {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
                         url('https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
@@ -27,7 +26,6 @@
         .school-title { font-size: 2.2rem; font-weight: 700; color: white; }
         .school-subtitle { color: var(--secondary); display: block; margin-top: 5px; }
 
-        /* આધુનિક ફ્લોટિંગ મેનુ - લિન્કેજ સાથે */
         .modern-nav {
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
             background: rgba(30, 60, 114, 0.95); backdrop-filter: blur(15px);
@@ -38,7 +36,6 @@
         .nav-item span { font-size: 1.4rem; }
         .nav-item:hover { color: var(--secondary); transform: translateY(-3px); }
 
-        /* IKS & Thought */
         .info-bar { background: #1e3c72; color: white; padding: 12px 0; font-weight: 600; text-align: center; }
         .iks-container { background: #fffcf5; border-top: 4px solid #d35400; border-bottom: 4px solid #d35400; padding: 20px 0; margin: 20px 0; }
         
@@ -47,12 +44,12 @@
         
         h2 { color: var(--primary); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px; }
         
-        /* સ્ટાફ કાર્ડ ડિઝાઈન - ચોખ્ખો ફોટો */
+        /* સ્ટાફ કાર્ડ - તમારો અસલ ફોટો અહિં છે */
         .staff-card {
             border: 1px solid #ddd; padding: 20px; border-radius: 15px; max-width: 320px; margin: auto; text-align: center; background: #fff;
         }
         .staff-img {
-            width: 180px; height: 210px; border-radius: 10px; object-fit: cover; border: 3px solid var(--primary); margin-bottom: 15px;
+            width: 200px; height: 250px; border-radius: 10px; object-fit: cover; border: 3px solid var(--primary); margin-bottom: 15px;
         }
 
         footer { background: var(--primary); color: white; text-align: center; padding: 40px 20px; }
@@ -91,7 +88,7 @@
 <div class="container">
     <div class="card" id="about">
         <h2>🏫 શાળા વિશે</h2>
-        <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b> આધુનિક શિક્ષણ અને પરંપરાગત મૂલ્યોનો સંગમ છે. અમારી શાળા બાળકોના સર્વાંગી વિકાસ માટે કટિબદ્ધ છે.</p>
+        <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b> આધુનિક શિક્ષણ અને પરંપરાગત મૂલ્યોનો સંગમ છે.</p>
         <p>📍 મુ.પો. ફલુ, તા. વિજાપુર, જિ. મહેસાણા - 384570</p>
     </div>
 
@@ -101,7 +98,8 @@
             <img src="https://files.catbox.moe/8b8w7y.jpg" class="staff-img" alt="શ્રી નિલેશકુમાર પી. પટેલ">
             <h3 style="color: var(--primary);">શ્રી નિલેશકુમાર પી. પટેલ</h3>
             <p style="color: var(--secondary); font-weight: bold; margin-top: 5px;">ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
-            <div style="margin-top: 10px; font-size: 0.9rem; color: #555;">B.Sc., B.Ed.</div>
+            <div style="margin-top: 10px; font-size: 0.9rem; color: #555;">B.Sc., B.Ed., M.A., P.T.C.</div>
+            <a href="https://wa.me/919574456156" style="text-decoration: none; background: #25D366; color: white; padding: 8px 15px; border-radius: 5px; display: inline-block; margin-top: 15px;">💬 WhatsApp</a>
         </div>
     </div>
 </div>
@@ -129,9 +127,7 @@
     function updateContent() {
         const d = new Date();
         const idx = d.getDate() - 1;
-
         document.getElementById('daily-thought').innerText = "🌟 આજનો સુવિચાર: " + (thoughts[idx % thoughts.length]);
-
         const item = iksQuotes[idx % iksQuotes.length];
         document.getElementById('iks-wisdom').innerHTML = `
             <span style="color:#b83b1d; font-weight:800;">"${item.s}"</span> 
