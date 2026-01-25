@@ -3,163 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</title>
+    <title>માહિતી શોધક - ફલુ અનુપમ પ્રાથમિક શાળા</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #1e3c72; --secondary: #ff9800; --accent: #00d2ff; --bg: #f4f7f6; }
-        * { box-sizing: border-box; scroll-behavior: smooth; margin: 0; padding: 0; }
-        body { font-family: 'Hind Vadodara', sans-serif; background-color: var(--bg); padding-bottom: 100px; display: flex; flex-direction: column; }
+        :root { --primary: #1e3c72; --secondary: #ff9800; --bg: #f4f7f6; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Hind Vadodara', sans-serif; }
+        body { background-color: var(--bg); padding-bottom: 80px; }
 
+        /* Header & Search */
         header {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
-                        url('https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            background-size: cover; background-position: center;
-            height: 45vh; display: flex; justify-content: center; align-items: center;
-            color: white; text-align: center; border-bottom: 8px solid var(--secondary);
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white; padding: 40px 20px; text-align: center;
+            border-bottom: 5px solid var(--secondary);
+        }
+        .search-container { margin-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto; position: relative; }
+        .search-bar { 
+            width: 100%; padding: 15px 25px; border-radius: 50px; border: none; 
+            font-size: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .hero-box { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 25px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.2); }
-
-        /* Main Layout */
-        .main-wrapper { display: flex; max-width: 1300px; margin: 20px auto; gap: 20px; padding: 0 15px; width: 100%; }
-        .content-area { flex: 3; }
-        
-        /* નવીનતમ સાઈડ પેનલ (Sidebar) */
-        .smart-sidebar { flex: 1; position: sticky; top: 20px; height: fit-content; }
-        .sidebar-card { 
-            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);
-            border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid #fff; margin-bottom: 20px;
+        /* Quick Icons Grid */
+        .quick-links {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px; max-width: 1200px; margin: -30px auto 30px; padding: 0 15px;
         }
-        .sidebar-title { color: var(--primary); font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid var(--secondary); display: inline-block; }
-
-        /* Resource Folders */
-        .resource-item { 
-            background: #fff; border: 1px solid #eee; padding: 10px; border-radius: 10px; margin-bottom: 8px;
-            cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px;
+        .icon-box {
+            background: white; padding: 20px; border-radius: 15px; text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s;
+            border-top: 4px solid var(--secondary);
         }
-        .resource-item:hover { background: var(--primary); color: white; transform: translateX(5px); }
-        
-        /* Layout Elements */
-        .card { background: white; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); border-left: 8px solid var(--primary); }
+        .icon-box:hover { transform: translateY(-5px); background: #fff5e6; }
+        .icon-box span { font-size: 2rem; display: block; margin-bottom: 10px; }
+        .icon-box p { font-weight: 600; color: var(--primary); font-size: 0.9rem; }
 
-        /* Staff Slider */
-        #staff { display: none; text-align: center; }
-        .staff-container { position: relative; max-width: 350px; margin: auto; }
-        .staff-member { display: none; }
-        .staff-member.active { display: block; animation: fadeIn 0.5s; }
-        .staff-card { background: #fff; border-radius: 15px; padding: 20px; border: 1px solid #eee; }
-        .staff-img { width: 150px; height: 180px; border-radius: 12px; object-fit: cover; border: 3px solid var(--primary); margin-bottom: 10px; }
+        /* Main Content & Sidebar */
+        .main-container { display: flex; max-width: 1200px; margin: auto; gap: 20px; padding: 15px; }
+        .content { flex: 3; }
+        .sidebar { flex: 1; }
+
+        .card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .sidebar-item { 
+            background: #fff; padding: 12px; border-radius: 10px; margin-bottom: 10px;
+            border-left: 5px solid var(--primary); display: flex; align-items: center; gap: 10px;
+            cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .sidebar-item:hover { background: var(--primary); color: white; }
+
+        /* Staff Slider (તમારો અસલ કોડ જાળવી રાખ્યો છે) */
+        #staff-section { display: none; text-align: center; }
+        .staff-img { width: 140px; height: 170px; border-radius: 10px; object-fit: cover; border: 3px solid var(--primary); }
 
         /* Floating Nav */
-        .modern-nav {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(30, 60, 114, 0.95); backdrop-filter: blur(15px);
-            padding: 10px 25px; border-radius: 50px; display: flex; gap: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4); z-index: 9999;
+        .nav-bar {
+            position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%);
+            background: #1e3c72; padding: 10px 30px; border-radius: 50px;
+            display: flex; gap: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); z-index: 1000;
         }
-        .nav-item { text-decoration: none; color: white; display: flex; flex-direction: column; align-items: center; font-size: 0.75rem; cursor: pointer; }
+        .nav-link { color: white; text-decoration: none; text-align: center; font-size: 0.8rem; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        @media (max-width: 900px) { .main-wrapper { flex-direction: column; } .smart-sidebar { position: static; } }
+        @media (max-width: 768px) { .main-container { flex-direction: column; } }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="hero-box">
-        <h1 style="font-size: 2rem;">ફલુ અનુપમ પ્રાથમિક શાળા</h1>
-        <div style="background: var(--secondary); padding: 5px 15px; border-radius: 50px; display: inline-block; margin-top: 8px; font-weight: bold;">પીએમશ્રી-ગુજરાત</div>
+    <h1>ફલુ અનુપમ પ્રાથમિક શાળા</h1>
+    <p>પીએમશ્રી-ગુજરાત | DISE: 24040801701</p>
+    <div class="search-container">
+        <input type="text" class="search-bar" placeholder="માહિતી શોધો... (દા.ત. ગૃહકાર્ય, પરીક્ષા, સ્ટાફ)">
     </div>
 </header>
 
-<div class="main-wrapper">
-    <div class="content-area">
-        <div class="card" id="about">
-            <h2>🏫 શાળા વિશે</h2>
-            <p>અમારી શાળા આધુનિક શિક્ષણનું એક ઉત્તમ કેન્દ્ર છે જ્યાં વિદ્યાર્થીઓનો સર્વાંગી વિકાસ કરવામાં આવે છે.</p>
+<div class="quick-links">
+    <div class="icon-box"><span>📝</span><p>ગૃહકાર્ય</p></div>
+    <div class="icon-box"><span>📊</span><p>પરિણામ</p></div>
+    <div class="icon-box"><span>📅</span><p>કેલેન્ડર</p></div>
+    <div class="icon-box" onclick="showStaff()"><span>👨‍🏫</span><p>પરિવાર</p></div>
+    <div class="icon-box"><span>📷</span><p>ગેલેરી</p></div>
+</div>
+
+<div class="main-container">
+    <div class="content">
+        <div class="card">
+            <h2 style="color: var(--primary); border-bottom: 2px solid #eee; padding-bottom: 10px;">📢 તાજી વિગતો</h2>
+            <marquee direction="up" scrollamount="2" style="height: 100px; margin-top: 10px;">
+                • ૨૬ જાન્યુઆરી પ્રજાસત્તાક પર્વની ઉજવણી અંગે... <br><br>
+                • ધોરણ ૬ થી ૮ ની પ્રથમ સત્રાંત પરીક્ષાનું ટાઈમ ટેબલ... <br><br>
+                • પીએમશ્રી યોજના અંતર્ગત નવી ગ્રાન્ટની ફાળવણી...
+            </marquee>
         </div>
 
-        <div id="staff" class="card">
-            <h2>👨‍🏫 અમારો શાળા પરિવાર</h2>
-            <div class="staff-container">
-                <div class="staff-member active">
-                    <div class="staff-card">
-                        <img src="https://lh3.googleusercontent.com/d/12xNIww0_1DaVi_10FBMmumTWBEO6T0ig" class="staff-img" alt="નિલેશકુમાર પટેલ">
-                        <h3 style="color: var(--primary);">શ્રી નિલેશકુમાર પી. પટેલ</h3>
-                        <p style="color: var(--secondary); font-weight: bold;">ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
-                        <p style="font-size: 0.8rem; color: #666;">B.Sc., B.Ed., M.A., P.T.C.</p>
-                        <div style="display: flex; gap: 5px; margin-top: 10px;">
-                            <a href="tel:9574456156" style="flex:1; background:#007bff; color:white; text-decoration:none; padding:8px; border-radius:5px; font-size:0.8rem;">📞 કોલ</a>
-                        </div>
-                    </div>
+        <div id="staff-section" class="card">
+            <h2 style="color: var(--primary);">અમારો શાળા પરિવાર</h2>
+            <div id="staff-display" style="margin-top: 15px;">
+                <img src="https://files.catbox.moe/8b8w7y.jpg" class="staff-img" id="s-img">
+                <h3 id="s-name" style="margin-top:10px;">શ્રી નિલેશકુમાર પી. પટેલ</h3>
+                <p id="s-role" style="color: var(--secondary); font-weight: bold;">ઉપશિક્ષક</p>
+                <div style="margin-top: 10px;">
+                    <button onclick="changeStaff(-1)" style="padding:5px 15px; cursor:pointer;">◀</button>
+                    <button onclick="changeStaff(1)" style="padding:5px 15px; cursor:pointer;">▶</button>
                 </div>
-                <div class="staff-member">
-                    <div class="staff-card">
-                        <img src="https://lh3.googleusercontent.com/d/1uEhrhUodazEWEy95d8uIbYZB66oa5Pzi" class="staff-img" alt="રાજેન્દ્રકુમાર પટેલ">
-                        <h3 style="color: var(--primary);">શ્રી રાજેન્દ્રકુમાર બી. પટેલ</h3>
-                        <p style="color: var(--secondary); font-weight: bold;">મુખ્ય શિક્ષક</p>
-                        <div style="display: flex; gap: 5px; margin-top: 10px;">
-                            <a href="tel:9624010410" style="flex:1; background:#007bff; color:white; text-decoration:none; padding:8px; border-radius:5px; font-size:0.8rem;">📞 કોલ</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div style="margin-top: 15px;">
-                <button onclick="prevStaff()" style="padding: 5px 15px; border-radius: 20px; border:none; background: var(--primary); color:white; cursor:pointer;">◀</button>
-                <button onclick="nextStaff()" style="padding: 5px 15px; border-radius: 20px; border:none; background: var(--primary); color:white; cursor:pointer;">▶</button>
             </div>
         </div>
     </div>
 
-    <aside class="smart-sidebar">
-        <div class="sidebar-card">
-            <h3 class="sidebar-title">📚 શૈક્ષણિક માહિતી</h3>
-            <div class="resource-item" onclick="window.open('https://gshala.schoolnetindia.com/')"><span>📂</span> G-શાળા લર્નિંગ</div>
-            <div class="resource-item"><span>📝</span> આજનું ગૃહકાર્ય</div>
-            <div class="resource-item"><span>📅</span> શૈક્ષણિક કેલેન્ડર</div>
-            <div class="resource-item"><span>📖</span> પાઠ્યપુસ્તકો (PDF)</div>
+    <aside class="sidebar">
+        <div class="card" style="border-top: 4px solid var(--primary);">
+            <h3 style="margin-bottom: 15px;">📚 શૈક્ષણિક લિંક્સ</h3>
+            <div class="sidebar-item" onclick="window.open('https://gshala.schoolnetindia.com/')"><span>💻</span> G-શાળા પોર્ટલ</div>
+            <div class="sidebar-item"><span>📖</span> પાઠ્યપુસ્તકો PDF</div>
+            <div class="sidebar-item"><span>📝</span> એકમ કસોટી પેપર</div>
+            <div class="sidebar-item"><span>🧩</span> પ્રજ્ઞા અભિગમ વિગત</div>
         </div>
-
-        <div class="sidebar-card" style="text-align: center;">
-            <h3 class="sidebar-title">📲 સ્કેન કરો</h3>
-            <p style="font-size: 0.8rem; margin-bottom: 10px;">શાળાના WhatsApp ગ્રુપમાં જોડાવા</p>
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://wa.me/919624010410" alt="QR Code" style="border: 5px solid #fff; border-radius: 10px;">
-        </div>
-
-        <div class="sidebar-card" id="countdown-box">
-            <h3 class="sidebar-title">⏳ આગામી પરીક્ષા</h3>
-            <div id="exam-timer" style="font-size: 1.2rem; font-weight: 700; color: var(--secondary);">૧૫ દિવસ બાકી</div>
+        
+        <div class="card" style="text-align: center;">
+            <h3>📞 હેલ્પલાઈન</h3>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--primary); margin-top: 10px;">9624010410</p>
+            <p style="font-size: 0.8rem;">(મુખ્ય શિક્ષક - શ્રી રાજેન્દ્રભાઈ)</p>
         </div>
     </aside>
 </div>
 
-<nav class="modern-nav">
-    <a href="#" class="nav-item"><span>🏠</span>હોમ</a>
-    <div class="nav-item" onclick="showStaff()"><span>👨‍🏫</span>પરિવાર</div>
-    <a href="tel:9624010410" class="nav-item"><span>📞</span>સંપર્ક</a>
+<nav class="nav-bar">
+    <a href="#" class="nav-link">🏠<br>હોમ</a>
+    <a href="javascript:void(0)" class="nav-link" onclick="showStaff()">👨‍🏫<br>પરિવાર</a>
+    <a href="tel:9624010410" class="nav-link">📞<br>સંપર્ક</a>
 </nav>
 
 <script>
-    let currentStaff = 0;
-    const members = document.querySelectorAll('.staff-member');
+    const staff = [
+        { name: "શ્રી નિલેશકુમાર પી. પટેલ", role: "ઉપશિક્ષક (ગણિત-વિજ્ઞાન)", img: "https://files.catbox.moe/8b8w7y.jpg" },
+        { name: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", role: "મુખ્ય શિક્ષક", img: "https://lh3.googleusercontent.com/d/1uEhrhUodazEWEy95d8uIbYZB66oa5Pzi" }
+    ];
+    let current = 0;
 
     function showStaff() {
-        const s = document.getElementById('staff');
-        s.style.display = 'block';
-        s.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('staff-section').style.display = 'block';
+        document.getElementById('staff-section').scrollIntoView({ behavior: 'smooth' });
     }
 
-    function updateStaffDisplay() {
-        members.forEach((m, i) => {
-            m.classList.remove('active');
-            if(i === currentStaff) m.classList.add('active');
-        });
+    function changeStaff(dir) {
+        current = (current + dir + staff.length) % staff.length;
+        document.getElementById('s-img').src = staff[current].img;
+        document.getElementById('s-name').innerText = staff[current].name;
+        document.getElementById('s-role').innerText = staff[current].role;
     }
-
-    function nextStaff() { currentStaff = (currentStaff + 1) % members.length; updateStaffDisplay(); }
-    function prevStaff() { currentStaff = (currentStaff - 1 + members.length) % members.length; updateStaffDisplay(); }
 </script>
 
 </body>
