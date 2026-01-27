@@ -26,17 +26,17 @@
         .container { padding: 20px; max-width: 950px; margin: auto; }
         .card { background: var(--white); border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-top: 5px solid var(--primary); }
         
-        /* IKS & Staff Card Styling */
         .iks-card { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-top: 5px solid #e65100; text-align: center; }
         .shlok { font-size: 1.5rem; color: #bf360c; font-weight: 700; margin: 10px 0; display: block; }
-        .staff-card { background: #fff; border: 1px solid #ddd; border-radius: 20px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: none; animation: fadeIn 0.5s ease-in; }
+        
+        .staff-card { background: #fff; border: 1px solid #ddd; border-radius: 20px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: none; animation: fadeIn 0.4s ease-in; width: 100%; max-width: 550px; }
         .staff-img { width: 130px; height: 130px; border-radius: 50%; border: 5px solid var(--primary); margin-bottom: 15px; object-fit: cover; }
-        .info-box { background: #f9f9f9; padding: 15px; border-radius: 12px; margin: 15px 0; text-align: left; border-left: 4px solid var(--secondary); }
-        .info-box p { margin: 5px 0; font-size: 0.95rem; }
+        .info-box { background: #f9f9f9; padding: 18px; border-radius: 12px; margin: 15px 0; text-align: left; border-left: 5px solid var(--secondary); }
+        .info-box p { margin: 8px 0; font-size: 0.95rem; border-bottom: 1px solid #eee; padding-bottom: 4px; }
+        .info-box p:last-child { border-bottom: none; }
 
-        .btn { padding: 12px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; color: white; cursor: pointer; border: none; transition: 0.3s; text-align: center; }
-        .btn-staff { background: var(--primary); color: white; border: none; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .btn-staff:hover { background: var(--secondary); color: var(--primary); }
+        .btn-staff-name { background: var(--white); color: var(--primary); border: 2px solid var(--primary); padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 0.9rem; }
+        .btn-staff-name:hover, .btn-staff-name.active { background: var(--primary); color: white; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -77,11 +77,7 @@
         <div style="display: flex; flex-direction: column; gap: 15px;">
             <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border-left: 5px solid var(--accent); display: flex; justify-content: space-between; align-items: center;">
                 <b>📸 શાળા પ્રવૃત્તિઓ ૨૦૨૬</b>
-                <button onclick="checkPass('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn-staff">જુઓ</button>
-            </div>
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); display: flex; justify-content: space-between; align-items: center;">
-                <b>📸 ઉત્સવો અને યાદો</b>
-                <button onclick="checkPass('https://photos.app.goo.gl/9EVZZUvj3arZ4YfT8')" class="btn-staff">જુઓ</button>
+                <button onclick="checkPass('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn-staff-name" style="background:var(--primary); color:white;">જુઓ</button>
             </div>
         </div>
     </div>
@@ -89,51 +85,52 @@
     <div class="card" id="staff-section">
         <h2 style="color: var(--primary); text-align: center; margin-bottom: 25px;">👨‍🏫 શાળા પરિવાર પરિચય</h2>
         
-        <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 30px;">
-            <button onclick="showStaff('nilesh')" class="btn-staff">શ્રી નિલેશકુમાર પટેલ</button>
-            <button onclick="showStaff('rajendra')" class="btn-staff">શ્રી રાજેન્દ્રકુમાર પટેલ</button>
+        <div id="staff-buttons" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 30px;">
+            <button onclick="showStaff(1, this)" class="btn-staff-name">૧. શ્રી નિલેશકુમાર પટેલ</button>
+            <button onclick="showStaff(2, this)" class="btn-staff-name">૨. શ્રી રાજેન્દ્રકુમાર પટેલ</button>
+            <button onclick="showStaff(3, this)" class="btn-staff-name">૩. શિક્ષકનું નામ</button>
+            <button onclick="showStaff(4, this)" class="btn-staff-name">૪. શિક્ષકનું નામ</button>
+            <button onclick="showStaff(5, this)" class="btn-staff-name">૫. શિક્ષકનું નામ</button>
+            <button onclick="showStaff(6, this)" class="btn-staff-name">૬. શિક્ષકનું નામ</button>
+            <button onclick="showStaff(7, this)" class="btn-staff-name">૭. શિક્ષકનું નામ</button>
+            <button onclick="showStaff(8, this)" class="btn-staff-name">૮. શિક્ષકનું નામ</button>
+            <button onclick="showStaff(9, this)" class="btn-staff-name">૯. શિક્ષકનું નામ</button>
+            <button onclick="showStaff(10, this)" class="btn-staff-name">૧૦. શિક્ષકનું નામ</button>
+            <button onclick="showStaff(11, this)" class="btn-staff-name">૧૧. શિક્ષકનું નામ</button>
+            <button onclick="showStaff(12, this)" class="btn-staff-name">૧૨. શિક્ષકનું નામ</button>
+            <button onclick="showStaff(13, this)" class="btn-staff-name">૧૩. શિક્ષકનું નામ</button>
+            <button onclick="showStaff(14, this)" class="btn-staff-name">૧૪. શિક્ષકનું નામ</button>
+            <button onclick="showStaff(15, this)" class="btn-staff-name">૧૫. શિક્ષકનું નામ</button>
         </div>
 
-        <div id="staff-display" style="display: flex; justify-content: center;">
-            <p id="placeholder-text" style="color: #666; font-style: italic;">માહિતી જોવા માટે ઉપરના નામ પર ક્લિક કરો...</p>
+        <div id="staff-display" style="display: flex; justify-content: center; min-height: 400px;">
+            <p id="placeholder-text" style="color: #666; font-style: italic; margin-top: 50px;">માહિતી જોવા માટે ઉપરના કોઈ પણ નામ પર ક્લિક કરો...</p>
             
-            <div id="card-nilesh" class="staff-card">
-                <div style="text-align: center;">
-                    <img src="https://files.catbox.moe/8b8w7y.jpg" class="staff-img">
-                    <h3 style="color: var(--primary);">શ્રી નિલેશકુમાર પી. પટેલ</h3>
-                    <p style="color: var(--secondary); font-weight: bold;">ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
-                </div>
+            <div id="card-1" class="staff-card">
+                <div style="text-align: center;"><img src="https://files.catbox.moe/8b8w7y.jpg" class="staff-img"><h3>શ્રી નિલેશકુમાર પી. પટેલ</h3><p style="color: var(--secondary); font-weight: bold;">ઉપશિક્ષક</p></div>
                 <div class="info-box">
-                    <p><b>📍 વતન:</b> વિજાપુર (મહેસાણા)</p>
-                    <p><b>📅 નોકરી દાખલ તારીખ:</b> [તમારી તારીખ]</p>
-                    <p><b>⏳ નિવૃત્તિ તારીખ:</b> [તમારી તારીખ]</p>
-                    <p><b>🆔 ટીચર કોડ:</b> [તમારો કોડ]</p>
-                    <p><b>📚 ભણાવતા ધોરણ:</b> ૬ થી ૮</p>
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <button onclick="checkPass('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn" style="background:#4a90e2; font-size: 0.9rem;">📸 શૈક્ષણિક પ્રવૃત્તિઓ</button>
-                    <button onclick="checkPass('અહીં_લિંક')" class="btn" style="background:#6c757d; font-size: 0.9rem;">🏆 વિશિષ્ટ સિદ્ધિ</button>
+                    <p><b>📍 વતન:</b> વિજાપુર (મહેસાણા)</p><p><b>📅 નોકરી દાખલ તારીખ:</b> [તારીખ]</p><p><b>⏳ નિવૃત્તિ તારીખ:</b> [તારીખ]</p><p><b>🆔 ટીચર કોડ:</b> [કોડ]</p><p><b>📚 ભણાવતા ધોરણ:</b> ૬ થી ૮</p><p><b>📖 ભણાવતા વિષય:</b> ગણિત - વિજ્ઞાન</p><p><b>🏆 વિશિષ્ટ સિદ્ધિ:</b> [સિદ્ધિની વિગત]</p>
                 </div>
             </div>
-
-            <div id="card-rajendra" class="staff-card">
-                <div style="text-align: center;">
-                    <img src="https://files.catbox.moe/vxtq6i.jpg" class="staff-img">
-                    <h3 style="color: var(--primary);">શ્રી રાજેન્દ્રકુમાર બી. પટેલ</h3>
-                    <p style="color: var(--secondary); font-weight: bold;">મુખ્ય શિક્ષક</p>
-                </div>
+            <div id="card-2" class="staff-card">
+                <div style="text-align: center;"><img src="https://files.catbox.moe/vxtq6i.jpg" class="staff-img"><h3>શ્રી રાજેન્દ્રકુમાર બી. પટેલ</h3><p style="color: var(--secondary); font-weight: bold;">મુખ્ય શિક્ષક</p></div>
                 <div class="info-box">
-                    <p><b>📍 વતન:</b> [ગામનું નામ]</p>
-                    <p><b>📅 નોકરી દાખલ તારીખ:</b> [તારીખ]</p>
-                    <p><b>⏳ નિવૃત્તિ તારીખ:</b> [તારીખ]</p>
-                    <p><b>🆔 ટીચર કોડ:</b> [કોડ]</p>
-                    <p><b>📚 ભણાવતા ધોરણ:</b> ૧ થી ૮</p>
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <button onclick="checkPass('અહીં_લિંક')" class="btn" style="background:#4a90e2; font-size: 0.9rem;">📸 શૈક્ષણિક પ્રવૃત્તિઓ</button>
-                    <button onclick="checkPass('અહીં_લિંક')" class="btn" style="background:#6c757d; font-size: 0.9rem;">🏆 વિશિષ્ટ સિદ્ધિ</button>
+                    <p><b>📍 વતન:</b> [ગામ]</p><p><b>📅 નોકરી દાખલ તારીખ:</b> [તારીખ]</p><p><b>⏳ નિવૃત્તિ તારીખ:</b> [તારીખ]</p><p><b>🆔 ટીચર કોડ:</b> [કોડ]</p><p><b>📚 ભણાવતા ધોરણ:</b> ૧ થી ૮</p><p><b>📖 ભણાવતા વિષય:</b> તમામ</p><p><b>🏆 વિશિષ્ટ સિદ્ધિ:</b> [સિદ્ધિની વિગત]</p>
                 </div>
             </div>
+            <div id="card-3" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3><p style="color: var(--secondary); font-weight: bold;">હોદ્દો</p></div><div class="info-box"><p><b>📍 વતન:</b> </p><p><b>📅 નોકરી દાખલ તારીખ:</b> </p><p><b>⏳ નિવૃત્તિ તારીખ:</b> </p><p><b>🆔 ટીચર કોડ:</b> </p><p><b>📚 ભણાવતા ધોરણ:</b> </p><p><b>📖 ભણાવતા વિષય:</b> </p><p><b>🏆 વિશિષ્ટ સિદ્ધિ:</b> </p></div></div>
+            <div id="card-4" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3></div><div class="info-box"><p>...</p></div></div>
+            <div id="card-5" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3></div><div class="info-box"><p>...</p></div></div>
+            <div id="card-6" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3></div><div class="info-box"><p>...</p></div></div>
+            <div id="card-7" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3></div><div class="info-box"><p>...</p></div></div>
+            <div id="card-8" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3></div><div class="info-box"><p>...</p></div></div>
+            <div id="card-9" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3></div><div class="info-box"><p>...</p></div></div>
+            <div id="card-10" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3></div><div class="info-box"><p>...</p></div></div>
+            <div id="card-11" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3></div><div class="info-box"><p>...</p></div></div>
+            <div id="card-12" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3></div><div class="info-box"><p>...</p></div></div>
+            <div id="card-13" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3></div><div class="info-box"><p>...</p></div></div>
+            <div id="card-14" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3></div><div class="info-box"><p>...</p></div></div>
+            <div id="card-15" class="staff-card"><div style="text-align: center;"><img src="https://via.placeholder.com/130" class="staff-img"><h3>શિક્ષકનું નામ</h3></div><div class="info-box"><p>...</p></div></div>
         </div>
     </div>
 
@@ -141,21 +138,16 @@
 
 <footer>
     <p>© 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</p>
-    <div class="legal-notice">
-        <b>⚠️ કાનૂની ચેતવણી:</b> આ વેબસાઈટ પરની સામગ્રીના તમામ હકો ફલુ અનુપમ પ્રાથમિક શાળાને આધીન છે. અનધિકૃત ઉપયોગ બદલ કાયદેસરની કાર્યવાહી થઈ શકે છે.
-    </div>
+    <div class="legal-notice"><b>⚠️ કાનૂની ચેતવણી:</b> તમામ હકો શાળાને આધીન છે. અનધિકૃત ઉપયોગ ગુનો બને છે.</div>
     <div class="credits">Designed by Nilesh Patel</div>
 </footer>
 
 <script>
-    // Security
-    document.onkeydown = function(e) {
-        if (e.keyCode == 123 || (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0) || e.keyCode == 'I'.charCodeAt(0)))) return false;
-    };
+    document.onkeydown = function(e) { if (e.keyCode == 123 || (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0) || e.keyCode == 'I'.charCodeAt(0)))) return false; };
 
     const iksData = [
         { ref: "શ્રીમદ્ ભગવદ્ ગીતા (૪.૩૯)", shlok: "શ્રદ્ધાવાંલ્લભતે જ્ઞાનં તત્પર: સંયતેન્દ્રિય: ।", meaning: "શ્રદ્ધાવાન અને જિતેન્દ્રિય મનુષ્ય જ્ઞાન પ્રાપ્ત કરે છે.", thought: "વિદ્યા વિનયથી શોભે છે." },
-        { ref: "ઋગ્વેદ", shlok: "આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।", meaning: "ચારે દિશાઓમાંથી કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.", thought: "સત્યનો જ હંમેશા વિજય થાય છે." }
+        { ref: "ઋગ્વેદ (૧.૮૯.૧)", shlok: "આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।", meaning: "ચારે દિશાઓમાંથી કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.", thought: "સત્યનો જ વિજય થાય છે." }
     ];
 
     function loadDaily() {
@@ -167,24 +159,23 @@
         document.getElementById('meaning').innerText = "અર્થ: " + item.meaning;
     }
 
-    function showStaff(staffId) {
+    function showStaff(id, btn) {
         document.getElementById('placeholder-text').style.display = 'none';
-        const cards = document.querySelectorAll('.staff-card');
-        cards.forEach(card => card.style.display = 'none');
-        document.getElementById('card-' + staffId).style.display = 'block';
+        document.querySelectorAll('.staff-card').forEach(c => c.style.display = 'none');
+        document.querySelectorAll('.btn-staff-name').forEach(b => b.classList.remove('active'));
+        document.getElementById('card-' + id).style.display = 'block';
+        btn.classList.add('active');
     }
 
     function checkPass(url) {
-        if(!url || url.includes('અહીં_')) { alert("લિંક સેટ નથી."); return; }
         const d = new Date().getDate();
         const correct = "falu" + d;
-        const input = prompt("સુરક્ષિત આલ્બમ જોવા માટે પાસવર્ડ દાખલ કરો:");
-        if (input === correct) { window.open(url, "_blank"); } 
-        else if (input !== null) { alert("ખોટો પાસવર્ડ!"); }
+        const input = prompt("સિક્રેટ પાસવર્ડ:");
+        if (input === correct) window.open(url, "_blank");
+        else if (input !== null) alert("ખોટો પાસવર્ડ!");
     }
 
     window.onload = loadDaily;
 </script>
-
 </body>
 </html>
