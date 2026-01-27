@@ -4,115 +4,206 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --p: #1e3c72; --s: #ff9800; --bg: #f0f4f8; }
+        :root { 
+            --primary: #1e3c72; 
+            --secondary: #ff9800; 
+            --bg-overlay: rgba(240, 244, 248, 0.85);
+            --white: #ffffff; 
+            --accent: #d32f2f; 
+        }
+        
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-        body { font-family: 'Hind Vadodara', sans-serif; background: var(--bg); line-height: 1.5; }
-        header { background: var(--p); color: white; padding: 40px 10px; text-align: center; border-bottom: 5px solid var(--s); }
-        .marquee { background: var(--s); color: var(--p); padding: 5px; font-weight: bold; }
-        .container { padding: 15px; max-width: 700px; margin: auto; }
-        .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid var(--p); }
-        .iks-card { background: #fff3e0; border-top-color: #e65100; text-align: center; }
-        .staff-sel { width: 100%; padding: 12px; border-radius: 8px; border: 2px solid var(--p); font-weight: 700; margin-bottom: 15px; }
-        .t-card { display: none; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; animation: fIn 0.5s; }
-        .t-head { background: var(--p); color: white; padding: 20px; text-align: center; }
-        .t-img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #fff; margin-bottom: 10px; }
-        .info p { border-bottom: 1px solid #eee; padding: 8px; display: flex; justify-content: space-between; font-size: 0.9rem; }
-        .btn { padding: 12px; border-radius: 8px; color: white; cursor: pointer; border: none; display: block; width: 100%; text-align: center; text-decoration: none; margin-top: 10px; font-weight: bold; }
-        footer { background: var(--p); color: white; text-align: center; padding: 30px 15px; margin-top: 30px; }
-        .legal { font-size: 0.75rem; border: 1px dashed var(--s); padding: 10px; margin-bottom: 15px; text-align: justify; }
-        @keyframes fIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        body { 
+            font-family: 'Hind Vadodara', sans-serif; 
+            background: url('https://images.pexels.com/photos/256417/pexels-photo-256417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); 
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #333; 
+            line-height: 1.6; 
+        }
+
+        .overlay { background: var(--bg-overlay); min-height: 100vh; width: 100%; }
+
+        header { 
+            background: linear-gradient(135deg, var(--primary), #2a5298); 
+            padding: 40px 20px; 
+            color: white; 
+            text-align: center; 
+            border-bottom: 5px solid var(--secondary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .marquee-bar { background: var(--secondary); color: var(--primary); padding: 8px 0; font-weight: 700; font-size: 1rem; }
+
+        .container { padding: 25px; max-width: 850px; margin: auto; }
+
+        .card { 
+            background: var(--white); 
+            border-radius: 20px; 
+            padding: 25px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .iks-card { 
+            background: linear-gradient(135deg, #fff9f0 0%, #ffedda 100%); 
+            border-left: 8px solid #e65100;
+            text-align: center; 
+        }
+
+        .shlok { font-size: 1.4rem; color: #bf360c; font-weight: 700; display: block; margin: 12px 0; }
+        
+        .staff-select { 
+            width: 100%; padding: 15px; border-radius: 12px; 
+            border: 2px solid var(--primary); font-family: 'Hind Vadodara', sans-serif; 
+            font-weight: 700; font-size: 1.1rem; color: var(--primary); 
+            background: #fdfdfd; cursor: pointer;
+        }
+
+        .staff-info-card { 
+            display: none; animation: fadeInUp 0.5s ease; 
+            border-radius: 15px; overflow: hidden; background: #fff;
+            border: 1px solid #eee;
+        }
+
+        .staff-header { 
+            background: linear-gradient(to right, var(--primary), #3a7bd5); 
+            color: white; padding: 20px; text-align: center; 
+        }
+
+        .staff-img { width: 115px; height: 115px; border-radius: 50%; border: 4px solid #fff; object-fit: cover; margin-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        .info-list { padding: 15px; }
+        .info-item { display: flex; justify-content: space-between; border-bottom: 1px solid #f1f1f1; padding: 10px 0; }
+        .info-item b { color: var(--primary); font-weight: 600; }
+
+        .btn { 
+            padding: 15px; border-radius: 10px; font-weight: 700; color: white; 
+            border: none; display: block; width: 100%; text-align: center; 
+            margin-bottom: 12px; text-decoration: none; transition: 0.3s;
+            font-family: 'Hind Vadodara', sans-serif;
+        }
+
+        footer { background: var(--primary); color: white; text-align: center; padding: 40px 20px; }
+        .legal-box { 
+            background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; 
+            font-size: 0.85rem; text-align: justify; border: 1px dashed var(--secondary);
+            margin-bottom: 25px;
+        }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
-<header>
-    <h2>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</h2>
-    <p>વિજાપુર | મહેસાણા | DISE: 24040801701</p>
-</header>
+<div class="overlay">
+    <header>
+        <h1 style="font-weight: 700;">ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</h1>
+        <p style="opacity: 0.9; font-weight: 500;">તાલુકો: વિજાપુર | DISE: 24040801701 | પિનકોડ: 384570</p>
+    </header>
 
-<div class="marquee"><marquee id="tht">વિદ્યા વિનયથી શોભે છે.</marquee></div>
+    <div class="marquee-bar"><marquee id="daily-tht">લોડ થઈ રહ્યું છે...</marquee></div>
 
-<div class="container">
-    <div class="card iks-card">
-        <h3 style="color: #e65100;">🔱 IKS સંદર્ભ</h3>
-        <p id="i-ref" style="font-size: 0.8rem; font-weight: bold;"></p>
-        <p id="i-shl" style="font-size: 1.2rem; margin: 10px 0; color: #bf360c; font-weight: bold;"></p>
-        <p id="i-mng" style="font-style: italic; font-size: 0.9rem;"></p>
+    <div class="container">
+        <div class="card iks-card">
+            <h3 style="color: #e65100; font-weight: 700;">🔱 ભારતીય જ્ઞાન પરંપરા (IKS)</h3>
+            <p id="iks-ref" style="font-weight: 600; color: #5d4037; font-size: 0.9rem; margin-top: 5px;"></p>
+            <span id="iks-shlok" class="shlok"></span>
+            <p id="iks-meaning" style="font-style: italic; color: #444;"></p>
+        </div>
+
+        <div class="card">
+            <h3 style="text-align: center; color: var(--accent); margin-bottom: 15px;">🔐 સુરક્ષિત ગેલેરી</h3>
+            <button onclick="checkPass('LINK_1')" class="btn" style="background:var(--accent); box-shadow: 0 4px 12px rgba(211,47,47,0.3);">૧. શાળા પ્રવૃત્તિઓ</button>
+            <button onclick="checkPass('LINK_2')" class="btn" style="background:var(--primary); box-shadow: 0 4px 12px rgba(30,60,114,0.3);">૨. શૈક્ષણિક ઉત્સવો</button>
+        </div>
+
+        <div class="card">
+            <h3 style="text-align: center; color: var(--primary); margin-bottom: 15px;">👨‍🏫 શાળા પરિવાર પરિચય</h3>
+            <select class="staff-select" id="staff-select" onchange="showTeacher(this.value)">
+                <option value="">-- શિક્ષક મિત્રનું નામ પસંદ કરો --</option>
+            </select>
+            <div id="teacher-display" style="margin-top: 20px;"></div>
+        </div>
     </div>
 
-    <div class="card">
-        <h3 style="text-align: center; color: #d32f2f; margin-bottom: 10px;">🔐 ગેલેરી</h3>
-        <button onclick="pCheck('LINK1')" class="btn" style="background:#d32f2f;">📸 શાળા પ્રવૃત્તિઓ</button>
-        <button onclick="pCheck('LINK2')" class="btn" style="background:var(--p);">🏆 શૈક્ષણિક ઉત્સવો</button>
-    </div>
-
-    <div class="card">
-        <h3 style="text-align: center; color: var(--p); margin-bottom: 10px;">👨‍🏫 સ્ટાફ પ્રોફાઈલ</h3>
-        <select class="staff-sel" id="s-sel" onchange="sT(this.value)">
-            <option value="">-- નામ પસંદ કરો --</option>
-        </select>
-        <div id="t-disp"></div>
-    </div>
+    <footer>
+        <div class="container" style="padding: 0;">
+            <div class="legal-box">
+                <b>⚖️ કાયદાકીય જોગવાઈ:</b> આ પોર્ટલ પરની તમામ માહિતી "ફલુ અનુપમ પ્રાથમિક શાળા" ની માલિકીની છે. ફોટોગ્રાફ્સ કે અન્ય ડેટાનો અનધિકૃત ઉપયોગ આઈટી એક્ટ ૨૦૦૦ હેઠળ કાયદેસરની કાર્યવાહીને પાત્ર છે.
+            </div>
+            <p style="font-weight: 500;">© 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</p>
+            <div style="margin-top: 15px; font-weight: 700; color: var(--secondary); font-size: 1.1rem;">
+                Design by Nilesh Patel (SRG-MATHS)
+            </div>
+        </div>
+    </footer>
 </div>
 
-<footer>
-    <div class="legal"><b>⚖️ કાયદાકીય જોગવાઈ:</b> આ વેબસાઈટની માહિતી ફલુ અનુપમ પ્રાથમિક શાળાની મિલકત છે. તેનો અનધિકૃત ઉપયોગ શિક્ષાપાત્ર ગુનો છે.</div>
-    <p>© 2026 ફલુ શાળા | <b>Nilesh Patel (SRG-MATHS)</b></p>
-</footer>
-
 <script>
-    const iks = [
-        { r: "ગીતા ૪.૩૯", s: "શ્રદ્ધાવાંલ્લભતે જ્ઞાનં...", m: "શ્રદ્ધાવાન જ્ઞાન મેળવે છે.", t: "વિદ્યા વિનયથી શોભે છે." },
-        { r: "ઋગ્વેદ ૧.૮૯.૧", s: "આ નો ભદ્રા: ક્રતવો...", m: "ચારે દિશાઓથી સારા વિચારો આવો.", t: "સત્યનો જ વિજય થાય છે." }
-        // અહીં ૩૧ દિવસના ટૂંકા શ્લોક ઉમેરી શકાય
+    const iksData = [
+        { r: "શ્રીમદ્ ભગવદ્ ગીતા ૪.૩૯", s: "શ્રદ્ધાવાંલ્લભતે જ્ઞાનં તત્પર: સંયતેન્દ્રિય: ।", m: "શ્રદ્ધાવાન અને જિતેન્દ્રિય મનુષ્ય જ્ઞાન પ્રાપ્ત કરે છે.", t: "વિદ્યા વિનયથી શોભે છે." },
+        { r: "ઋગ્વેદ ૧.૮૯.૧", s: "આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।", m: "ચારે દિશાઓમાંથી અમને કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.", t: "સત્યનો જ હંમેશા વિજય થાય છે." }
     ];
 
-    const names = ["શ્રી નિલેશકુમાર પટેલ", "શ્રી રાજેન્દ્રકુમાર પટેલ", "શિક્ષક ૩", "શિક્ષક ૪", "શિક્ષક ૫", "શિક્ષક ૬", "શિક્ષક ૭", "શિક્ષક ૮", "શિક્ષક ૯", "શિક્ષક ૧૦", "શિક્ષક ૧૧", "શિક્ષક ૧૨", "શિક્ષક ૧૩", "શિક્ષક ૧૪", "શિક્ષક ૧૫"];
+    const staffList = [
+        "શ્રી નિલેશકુમાર પી. પટેલ", "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", "શિક્ષક ૩", "શિક્ષક ૪", "શિક્ષક ૫",
+        "શિક્ષક ૬", "શિક્ષક ૭", "શિક્ષક ૮", "શિક્ષક ૯", "શિક્ષક ૧૦",
+        "શિક્ષક ૧૧", "શિક્ષક ૧૨", "શિક્ષક ૧૩", "શિક્ષક ૧૪", "શિક્ષક ૧૫"
+    ];
 
-    function init() {
+    function setup() {
         const d = new Date().getDate();
-        const itm = iks[(d - 1) % iks.length] || iks[0];
-        document.getElementById('i-ref').innerText = itm.r;
-        document.getElementById('i-shl').innerText = itm.s;
-        document.getElementById('i-mng').innerText = itm.m;
-        document.getElementById('tht').innerText = "📢 " + itm.t;
+        const item = iksData[(d - 1) % iksData.length] || iksData[0];
+        document.getElementById('iks-ref').innerText = "સંદર્ભ: " + item.r;
+        document.getElementById('iks-shlok').innerText = item.s;
+        document.getElementById('iks-meaning').innerText = "અર્થ: " + item.m;
+        document.getElementById('daily-tht').innerText = "📢 આજનો સુવિચાર: " + item.t;
 
-        const sel = document.getElementById('s-sel');
-        const cont = document.getElementById('t-disp');
-        names.forEach((n, i) => {
-            let id = i + 1;
-            sel.innerHTML += `<option value="${id}">${id}. ${n}</option>`;
-            cont.innerHTML += `<div id="t-${id}" class="t-card">
-                <div class="t-head">
-                    <img src="${id==1?'https://files.catbox.moe/8b8w7y.jpg':id==2?'https://files.catbox.moe/vxtq6i.jpg':'https://via.placeholder.com/100'}" class="t-img">
-                    <h4>${n}</h4>
-                </div>
-                <div class="info">
-                    <p><b>📍 વતન:</b> <span>-</span></p>
-                    <p><b>📅 નોકરી દાખલ:</b> <span>-</span></p>
-                    <p><b>🆔 ટીચર કોડ:</b> <span>-</span></p>
-                    <p><b>📖 વિષય:</b> <span>-</span></p>
-                    <p><b>🏆 સિદ્ધિ:</b> <span>-</span></p>
-                </div>
-            </div>`;
+        const select = document.getElementById('staff-select');
+        const container = document.getElementById('teacher-display');
+
+        staffList.forEach((name, i) => {
+            const id = i + 1;
+            select.innerHTML += `<option value="${id}">${id}. ${name}</option>`;
+            container.innerHTML += `
+                <div id="teacher-${id}" class="staff-info-card">
+                    <div class="staff-header">
+                        <img src="${id==1?'https://files.catbox.moe/8b8w7y.jpg':id==2?'https://files.catbox.moe/vxtq6i.jpg':'https://via.placeholder.com/115'}" class="staff-img">
+                        <h3 style="font-weight:700;">${name}</h3>
+                    </div>
+                    <div class="info-list">
+                        <div class="info-item"><b>📍 વતન:</b> <span>-</span></div>
+                        <div class="info-item"><b>📅 નોકરી દાખલ:</b> <span>-</span></div>
+                        <div class="info-item"><b>⏳ નિવૃત્તિ તારીખ:</b> <span>-</span></div>
+                        <div class="info-item"><b>🆔 ટીચર કોડ:</b> <span>-</span></div>
+                        <div class="info-item"><b>📖 ભણાવતા વિષય:</b> <span>-</span></div>
+                        <div class="info-item"><b>🏆 વિશિષ્ટ સિદ્ધિ:</b> <span>-</span></div>
+                    </div>
+                </div>`;
         });
     }
 
-    function sT(id) {
-        document.querySelectorAll('.t-card').forEach(c => c.style.display = 'none');
-        if(id) document.getElementById('t-' + id).style.display = 'block';
+    function showTeacher(id) {
+        document.querySelectorAll('.staff-info-card').forEach(c => c.style.display = 'none');
+        if(id) document.getElementById('teacher-' + id).style.display = 'block';
     }
 
-    function pCheck(url) {
+    function checkPass(url) {
         const d = new Date().getDate();
-        const p = prompt("પાસવર્ડ:");
+        const p = prompt("સુરક્ષા પાસવર્ડ દાખલ કરો:");
         if (p === "falu" + d) window.open(url, "_blank");
         else if (p !== null) alert("ખોટો પાસવર્ડ!");
     }
 
-    window.onload = init;
+    window.onload = setup;
+    document.onkeydown = function(e) { if (e.keyCode == 123 || (e.ctrlKey && e.keyCode == 85)) return false; };
 </script>
 </body>
 </html>
