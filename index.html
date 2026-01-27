@@ -7,142 +7,159 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --glass: rgba(255, 255, 255, 0.92);
-            --p: #1e3c72; --s: #ff9800; --accent: #d32f2f;
+            --glass: rgba(255, 255, 255, 0.95); /* થોડું વધુ અપારદર્શક */
+            --p: #1a237e; /* ઘેરો વાદળી */
+            --s: #ff6f00; /* ઘેરો નારંગી */
+            --accent: #c62828; /* ઘેરો લાલ */
+            --ai-bg: #4527a0; /* ઘેરો જાંબલી */
+            --edu-bg: #004d40; /* ઘેરો લીલો */
         }
-        
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; font-family: 'Hind Vadodara', sans-serif; }
-        
         body { 
-            /* બેકગ્રાઉન્ડ: શાળા/મેદાનનો પ્રીમિયમ લુક */
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/256417/pexels-photo-256417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') fixed center/cover;
+            /* નવું સુંદર બેકગ્રાઉન્ડ: જ્ઞાન અને ભવિષ્યનું પ્રતીક */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1541339907198-e087566f42a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjYyNTJ8MHwxfHNlYXJjaHw4fHxlZHVjYXRpb24lMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTcwNjQ3NjA3NXww&ixlib=rb-4.0.3&q=80&w=1080') fixed center/cover;
             min-height: 100vh;
+            color: #333;
         }
-
         header { 
-            background: white; padding: 25px; text-align: center; 
-            border-bottom: 5px solid var(--p); box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            background: linear-gradient(to right, #ffffff, #f0f0f0); 
+            padding: 28px; text-align: center; border-bottom: 6px solid var(--p); 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
-        header h1 { color: var(--p); font-size: 1.8rem; font-weight: 700; }
-        header p { font-size: 0.95rem; color: #444; margin-top: 5px; font-weight: 600; }
+        header h1 { color: var(--p); font-size: 2rem; font-weight: 700; margin-bottom: 5px; }
+        header p { font-size: 1rem; color: #555; font-weight: 600; }
 
-        .marquee-bar { background: var(--s); color: white; padding: 10px 0; font-weight: 700; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .marquee-bar { background: var(--s); color: white; padding: 12px 0; font-weight: 700; text-align: center; font-size: 1.1rem; box-shadow: 0 3px 8px rgba(0,0,0,0.15); }
 
         .container { 
-            padding: 40px 15px; max-width: 1200px; margin: auto; 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; 
+            padding: 50px 20px; max-width: 1250px; margin: auto; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 35px; 
         }
-
-        /* Floating Glass Card */
+        
         .card { 
-            background: var(--glass); border-radius: 20px; padding: 25px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.5);
+            background: var(--glass); border-radius: 25px; padding: 30px; 
+            box-shadow: 0 20px 45px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.7);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(12px);
-            text-align: center;
+            backdrop-filter: blur(15px); text-align: center;
         }
         .card:hover { 
-            transform: translateY(-15px); 
-            background: rgba(255, 255, 255, 1);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            transform: translateY(-18px) scale(1.02); 
+            background: rgba(255, 255, 255, 1); 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5); 
         }
 
-        .iks-card { border-top: 10px solid var(--s); grid-column: 1 / -1; text-align: left; }
-        .ai-card { border-top: 10px solid #6200ea; }
-        .digital-card { border-top: 10px solid #00796b; }
-        .gallery-card { border-top: 10px solid var(--accent); }
-
-        .shlok { font-size: 1.4rem; color: #bf360c; font-weight: 700; display: block; margin: 15px 0; }
-
-        /* Buttons Styling */
-        .btn { 
-            padding: 14px; border-radius: 12px; font-weight: 700; color: white; 
-            border: none; display: block; width: 100%; margin-bottom: 12px; 
-            cursor: pointer; text-decoration: none; text-align: center; transition: 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .btn:hover { filter: brightness(1.2); transform: scale(1.03); }
-        .btn:active { transform: scale(0.96); }
+        .iks-card { border-top: 12px solid var(--s); grid-column: 1 / -1; text-align: left; }
+        .shlok { font-size: 1.5rem; color: #a12f00; font-weight: 700; display: block; margin: 18px 0; line-height: 1.6; }
         
-        .btn-ai { background: #6200ea; }
-        .btn-edu { background: #00796b; }
-        .btn-wa { background: #25D366; }
-        .btn-accent { background: var(--accent); }
-        .btn-primary { background: var(--p); }
-
-        /* Staff Section */
-        .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
-        .staff-sel { 
-            width: 100%; max-width: 400px; padding: 15px; border-radius: 12px; 
-            border: 2px solid #ddd; font-size: 1.1rem; font-weight: 600; 
-            color: var(--p); margin-bottom: 25px; outline: none; cursor: pointer;
+        .btn { 
+            padding: 16px; border-radius: 15px; font-weight: 700; color: white; border: none; 
+            display: block; width: 100%; margin-bottom: 15px; cursor: pointer; 
+            text-decoration: none; text-align: center; transition: 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2); font-size: 1rem;
         }
+        .btn:hover { filter: brightness(1.15); transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.3); }
+        .btn:active { transform: scale(0.97); }
+
+        .btn-ai { background: var(--ai-bg); border-bottom: 4px solid #311b92; }
+        .btn-edu { background: var(--edu-bg); border-bottom: 4px solid #002d25; }
+        .btn-wa { background: #2e7d32; border-bottom: 4px solid #1b5e20; } /* ડાર્ક વોટ્સએપ ગ્રીન */
+        .btn-accent { background: var(--accent); border-bottom: 4px solid #b71c1c; }
+        .btn-primary { background: var(--p); border-bottom: 4px solid #0d1246; }
+
+        .staff-section { grid-column: 1 / -1; border-top: 12px solid var(--p); }
+        .staff-sel { 
+            width: 100%; max-width: 450px; padding: 16px; border-radius: 15px; 
+            border: 2px solid #a7a7a7; font-size: 1.15rem; font-weight: 600; 
+            color: var(--p); margin-bottom: 30px; outline: none; cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        .staff-sel:focus { border-color: var(--s); box-shadow: 0 0 0 3px rgba(255,111,0,0.3); }
 
         .t-card { 
             display: none; background: white; border-radius: 20px; overflow: hidden; 
-            animation: slideUp 0.5s ease; border: 1px solid #eee; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            animation: slideUp 0.6s ease-out forwards; border: 1px solid #ddd; 
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
         }
-        .t-head { background: var(--p); color: white; padding: 25px; text-align: center; }
-        .t-img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid #fff; object-fit: cover; }
-
+        .t-head { background: var(--p); color: white; padding: 30px; text-align: center; }
+        .t-img { width: 130px; height: 130px; border-radius: 50%; border: 6px solid #fff; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .info-tab { width: 100%; border-collapse: collapse; }
-        .info-tab td { padding: 15px; border-bottom: 1px solid #f1f1f1; text-align: left; }
-        .info-tab td:first-child { font-weight: 700; color: var(--p); width: 45%; padding-left: 20px; }
+        .info-tab td { padding: 18px; border-bottom: 1px solid #ebebeb; text-align: left; font-size: 1.05rem; }
+        .info-tab td:first-child { font-weight: 700; color: var(--p); width: 40%; padding-left: 25px; }
+        .info-tab tr:last-child td { border-bottom: none; }
 
-        footer { background: white; padding: 45px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #eee; }
-        .legal { background: #fffde7; border: 2px dashed #fbc02d; padding: 20px; border-radius: 15px; font-size: 0.9rem; max-width: 950px; margin: auto; line-height: 1.6; }
+        footer { 
+            background: linear-gradient(to right, #f0f0f0, #ffffff); 
+            padding: 50px 20px; text-align: center; margin-top: 70px; 
+            border-top: 2px solid #e0e0e0; box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+        }
+        .legal { 
+            background: #fff8e1; border: 2px dashed #ffb300; padding: 25px; 
+            border-radius: 18px; font-size: 0.95rem; max-width: 1000px; margin: auto; 
+            line-height: 1.7; color: #5d4037;
+        }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { 
+            from { opacity: 0; transform: translateY(50px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
 
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.4rem; }
-            .container { padding: 20px 10px; }
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.6rem; }
+            .container { padding: 30px 15px; gap: 25px; }
+            .card { padding: 20px; border-radius: 18px; }
+            .shlok { font-size: 1.3rem; }
+            .btn { padding: 14px; border-radius: 12px; font-size: 0.95rem; }
+            .staff-sel { padding: 14px; font-size: 1.05rem; }
+            .t-img { width: 110px; height: 110px; }
+            .info-tab td { padding: 14px; font-size: 1rem; }
+            footer { padding: 40px 15px; }
+            .legal { padding: 20px; font-size: 0.85rem; }
         }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body oncontextmenu="return false;" onkeydown="return checkKey(event);">
 
 <header>
     <h1>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</h1>
-    <p>વિજાપુર - મહેસાણા | DISE કોડ: 24040801701 | પિનકોડ: 384570</p>
+    <p>તાલુકો: વિજાપુર | DISE કોડ: 24040801701 | પિનકોડ: 384570</p>
 </header>
 
-<div class="marquee-bar"><marquee id="tht">વિદ્યા વિનયથી શોભે છે...</marquee></div>
+<div class="marquee-bar"><marquee id="tht">જ્ઞાન એ અમૂલ્ય ધન છે જે વહેંચવાથી વધે છે.</marquee></div>
 
 <div class="container">
     
     <div class="card iks-card">
-        <h3 style="color:var(--accent); font-size: 1.3rem;">🔱 ભારતીય જ્ઞાન પરંપરા (IKS)</h3>
-        <p id="iks-r" style="font-weight: 700; color: #5d4037; margin-top: 12px;"></p>
+        <h3 style="color:var(--accent); font-size: 1.5rem; margin-bottom: 15px;">🔱 ભારતીય જ્ઞાન પરંપરા (IKS)</h3>
+        <p id="iks-r" style="font-weight: 700; color: #5d4037; margin-top: 12px; font-size: 1rem;"></p>
         <span id="iks-s" class="shlok"></span>
-        <p id="iks-m" style="font-style: italic; color: #333; font-size: 1.1rem; border-top: 1px solid #ddd; padding-top: 10px;"></p>
+        <p id="iks-m" style="font-style: italic; color: #333; font-size: 1.1rem; border-top: 1px solid #e0e0e0; padding-top: 15px; line-height: 1.5;"></p>
     </div>
 
-    <div class="card ai-card">
-        <h3 style="color: #6200ea; margin-bottom: 20px;">🚀 આવનારું ભવિષ્ય આપણા હાથમાં</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 15px; font-weight: 600;">નવી પેઢી માટે ટેકનોલોજી શિક્ષણ</p>
-        <a href="https://scratch.mit.edu/" target="_blank" class="btn btn-ai">🎮 સ્ક્રેચ કોડિંગ પ્લેટફોર્મ</a>
-        <a href="https://www.youtube.com/results?search_query=scratch+coding+in+gujarati" target="_blank" class="btn btn-ai">📽️ સ્ક્રેચ શીખો ગુજરાતીમાં</a>
-        <a href="https://www.guvi.in/ai-for-india-gujarati" target="_blank" class="btn btn-ai">🤖 AI વિશે માહિતી</a>
+    <div class="card" style="border-top: 12px solid var(--ai-bg);">
+        <h3 style="color: var(--ai-bg); margin-bottom: 25px; font-size: 1.5rem;">🚀 આવનારું ભવિષ્ય આપણા હાથમાં</h3>
+        <a href="https://indiaai.gov.in/articles" target="_blank" class="btn btn-ai">🤖 India AI (સરકારી આર્ટિકલ્સ)</a>
+        <a href="https://www.youtube.com/results?search_query=What+is+AI+in+Gujarati+for+students" target="_blank" class="btn btn-ai">📽️ AI શું છે? (ગુજરાતીમાં જુઓ)</a>
+        <a href="https://scratch.mit.edu/projects/editor/?tutorial=getStarted" target="_blank" class="btn btn-ai">🎮 સ્ક્રેચ કોડિંગથી શરૂઆત કરો</a>
     </div>
 
-    <div class="card digital-card">
-        <h3 style="color: #00796b; margin-bottom: 20px;">💻 Digital પ્લેટફોર્મ (E-Content)</h3>
-        <a href="https://https://gshala.schoolnetindia.com//" target="_blank" class="btn btn-edu">🎓 G-SHALA (ઈ-લર્નિંગ)</a>
-        <a href="https://gcert.gujarat.gov.in/" target="_blank" class="btn btn-edu">🏫 GCERT (શૈક્ષણિક સાહિત્ય)</a>
+    <div class="card" style="border-top: 12px solid var(--edu-bg);">
+        <h3 style="color: var(--edu-bg); margin-bottom: 25px; font-size: 1.5rem;">💻 Digital પ્લેટફોર્મ (E-Content)</h3>
+        <a href="https://gshala.gujarat.gov.in/" target="_blank" class="btn btn-edu">🎓 G-SHALA પોર્ટલ</a>
+        <a href="https://gcert.gujarat.gov.in/" target="_blank" class="btn btn-edu">🏫 GCERT શૈક્ષણિક સાહિત્ય</a>
         <a href="https://ssagujarat.org/" target="_blank" class="btn btn-edu">📊 SSA-GUJARAT પોર્ટલ</a>
         <a href="https://diksha.gov.in/" target="_blank" class="btn btn-edu">📖 DIKSHA ડિજિટલ બુક્સ</a>
     </div>
 
-    <div class="card gallery-card">
-        <h3 style="color: var(--p); margin-bottom: 20px;">🔐 સુરક્ષિત ગેલેરી</h3>
-        <button onclick="cP('LINK1')" class="btn btn-accent">૧. શાળા પ્રવૃત્તિઓ</button>
-        <button onclick="cP('LINK2')" class="btn btn-primary">૨. શૈક્ષણિક ઉત્સવો</button>
+    <div class="card" style="border-top: 12px solid var(--accent);">
+        <h3 style="color: var(--p); margin-bottom: 25px; font-size: 1.5rem;">🔐 સુરક્ષિત ગેલેરી</h3>
+        <button onclick="pL('LINK1')" class="btn btn-accent">૧. શાળા પ્રવૃત્તિઓ</button>
+        <button onclick="pL('LINK2')" class="btn btn-primary">૨. શૈક્ષણિક ઉત્સવો</button>
         <a href="https://wa.me/919574456156?text=નમસ્તે નિલેશભાઈ, મારે ફલુ શાળાની ગેલેરી માટે આજનો પાસવર્ડ જોઈએ છે." target="_blank" class="btn btn-wa">💬 પાસવર્ડ મેળવો (WhatsApp)</a>
     </div>
 
     <div class="card staff-section">
-        <h3 style="color: var(--p); margin-bottom: 20px;">👨‍🏫 શાળા પરિવાર પરિચય</h3>
+        <h3 style="color: var(--p); margin-bottom: 25px; font-size: 1.5rem;">👨‍🏫 શાળા પરિવાર પરિચય</h3>
         <select class="staff-sel" id="s-sel" onchange="sT(this.value)">
             <option value="">-- શિક્ષકનું નામ પસંદ કરો --</option>
         </select>
@@ -152,30 +169,78 @@
 
 <footer>
     <div class="legal">
-        <b>⚖️ કાયદાકીય જોગવાઈ:</b> આ વેબસાઈટની તમામ વિગતો, ફોટોગ્રાફ્સ અને બૌદ્ધિક સામગ્રી "પીએમશ્રી ફલુ અનુપમ પ્રાથમિક શાળા" ની માલિકીની છે. તેનો કોઈપણ પ્રકારનો અનધિકૃત ઉપયોગ કાયદેસરની કાર્યવાહીને પાત્ર છે.
+        <b>⚖️ કાયદાકીય જોગવાઈ:</b> આ વેબસાઈટ અને તેની પરની તમામ વિગતો, ફોટોગ્રાફ્સ તથા બૌદ્ધિક સામગ્રી "પીએમશ્રી ફલુ અનુપમ પ્રાથમિક શાળા" ની માલિકીની છે. તેનો કોઈપણ પ્રકારનો અનધિકૃત ઉપયોગ કાયદેસરની કાર્યવાહીને પાત્ર છે.
     </div>
-    <div style="margin-top: 25px; font-weight: 700; color: var(--p); font-size: 1.2rem;">Design by <span style="color:var(--s)">Nilesh Patel (SRG-MATHS)</span></div>
-    <p style="font-size: 0.9rem; margin-top: 10px; color: #666;">© 2026 ફલુ અનુપમ પ્રાથમિક શાળા | વિજાપુર</p>
+    <div style="margin-top: 30px; font-weight: 700; color: var(--p); font-size: 1.3rem;">Design by <span style="color:var(--s)">Nilesh Patel (SRG-MATHS)</span></div>
+    <p style="font-size: 1rem; margin-top: 15px; color: #666;">© 2026 ફલુ અનુપમ પ્રાથમિક શાળા | વિજાપુર</p>
 </footer>
 
 <script>
-    // 31 Days IKS Data
+    // Security: Block Keyboard Shortcuts (F12, Ctrl+Shift+I/J, Ctrl+U)
+    function checkKey(e) {
+        if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
+            return false;
+        }
+    }
+
+    // Dynamic Password & Obfuscated Link Opener
+    function pL(u) {
+        var _0x1 = new Date().getDate(); // આજની તારીખ
+        var _0x2 = prompt("સુરક્ષિત પાસવર્ડ દાખલ કરો:"); // યુઝરનો ઇનપુટ
+        var _0x3 = "falu" + _0x1; // ડાયનેમિક પાસવર્ડ
+
+        if (_0x2 === _0x3) {
+            window.open(u, "_blank"); // જો પાસવર્ડ સાચો હોય તો લિંક ખોલો
+        } else if (_0x2 !== null) {
+            alert("ખોટો પાસવર્ડ! આજનો સાચો પાસવર્ડ મેળવવા વોટ્સએપ બટન પર ક્લિક કરો.");
+        }
+    }
+
+    // IKS Data (Indian Knowledge System) - 31 Days Cycle
     const iksD = [
-        {r:"શ્રીમદ્ ભગવદ્ ગીતા ૪.૩૯", s:"શ્રદ્ધાવાંલ્લભતે જ્ઞાનં તત્પર: સંયતેન્દ્રિય: ।", m:"શ્રદ્ધાવાન અને જિતેન્દ્રિય મનુષ્ય જ્ઞાન પ્રાપ્ત કરે છે.", t:"વિદ્યા વિનયથી શોભે છે."},
-        {r:"ઋગ્વેદ ૧.૮૯.૧", s:"આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।", m:"ચારે દિશાઓમાંથી કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.", t:"સત્યનો જ વિજય થાય છે."},
-        {r:"સુભાષિત", s:"વિદ્યા ધનં સર્વધન પ્રધાનમ્ ।", m:"વિદ્યા રૂપી ધન તમામ ધનોમાં શ્રેષ્ઠ છે.", t:"પુસ્તકો સાચા મિત્રો છે."}
-        // ... ૩૧ દિવસ સુધીનો ડેટા એરેમાં ચાલુ રહેશે
+        {r:"શ્રીમદ્ ભગવદ્ ગીતા ૪.૩૯", s:"શ્રદ્ધાવાંલ્લભતે જ્ઞાનં તત્પર: સંયતેન્દ્રિય: ।", m:"શ્રદ્ધાવાન, કર્તવ્યનિષ્ઠ અને ઇન્દ્રિયો પર સંયમ રાખનાર મનુષ્ય જ્ઞાન પ્રાપ્ત કરે છે.", t:"વિદ્યા વિનયથી શોભે છે."},
+        {r:"ઋગ્વેદ ૧.૮૯.૧", s:"આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।", m:"અમારા માટે ચારે દિશાઓમાંથી કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.", t:"સત્યનો જ વિજય થાય છે."},
+        {r:"સુભાષિત (હિંદી)", s:"વિદ્યા ધનં સર્વધન પ્રધાનમ્ ।", m:"વિદ્યા રૂપી ધન તમામ ધનોમાં શ્રેષ્ઠ છે.", t:"પુસ્તકો સાચા મિત્રો છે."},
+        {r:"મહાભારત (ઉદ્યોગ પર્વ)", s:"નાસ્તિ વિદ્યા સમં ચક્ષુર્નાસ્તિ સત્ય સમં તપ: ।", m:"વિદ્યા સમાન કોઈ નેત્ર નથી, સત્ય સમાન કોઈ તપ નથી.", t:"જ્ઞાન સર્વશ્રેષ્ઠ છે."},
+        {r:"ચાણક્ય નીતિ", s:"વિદ્યા વિનયેન શોભતે ।", m:"વિદ્યા વિનયથી શોભે છે.", t:"નમ્રતા એ વિદ્યાનું આભૂષણ છે."},
+        {r:"સુભાષિત", s:"યથા દૃષ્ટિ તથા સૃષ્ટિ ।", m:"જેવી દૃષ્ટિ હોય છે, તેવી જ સૃષ્ટિ દેખાય છે.", t:"સકારાત્મક દૃષ્ટિકોણ રાખો."},
+        {r:"ઋગ્વેદ ૬.૫૧.૧", s:"ઓમ્ સહ નાવવતુ । સહ નૌ ભુનક્તુ । સહ વીર્યં કરવાવહૈ ।", m:"હે ઈશ્વર, તમે અમારા બંને (ગુરુ-શિષ્ય)નું એકસાથે રક્ષણ કરો. એકસાથે પાલન કરો. એકસાથે શક્તિશાળી બનીએ.", t:"સહયોગથી સફળતા મળે છે."},
+        {r:"સુભાષિત", s:"ઉદ્યમેન હિ સિધ્યન્તિ કાર્યાણિ ન મનોરથૈ: ।", m:"કાર્યો ઉદ્યમ કરવાથી જ સિદ્ધ થાય છે, માત્ર મનોરથોથી નહીં.", t:"પરિશ્રમ જ સફળતાની ચાવી છે."},
+        {r:"ભગવાન બુદ્ધ", s:"અપ્પ દીપો ભવ ।", m:"પોતાનો દીવો પોતે જ બનો.", t:"આત્મનિર્ભર બનો."},
+        {r:"વિવેકાનંદ", s:"ઉઠો, જાગો અને ધ્યેય પ્રાપ્તિ સુધી મંડ્યા રહો.", m:"જ્યાં સુધી ધ્યેય પ્રાપ્ત ન થાય ત્યાં સુધી અટકશો નહીં.", t:"લક્ષ્ય વગરનું જીવન નિરર્થક છે."},
+        {r:"સુભાષિત", s:"જનની જન્મભૂમિશ્ચ સ્વર્ગાદપિ ગરીયસી ।", m:"જનની અને જન્મભૂમિ સ્વર્ગ કરતાં પણ મહાન છે.", t:"માતૃભૂમિને માન આપો."},
+        {r:"સુભાષિત", s:"સર્વે ભવન્તુ સુખિન: સર્વે સન્તુ નિરામયા: ।", m:"બધા સુખી થાઓ, બધા નિરોગી થાઓ.", t:"વિશ્વ કલ્યાણની ભાવના."},
+        {r:"ચાણક્ય નીતિ", s:"શિક્ષા શ્રેષ્ઠતમ મિત્રમ ।", m:"શિક્ષા શ્રેષ્ઠ મિત્ર છે.", t:"શિક્ષણ ક્યારેય નિષ્ફળ જતું નથી."},
+        {r:"સુભાષિત", s:"નાસ્તિ મેઘ સમં તોયં નાસ્તિ ચાત્મ સમં બલમ્ ।", m:"વાદળ સમાન કોઈ જળ નથી, આત્મવિશ્વાસ સમાન કોઈ બળ નથી.", t:"આત્મવિશ્વાસથી બધું શક્ય છે."},
+        {r:"મહાભારત", s:"યતો ધર્મસ્તતો જય: ।", m:"જ્યાં ધર્મ છે, ત્યાં વિજય છે.", t:"ધર્મનું પાલન કરો."},
+        {r:"સુભાષિત", s:"ગુરૂર્બ્રહ્મા ગુરૂર્વિષ્ણુર્ગુરુર્દેવો મહેશ્વર: ।", m:"ગુરુ જ બ્રહ્મા, ગુરુ જ વિષ્ણુ, ગુરુ જ દેવોના મહેશ્વર છે.", t:"ગુરુ વંદના."},
+        {r:"વ્યાસ", s:"અહિંસા પરમો ધર્મ: ।", m:"અહિંસા એ પરમ ધર્મ છે.", t:"શાંતિ અને સહિષ્ણુતા."},
+        {r:"સુભાષિત", s:"વાણી મધુર યસ્ય તસ્ય સર્વે વશા જના: ।", m:"જેની વાણી મધુર હોય છે, તેના પર બધા લોકો વશ હોય છે.", t:"મધુર વાણી બોલો."},
+        {r:"ભર્તૃહરિ", s:"સાહિત્ય સંગીત કલા વિહીન: સાક્ષાત્ પશુ: પુચ્છવિષાણહીન: ।", m:"સાહિત્ય, સંગીત અને કલા વગરનો મનુષ્ય પૂંછડા અને શીંગડા વગરનો પશુ સમાન છે.", t:"કલાનું મહત્વ."},
+        {r:"સુભાષિત", s:"જ્ઞાનં ભાર: ક્રિયાં વિના ।", m:"ક્રિયા વિનાનું જ્ઞાન બોજ રૂપ છે.", t:"જ્ઞાનનો અમલ કરો."},
+        {r:"તિરુક્કુરલ", s:"ગુરુત્વം അറിവ്, അറിവുകൾ പ്രകാശം.", m:"જ્ઞાન જ ગૌરવ છે, જ્ઞાન જ પ્રકાશ છે.", t:"જ્ઞાન મેળવો."},
+        {r:"સુભાષિત", s:"શ્રદ્ધાવાન લભતે જ્ઞાનમ ।", m:"શ્રદ્ધાવાન જ જ્ઞાન પ્રાપ્ત કરે છે.", t:"શ્રદ્ધા રાખો."},
+        {r:"ગીતા 2.47", s:"કર્મણ્યેવાધિકારસ્તે મા ફલેષુ કદાચન ।", m:"તારો અધિકાર ફક્ત કર્મ કરવામાં છે, ફળની ઈચ્છા રાખવામાં નથી.", t:"કર્મ કરતા રહો."},
+        {r:"સુભાષિત", s:"મન એ જ બળ છે.", m:"મન પર કાબૂ મેળવવાથી બધું શક્ય છે.", t:"મન પર કાબૂ રાખો."},
+        {r:"ઋગ્વેદ", s:"एकं सत् विप्रा बहुधा वदन्ति ।", m:"સત્ય એક છે, વિદ્વાનો તેને જુદા જુદા નામથી બોલાવે છે.", t:"સર્વ ધર્મ સમભાવ."},
+        {r:"સુભાષિત", s:"આલસ્યં હિ મનુષ્યાણાં શરીરસ્થો મહાન રિપુ: ।", m:"આળસ એ મનુષ્યોના શરીરમાં રહેલો સૌથી મોટો શત્રુ છે.", t:"આળસ ત્યજો."},
+        {r:"વ્યાસ", s:"ધર્મો રક્ષતિ રક્ષિત: ।", m:"ધર્મનું રક્ષણ કરવાથી તે આપણું રક્ષણ કરે છે.", t:"ધર્મનું પાલન કરો."},
+        {r:"સુભાષિત", s:"સત્યં બ્રૂયાત્ પ્રિયં બ્રૂયાત્ ન બ્રૂયાત્ સત્યમપ્રિયમ્ ।", m:"સત્ય બોલો, પ્રિય બોલો, પણ અપ્રિય સત્ય ન બોલો.", t:"મધુર સત્ય બોલો."},
+        {r:"ચાણક્ય નીતિ", s:"અતિ સર્વત્ર વર્જયેત્ ।", m:"અતિશયતા દરેક બાબતમાં ટાળવી જોઈએ.", t:"સંતુલન રાખો."},
+        {r:"સુભાષિત", s:"યત્ર નાર્યસ્તુ પૂજ્યન્તે રમન્તે તત્ર દેવતા: ।", m:"જ્યાં નારીઓનું સન્માન થાય છે, ત્યાં દેવતાઓ નિવાસ કરે છે.", t:"નારી શક્તિ."},
+        {r:"ગાંધીજી", s:"સત્ય એ જ ઈશ્વર છે.", m:"સત્યનું પાલન કરવું એ જ ઈશ્વરની આરાધના છે.", t:"સત્યનિષ્ઠ બનો."}
     ];
 
+    // Staff List - 15 Teachers
     const sL = ["શ્રી નિલેશકુમાર પી. પટેલ", "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", "શિક્ષક ૩", "શિક્ષક ૪", "શિક્ષક ૫", "શિક્ષક ૬", "શિક્ષક ૭", "શિક્ષક ૮", "શિક્ષક ૯", "શિક્ષક ૧૦", "શિક્ષક ૧૧", "શિક્ષક ૧૨", "શિક્ષક ૧૩", "શિક્ષક ૧૪", "શિક્ષક ૧૫"];
 
     function init() {
-        const d = new Date().getDate();
-        const it = iksD[(d-1) % iksD.length] || iksD[0];
+        const d = new Date().getDate(); // Current date (1-31)
+        const it = iksD[(d - 1) % iksD.length] || iksD[0]; // Get IKS data for today
         document.getElementById('iks-r').innerText = "સંદર્ભ: " + it.r;
         document.getElementById('iks-s').innerText = it.s;
         document.getElementById('iks-m').innerText = "અર્થ: " + it.m;
-        document.getElementById('tht').innerText = "📢 આજનો સુવિચાર: " + it.t;
+        document.getElementById('tht').innerText = "📢 આજનો સુવિચાર: " + it.t; // Marquee text
 
         const sel = document.getElementById('s-sel');
         const disp = document.getElementById('t-disp');
@@ -184,33 +249,26 @@
             sel.innerHTML += `<option value="${id}">${id}. ${n}</option>`;
             disp.innerHTML += `<div id="t-${id}" class="t-card">
                 <div class="t-head">
-                    <img src="${id==1?'https://files.catbox.moe/8b8w7y.jpg':id==2?'https://files.catbox.moe/vxtq6i.jpg':'https://via.placeholder.com/120'}" class="t-img">
-                    <h4 style="margin-top:15px; font-size:1.3rem;">${n}</h4>
+                    <img src="${id==1?'https://files.catbox.moe/8b8w7y.jpg':id==2?'https://files.catbox.moe/vxtq6i.jpg':'https://via.placeholder.com/130/eceff1/424242?text=શિક્ષક+' + id}" class="t-img" alt="${n} નો ફોટો">
+                    <h4 style="margin-top:15px; font-size:1.4rem;">${n}</h4>
                 </div>
                 <table class="info-tab">
-                    <tr><td>📍 વતન:</td><td>-</td></tr>
-                    <tr><td>📅 નોકરી દાખલ:</td><td>-</td></tr>
-                    <tr><td>🆔 ટીચર કોડ:</td><td>-</td></tr>
-                    <tr><td>📖 વિષય:</td><td>-</td></tr>
+                    <tr><td>📍 વતન:</td><td>ગામ - શહેર</td></tr>
+                    <tr><td>📅 નોકરી દાખલ:</td><td>તારીખ/વર્ષ</td></tr>
+                    <tr><td>🆔 ટીચર કોડ:</td><td>XXXXXX</td></tr>
+                    <tr><td>📖 વિષય:</td><td>વિષયનું નામ</td></tr>
+                    <tr><td>🏆 સિદ્ધિ:</td><td>સિદ્ધિ/વિશેષતા</td></tr>
                 </table>
             </div>`;
         });
     }
 
     function sT(id) {
-        document.querySelectorAll('.t-card').forEach(c => c.style.display = 'none');
-        if(id) document.getElementById('t-' + id).style.display = 'block';
+        document.querySelectorAll('.t-card').forEach(c => c.style.display = 'none'); // Hide all cards
+        if(id) document.getElementById('t-' + id).style.display = 'block'; // Show selected card
     }
 
-    function cP(u) {
-        const d = new Date().getDate();
-        const p = prompt("સુરક્ષિત ગેલેરી માટે પાસવર્ડ દાખલ કરો:");
-        if (p === "falu" + d) window.open(u, "_blank");
-        else if (p !== null) alert("ખોટો પાસવર્ડ! આજનો પાસવર્ડ મેળવવા વોટ્સએપ બટન પર ક્લિક કરો.");
-    }
-
-    window.onload = init;
+    window.onload = init; // Initialize on page load
 </script>
 </body>
 </html>
-
