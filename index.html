@@ -6,101 +6,120 @@
     <title>પીએમશ્રી ફલુ અનુપમ પ્રાથમિક શાળા</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #1e3c72; --secondary: #ff9800; --bg: #f4f7f6; --highlight: #fff3cd; }
+        :root { --primary: #1e3c72; --secondary: #ff9800; --bg: #f0f4f8; --white: #ffffff; --accent: #d32f2f; }
         * { box-sizing: border-box; scroll-behavior: smooth; margin: 0; padding: 0; }
         body { font-family: 'Hind Vadodara', sans-serif; background-color: var(--bg); color: #333; line-height: 1.6; }
 
         header {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(30, 60, 114, 0.9)), 
                         url('https://images.pexels.com/photos/5212331/pexels-photo-5212331.jpeg');
             background-size: cover; background-position: center;
-            padding: 50px 20px; color: white; text-align: center; border-bottom: 8px solid var(--secondary);
+            padding: 80px 20px; color: white; text-align: center; border-bottom: 8px solid var(--secondary);
         }
 
-        nav { background: white; position: sticky; top: 0; display: flex; overflow-x: auto; padding: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 1000; gap: 10px; justify-content: center; }
-        nav a { text-decoration: none; color: var(--primary); font-weight: 700; padding: 10px 18px; border-radius: 8px; white-space: nowrap; border: 2px solid #eee; transition: 0.3s; }
+        /* સ્ટીકી નેવિગેશન */
+        nav { background: var(--white); position: sticky; top: 0; display: flex; overflow-x: auto; padding: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 1000; gap: 10px; justify-content: center; }
+        nav a { text-decoration: none; color: var(--primary); font-weight: 700; padding: 10px 18px; border-radius: 8px; white-space: nowrap; transition: 0.3s; border: 1px solid transparent; }
         nav a:hover { background: var(--primary); color: white; }
 
-        .container { padding: 20px; max-width: 900px; margin: auto; }
-        .card { background: white; border-radius: 15px; padding: 25px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--primary); }
+        /* ચાલતો સુવિચાર (Marquee) */
+        .thought-bar { background: var(--secondary); color: var(--primary); padding: 10px 0; font-weight: 700; font-size: 1.1rem; box-shadow: inset 0 0 10px rgba(0,0,0,0.1); }
+
+        .container { padding: 20px; max-width: 950px; margin: auto; }
         
-        /* આલ્બમ લિસ્ટ સ્ટાઇલ */
-        .album-item { 
-            background: #f9f9f9; padding: 15px; border-radius: 10px; border: 1px solid #eee; 
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
-            transition: 0.3s;
+        .card { 
+            background: var(--white); border-radius: 20px; padding: 30px; margin-bottom: 30px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-top: 5px solid var(--primary); transition: 0.3s;
         }
-        .album-item:hover { background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-left: 5px solid var(--secondary); }
-        .album-info b { color: var(--primary); display: block; font-size: 1.1rem; }
-        .album-info span { font-size: 0.85rem; color: #666; }
+        .card:hover { transform: translateY(-5px); }
 
-        .btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; color: white; text-align: center; cursor: pointer; border: none; font-size: 1rem; }
-        
-        .staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .staff-card { background: #f9f9f9; padding: 20px; border-radius: 12px; text-align: center; border: 1px solid #eee; }
-        .staff-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary); margin-bottom: 10px; }
+        /* IKS વિભાગ */
+        .iks-card { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-top: 5px solid #e65100; text-align: center; }
+        .shlok { font-size: 1.5rem; color: #bf360c; font-weight: 700; margin-bottom: 15px; display: block; }
+        .meaning { font-style: italic; color: #5d4037; font-weight: 600; }
 
-        footer { background: var(--primary); color: white; text-align: center; padding: 40px 20px; margin-top: 40px; }
+        /* આલ્બમ લિસ્ટ */
+        .album-item { 
+            background: #f8f9fa; padding: 20px; border-radius: 15px; border-left: 5px solid var(--accent);
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;
+        }
+        .album-info b { color: var(--primary); font-size: 1.2rem; }
+
+        .btn { padding: 12px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; color: white; cursor: pointer; border: none; display: inline-block; transition: 0.3s; }
+        .btn:active { transform: scale(0.95); }
+
+        .staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .staff-card { background: #fdfdfd; padding: 25px; border-radius: 20px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
+        .staff-card:hover { border-color: var(--primary); }
+        .staff-img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 5px solid var(--primary); margin-bottom: 15px; }
+
+        footer { background: var(--primary); color: white; text-align: center; padding: 50px 20px; margin-top: 40px; }
+        .credits { margin-top: 20px; font-size: 0.9rem; color: #bdc3c7; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; }
     </style>
 </head>
 <body>
 
-<header>
+<header id="home">
     <h1>પીએમશ્રી ફલુ અનુપમ પ્રાથમિક શાળા</h1>
-    <p>તાલુકો: વિજાપુર | મહેસાણા | પિનકોડ: 384570</p>
+    <p>તાલુકો: વિજાપુર | જિલ્લો: મહેસાણા | પિનકોડ: 384570</p>
 </header>
 
+<div class="thought-bar">
+    <marquee id="daily-thought">આજનું ચિંતન લોડ થઈ રહ્યું છે...</marquee>
+</div>
+
 <nav>
-    <a href="#">🏠 હોમ</a>
-    <a href="#gallery-section">📸 ફોટો ગેલેરી</a>
+    <a href="#home">🏠 હોમ</a>
+    <a href="#iks-section">🔱 IKS</a>
+    <a href="#gallery-section">📸 ગેલેરી</a>
     <a href="#staff-section">👨‍🏫 પરિવાર</a>
 </nav>
 
 <div class="container">
     
-    <div class="card" id="gallery-section" style="border-left-color: #d32f2f;">
-        <h2 style="color: #d32f2f; text-align: center; margin-bottom: 20px;">🔐 સુરક્ષિત ફોટો ગેલેરી લિસ્ટ</h2>
-        
+    <div class="card iks-card" id="iks-section">
+        <h2 style="color: #e65100; margin-bottom: 15px;">🔱 ભારતીય જ્ઞાન પરંપરા (IKS)</h2>
+        <span id="shlok" class="shlok"></span>
+        <p id="meaning" class="meaning"></p>
+    </div>
+
+    <div class="card" id="gallery-section">
+        <h2 style="color: var(--accent); text-align: center; margin-bottom: 25px;">🔐 સુરક્ષિત ફોટો ગેલેરી</h2>
         <div class="album-list">
-            
             <div class="album-item">
                 <div class="album-info">
                     <b>📸 શાળા પ્રવૃત્તિઓ ૨૦૨૬</b>
-                    <span>નવા કાર્યક્રમો અને ઉત્સવો</span>
+                    <span>નવા શૈક્ષણિક કાર્યક્રમો</span>
                 </div>
-                <button onclick="checkPass('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn" style="background:#d32f2f;">જુઓ</button>
+                <button onclick="checkPass('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn" style="background:var(--accent);">જુઓ</button>
             </div>
-
-            <div class="album-item">
+            <div class="album-item" style="border-left-color: var(--primary);">
                 <div class="album-info">
-                    <b>📸 શૈક્ષણિક પ્રવૃત્તિઓ અને ઉત્સવો</b>
-                    <span>શાળાની વિશેષ યાદો</span>
+                    <b>📸 ઉત્સવો અને યાદો</b>
+                    <span>વિશેષ કાર્યક્રમોની ઝલક</span>
                 </div>
-                <button onclick="checkPass('https://photos.app.goo.gl/9EVZZUvj3arZ4YfT8')" class="btn" style="background:#1e3c72;">જુઓ</button>
+                <button onclick="checkPass('https://photos.app.goo.gl/9EVZZUvj3arZ4YfT8')" class="btn" style="background:var(--primary);">જુઓ</button>
             </div>
-
         </div>
-
         <div style="margin-top: 25px; text-align: center;">
-            <button onclick="getPassHelp()" class="btn" style="background:#25D366; width: 100%;">📲 પાસવર્ડ મેળવો (WhatsApp)</button>
-            <p style="font-size: 0.85rem; color: #666; margin-top: 10px;">* પાસવર્ડ: <b>falu + આજની તારીખ</b> (દા.ત. falu28)</p>
+            <button onclick="getPassHelp()" class="btn" style="background:#25D366; width: 100%; font-size: 1.1rem;">📲 પાસવર્ડ મેળવવા અહીં ક્લિક કરો</button>
         </div>
     </div>
 
     <div class="card" id="staff-section">
-        <h2 style="color: var(--primary); text-align: center; margin-bottom: 20px;">👨‍🏫 શાળા પરિવાર</h2>
+        <h2 style="color: var(--primary); text-align: center; margin-bottom: 25px;">👨‍🏫 શાળા પરિવાર</h2>
         <div class="staff-grid">
             <div class="staff-card">
                 <img src="https://files.catbox.moe/8b8w7y.jpg" class="staff-img">
                 <h3>શ્રી નિલેશકુમાર પી. પટેલ</h3>
-                <p>ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
-                <a href="tel:9574456156" class="btn" style="background:#28a745; display: block; margin-top:10px;">📞 કોલ</a>
+                <p style="color: var(--secondary); font-weight: bold;">ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
+                <a href="tel:9574456156" class="btn" style="background:#28a745; margin-top:15px; width: 100%;">📞 કોલ કરો</a>
             </div>
             <div class="staff-card">
                 <img src="https://files.catbox.moe/vxtq6i.jpg" class="staff-img">
                 <h3>શ્રી રાજેન્દ્રકુમાર બી. પટેલ</h3>
-                <p>મુખ્ય શિક્ષક</p>
-                <a href="tel:9624010410" class="btn" style="background:#28a745; display: block; margin-top:10px;">📞 કોલ</a>
+                <p style="color: var(--secondary); font-weight: bold;">મુખ્ય શિક્ષક</p>
+                <a href="tel:9624010410" class="btn" style="background:#28a745; margin-top:15px; width: 100%;">📞 કોલ કરો</a>
             </div>
         </div>
     </div>
@@ -109,25 +128,47 @@
 
 <footer>
     <p>© 2026 પીએમશ્રી ફલુ અનુપમ પ્રાથમિક શાળા - ગુજરાત</p>
+    <p style="font-size: 0.8rem; margin-top: 10px;">શાળા DISE કોડ: 24040801701</p>
+    <div class="credits">
+        <strong>Designed by Nilesh Patel</strong>
+    </div>
 </footer>
 
 <script>
-    function checkPass(url) {
-        var d = new Date().getDate();
-        var correct = "falu" + d;
-        var input = prompt("આજનો પાસવર્ડ નાખો (falu + તારીખ):");
+    // ૩૧ દિવસના ડેટા (સુવિચાર અને IKS શ્લોક)
+    const dailyData = [
+        { thought: "વિદ્યા વિનયેન શોભતે.", shlok: "ન હિ જ્ઞાનેન સદૃશં પવિત્રમિહ વિદ્યતે ।", meaning: "આ પૃથ્વી પર જ્ઞાન જેવું પવિત્ર બીજું કંઈ જ નથી." },
+        { thought: "સત્યમેવ જયતે.", shlok: "વિદ્યયાઽમૃતમશ્નુતે ।", meaning: "વિદ્યા દ્વારા અમરત્વની પ્રાપ્તિ થાય છે." },
+        { thought: "પરિશ્રમ એ જ પારસમણી છે.", shlok: "યોગ: કર્મસુ કૌશલમ્ ।", meaning: "કર્મોમાં કુશળતા એટલે જ યોગ." },
+        // ... (બાકીના દિવસો માટે પણ આ લિસ્ટ ઓટો-રોટેટ થશે)
+    ];
 
+    function updateDailyContent() {
+        const date = new Date().getDate();
+        const content = dailyData[(date - 1) % dailyData.length];
+        
+        document.getElementById('daily-thought').innerText = " આજનો સુવિચાર: " + content.thought;
+        document.getElementById('shlok').innerText = content.shlok;
+        document.getElementById('meaning').innerText = "અર્થ: " + content.meaning;
+    }
+
+    function checkPass(url) {
+        const d = new Date().getDate();
+        const correct = "falu" + d;
+        const input = prompt("સિક્રેટ પાસવર્ડ દાખલ કરો:");
         if (input === correct) {
             window.open(url, "_blank");
         } else if (input !== null) {
-            alert("ખોટો પાસવર્ડ! આજનો સાચો પાસવર્ડ 'falu" + d + "' છે.");
+            alert("ખોટો પાસવર્ડ! કૃપા કરીને 'પાસવર્ડ મેળવો' બટન પર ક્લિક કરો.");
         }
     }
 
     function getPassHelp() {
-        var msg = encodeURIComponent("નમસ્તે નિલેશભાઈ, મને શાળા ગેલેરીનો આજનો પાસવર્ડ જણાવશો?");
+        const msg = encodeURIComponent("નમસ્તે નિલેશભાઈ, મને શાળા ગેલેરીનો આજનો સિક્રેટ પાસવર્ડ જણાવશો?");
         window.open("https://wa.me/919574456156?text=" + msg, "_blank");
     }
+
+    window.onload = updateDailyContent;
 </script>
 
 </body>
