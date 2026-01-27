@@ -28,13 +28,18 @@
         
         .iks-card { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-top: 5px solid #e65100; text-align: center; }
         .shlok { font-size: 1.5rem; color: #bf360c; font-weight: 700; margin: 10px 0; display: block; }
-        .reference { font-size: 0.9rem; color: #795548; font-weight: bold; text-transform: uppercase; }
+        .reference { font-size: 0.9rem; color: #795548; font-weight: bold; }
 
         .album-item { background: #f8f9fa; padding: 20px; border-radius: 15px; border-left: 5px solid var(--accent); display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .btn { padding: 12px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; color: white; cursor: pointer; border: none; transition: 0.3s; }
+        .btn { padding: 12px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; color: white; cursor: pointer; border: none; transition: 0.3s; text-align: center; }
+
+        .staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }
+        .staff-card { text-align: center; border: 1px solid #eee; padding: 25px; border-radius: 20px; background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
+        .staff-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .staff-img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid var(--primary); margin-bottom: 15px; object-fit: cover; }
 
         footer { background: var(--primary); color: white; text-align: center; padding: 40px 20px; margin-top: 40px; }
-        .legal-notice { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; margin-top: 20px; font-size: 0.85rem; border: 1px dashed #ff9800; text-align: justify; line-height: 1.5; }
+        .legal-notice { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; margin-top: 20px; font-size: 0.85rem; border: 1px dashed #ff9800; text-align: justify; }
         .credits { margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); font-weight: bold; color: var(--secondary); }
     </style>
 </head>
@@ -81,16 +86,32 @@
     </div>
 
     <div class="card" id="staff-section">
-        <h2 style="color: var(--primary); text-align: center; margin-bottom: 25px;">👨‍🏫 શાળા પરિવાર</h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-            <div style="text-align: center; border: 1px solid #eee; padding: 25px; border-radius: 20px; width: 280px; background: #fdfdfd;">
-                <img src="https://files.catbox.moe/8b8w7y.jpg" style="width: 120px; height: 120px; border-radius: 50%; border: 5px solid var(--primary); margin-bottom: 15px;">
+        <h2 style="color: var(--primary); text-align: center; margin-bottom: 20px;">👨‍🏫 શાળા પરિવાર (ડિજિટલ પ્રોફાઈલ)</h2>
+        <div class="staff-grid">
+            
+            <div class="staff-card">
+                <img src="https://files.catbox.moe/8b8w7y.jpg" class="staff-img">
                 <h3>શ્રી નિલેશકુમાર પી. પટેલ</h3>
-                <p style="color: var(--secondary); font-weight: bold;">ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
-                <a href="tel:9574456156" class="btn" style="background:#28a745; display: block; margin-top: 15px;">📞 કોલ કરો</a>
+                <p style="color: var(--secondary); font-weight: bold; margin-bottom: 15px;">ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <a href="https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9" target="_blank" class="btn" style="background:var(--primary);">📸 પ્રવૃત્તિઓ</a>
+                    <a href="અહીં_તમારી_સિદ્ધિના_આલ્બમની_લિંક_નાખો" target="_blank" class="btn" style="background:#6c757d;">🏆 વિશિષ્ટ સિદ્ધિ</a>
+                </div>
             </div>
+
+            <div class="staff-card">
+                <img src="https://files.catbox.moe/vxtq6i.jpg" class="staff-img">
+                <h3>શ્રી રાજેન્દ્રકુમાર બી. પટેલ</h3>
+                <p style="color: var(--secondary); font-weight: bold; margin-bottom: 15px;">મુખ્ય શિક્ષક</p>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <a href="અહીં_મુખ્ય_શિક્ષક_આલ્બમ_લિંક" target="_blank" class="btn" style="background:var(--primary);">📸 પ્રવૃત્તિઓ</a>
+                    <a href="અહીં_મુખ્ય_શિક્ષક_સિદ્ધિ_લિંક" target="_blank" class="btn" style="background:#6c757d;">🏆 વિશિષ્ટ સિદ્ધિ</a>
+                </div>
+            </div>
+
         </div>
     </div>
+
 </div>
 
 <footer>
@@ -110,7 +131,7 @@
 </footer>
 
 <script>
-    // સુરક્ષા: F12 અને Ctrl+U બ્લોક
+    // સુરક્ષા: Inspect Element અને View Source બ્લોક
     document.onkeydown = function(e) {
         if (e.keyCode == 123 || (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0) || e.keyCode == 'I'.charCodeAt(0)))) {
             return false;
@@ -119,35 +140,31 @@
 
     const iksData = [
         { ref: "શ્રીમદ્ ભગવદ્ ગીતા (૪.૩૯)", shlok: "શ્રદ્ધાવાંલ્લભતે જ્ઞાનં તત્પર: સંયતેન્દ્રિય: ।", meaning: "શ્રદ્ધાળુ અને જિતેન્દ્રિય મનુષ્ય જ સાચું જ્ઞાન પ્રાપ્ત કરી શકે છે.", thought: "વિદ્યા વિનયથી શોભે છે." },
-        { ref: "ઋગ્વેદ (૧.૮૯.૧)", shlok: "આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।", meaning: "ચારે દિશાઓમાંથી અમને કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.", thought: "સત્યના માર્ગે વિજય નિશ્ચિત છે." },
-        { ref: "ચાણક્ય નીતિ", shlok: "વિદ્યા મિત્રં પ્રવાસેષુ ।", meaning: "પ્રવાસમાં વિદ્યા જ સાચો મિત્ર છે.", thought: "પરિશ્રમ જ સફળતાની ચાવી છે." }
+        { ref: "ઋગ્વેદ (૧.૮૯.૧)", shlok: "આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।", meaning: "ચારે દિશાઓમાંથી અમને કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.", thought: "પરિશ્રમ જ સફળતાની ચાવી છે." }
     ];
 
-    function loadDailyContent() {
-        const date = new Date().getDate();
-        const content = iksData[(date - 1) % iksData.length];
-        document.getElementById('daily-thought').innerText = " 📢 આજનો સુવિચાર: " + content.thought;
-        document.getElementById('reference').innerText = "સંદર્ભ: " + content.ref;
-        document.getElementById('shlok').innerText = content.shlok;
-        document.getElementById('meaning').innerText = "અર્થ: " + content.meaning;
+    function loadDaily() {
+        const d = new Date().getDate();
+        const item = iksData[(d - 1) % iksData.length];
+        document.getElementById('daily-thought').innerText = " 📢 આજનો સુવિચાર: " + item.thought;
+        document.getElementById('reference').innerText = "સંદર્ભ: " + item.ref;
+        document.getElementById('shlok').innerText = item.shlok;
+        document.getElementById('meaning').innerText = "અર્થ: " + item.meaning;
     }
 
     function checkPass(url) {
         const d = new Date().getDate();
         const correct = "falu" + d;
-        const input = prompt("સુરક્ષિત ગેલેરી માટે પાસવર્ડ દાખલ કરો:");
-        if (input === correct) {
-            window.open(url, "_blank");
-        } else if (input !== null) {
-            alert("ખોટો પાસવર્ડ! નવો પાસવર્ડ મેળવવા માટે 'પાસવર્ડ મેળવો' બટન પર ક્લિક કરો.");
-        }
+        const input = prompt("સિક્રેટ પાસવર્ડ દાખલ કરો:");
+        if (input === correct) { window.open(url, "_blank"); } 
+        else if (input !== null) { alert("ખોટો પાસવર્ડ! પાસવર્ડ મેળવવા માટે નીચેના બટનનો ઉપયોગ કરો."); }
     }
 
     function getPassHelp() {
         window.open("https://wa.me/919574456156?text=" + encodeURIComponent("નમસ્તે નિલેશભાઈ, મને શાળા ગેલેરીનો આજનો સિક્રેટ પાસવર્ડ જણાવશો?"), "_blank");
     }
 
-    window.onload = loadDailyContent;
+    window.onload = loadDaily;
 </script>
 
 </body>
