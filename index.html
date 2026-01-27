@@ -22,12 +22,19 @@
         nav a:hover { background: var(--primary); color: white; }
 
         .container { padding: 20px; max-width: 900px; margin: auto; }
-        .card { background: white; border-radius: 15px; padding: 25px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--primary); transition: 0.4s; }
+        .card { background: white; border-radius: 15px; padding: 25px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--primary); }
         
-        .active-section { background-color: var(--highlight); border-left-color: var(--secondary); transform: scale(1.01); }
+        /* આલ્બમ લિસ્ટ સ્ટાઇલ */
+        .album-item { 
+            background: #f9f9f9; padding: 15px; border-radius: 10px; border: 1px solid #eee; 
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+            transition: 0.3s;
+        }
+        .album-item:hover { background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-left: 5px solid var(--secondary); }
+        .album-info b { color: var(--primary); display: block; font-size: 1.1rem; }
+        .album-info span { font-size: 0.85rem; color: #666; }
 
-        .btn-group { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
-        .btn { flex: 1; min-width: 150px; padding: 14px; border-radius: 8px; text-decoration: none; font-weight: bold; color: white; text-align: center; cursor: pointer; border: none; font-size: 1rem; }
+        .btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; color: white; text-align: center; cursor: pointer; border: none; font-size: 1rem; }
         
         .staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .staff-card { background: #f9f9f9; padding: 20px; border-radius: 12px; text-align: center; border: 1px solid #eee; }
@@ -40,26 +47,44 @@
 
 <header>
     <h1>પીએમશ્રી ફલુ અનુપમ પ્રાથમિક શાળા</h1>
-    <p>તાલુકો: વિજાપુર | જિલ્લો: મહેસાણા | પિનકોડ: 384570</p>
+    <p>તાલુકો: વિજાપુર | મહેસાણા | પિનકોડ: 384570</p>
 </header>
 
-<nav id="main-nav">
-    <a href="#" onclick="highlightSection('home')">🏠 હોમ</a>
-    <a href="#gallery-section" onclick="highlightSection('gallery-section')">🔒 સુરક્ષિત ગેલેરી</a>
-    <a href="#staff-section" onclick="highlightSection('staff-section')">👨‍🏫 પરિવાર</a>
+<nav>
+    <a href="#">🏠 હોમ</a>
+    <a href="#gallery-section">📸 ફોટો ગેલેરી</a>
+    <a href="#staff-section">👨‍🏫 પરિવાર</a>
 </nav>
 
 <div class="container">
     
-    <div class="card" id="gallery-section" style="border-left-color: #d32f2f; text-align: center;">
-        <h2 style="color: #d32f2f;">🔐 સુરક્ષિત શાળા ગેલેરી</h2>
-        <p style="margin: 15px 0;">શાળાની પ્રવૃત્તિઓના ફોટા જોવા માટે <b>દૈનિક પાસવર્ડ</b> જરૂરી છે.</p>
+    <div class="card" id="gallery-section" style="border-left-color: #d32f2f;">
+        <h2 style="color: #d32f2f; text-align: center; margin-bottom: 20px;">🔐 સુરક્ષિત ફોટો ગેલેરી લિસ્ટ</h2>
         
-        <div class="btn-group">
-            <button onclick="openGallery()" class="btn" style="background:#d32f2f;">🔓 પાસવર્ડ નાખો</button>
-            <button onclick="getHelpWhatsApp()" class="btn" style="background:#25D366;">📲 પાસવર્ડ મેળવો</button>
+        <div class="album-list">
+            
+            <div class="album-item">
+                <div class="album-info">
+                    <b>📸 શાળા પ્રવૃત્તિઓ ૨૦૨૬</b>
+                    <span>નવા કાર્યક્રમો અને ઉત્સવો</span>
+                </div>
+                <button onclick="checkPass('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn" style="background:#d32f2f;">જુઓ</button>
+            </div>
+
+            <div class="album-item">
+                <div class="album-info">
+                    <b>📸 શૈક્ષણિક પ્રવૃત્તિઓ અને ઉત્સવો</b>
+                    <span>શાળાની વિશેષ યાદો</span>
+                </div>
+                <button onclick="checkPass('https://photos.app.goo.gl/9EVZZUvj3arZ4YfT8')" class="btn" style="background:#1e3c72;">જુઓ</button>
+            </div>
+
         </div>
-        <p style="font-size: 0.85rem; color: #666; margin-top: 15px;">* સુરક્ષા માટે પાસવર્ડ દરરોજ આપમેળે બદલાઈ જાય છે.</p>
+
+        <div style="margin-top: 25px; text-align: center;">
+            <button onclick="getPassHelp()" class="btn" style="background:#25D366; width: 100%;">📲 પાસવર્ડ મેળવો (WhatsApp)</button>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 10px;">* પાસવર્ડ: <b>falu + આજની તારીખ</b> (દા.ત. falu28)</p>
+        </div>
     </div>
 
     <div class="card" id="staff-section">
@@ -69,13 +94,13 @@
                 <img src="https://files.catbox.moe/8b8w7y.jpg" class="staff-img">
                 <h3>શ્રી નિલેશકુમાર પી. પટેલ</h3>
                 <p>ઉપશિક્ષક (ગણિત-વિજ્ઞાન)</p>
-                <a href="tel:9574456156" class="btn" style="background:#28a745; display: block; margin-top:10px;">📞 કોલ કરો</a>
+                <a href="tel:9574456156" class="btn" style="background:#28a745; display: block; margin-top:10px;">📞 કોલ</a>
             </div>
             <div class="staff-card">
                 <img src="https://files.catbox.moe/vxtq6i.jpg" class="staff-img">
                 <h3>શ્રી રાજેન્દ્રકુમાર બી. પટેલ</h3>
                 <p>મુખ્ય શિક્ષક</p>
-                <a href="tel:9624010410" class="btn" style="background:#28a745; display: block; margin-top:10px;">📞 કોલ કરો</a>
+                <a href="tel:9624010410" class="btn" style="background:#28a745; display: block; margin-top:10px;">📞 કોલ</a>
             </div>
         </div>
     </div>
@@ -87,38 +112,21 @@
 </footer>
 
 <script>
-    // ૧. ડાયનેમિક પાસવર્ડ ફંક્શન
-    function openGallery() {
-        // આજની તારીખ મેળવો
-        var today = new Date().getDate();
-        
-        // પાસવર્ડ: falu + તારીખ (દા.ત. falu27)
-        var correctPass = "falu" + today;
-        
-        var userPass = prompt("આજનો સિક્રેટ પાસવર્ડ દાખલ કરો:");
-        
-        if (userPass === correctPass) {
-            alert("વેરીફિકેશન સફળ!");
-            window.open("https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9", "_blank");
-        } else if (userPass != null) {
-            alert("ખોટો પાસવર્ડ! આજનો પાસવર્ડ 'falu' અને તેની પાછળ 'આજની તારીખ' છે.");
+    function checkPass(url) {
+        var d = new Date().getDate();
+        var correct = "falu" + d;
+        var input = prompt("આજનો પાસવર્ડ નાખો (falu + તારીખ):");
+
+        if (input === correct) {
+            window.open(url, "_blank");
+        } else if (input !== null) {
+            alert("ખોટો પાસવર્ડ! આજનો સાચો પાસવર્ડ 'falu" + d + "' છે.");
         }
     }
 
-    // ૨. વોટ્સએપ હેલ્પ
-    function getHelpWhatsApp() {
+    function getPassHelp() {
         var msg = encodeURIComponent("નમસ્તે નિલેશભાઈ, મને શાળા ગેલેરીનો આજનો પાસવર્ડ જણાવશો?");
         window.open("https://wa.me/919574456156?text=" + msg, "_blank");
-    }
-
-    // ૩. હાઈલાઈટ સેક્શન
-    function highlightSection(id) {
-        const target = document.getElementById(id);
-        if (target) {
-            document.querySelectorAll('.card').forEach(c => c.classList.remove('active-section'));
-            target.classList.add('active-section');
-            setTimeout(() => target.classList.remove('active-section'), 3000);
-        }
     }
 </script>
 
