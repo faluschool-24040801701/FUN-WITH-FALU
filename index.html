@@ -7,35 +7,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --glass: rgba(255, 255, 255, 0.95);
+            --glass: rgba(255, 255, 255, 0.96);
             --p: #1a237e; --s: #ff6f00; --accent: #c62828;
         }
+        
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; font-family: 'Hind Vadodara', sans-serif; }
         
         body { 
-            /* નવું આધુનિક શૈક્ષણિક બેકગ્રાઉન્ડ */
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/301920/pexels-photo-301920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') fixed center/cover;
+            /* મજબૂત અને સુંદર શૈક્ષણિક બેકગ્રાઉન્ડ લિંક */
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), 
+                        url('https://images.pexels.com/photos/159711/books-bookcase-library-read-159711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             min-height: 100vh;
         }
 
-        header { background: white; padding: 25px; text-align: center; border-bottom: 5px solid var(--p); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        header h1 { color: var(--p); font-size: 1.8rem; font-weight: 700; }
+        header { background: #fff; padding: 25px; text-align: center; border-bottom: 5px solid var(--p); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+        header h1 { color: var(--p); font-size: 1.8rem; font-weight: 700; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
         
-        .marquee-bar { background: var(--s); color: white; padding: 10px 0; font-weight: 700; text-align: center; }
+        .marquee-bar { background: var(--s); color: white; padding: 10px 0; font-weight: 700; text-align: center; border-bottom: 2px solid #e65100; }
 
-        .container { padding: 40px 15px; max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; }
+        .container { padding: 40px 15px; max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
 
+        /* Floating Cards */
         .card { 
             background: var(--glass); border-radius: 20px; padding: 25px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.5);
-            transition: 0.4s; backdrop-filter: blur(12px); text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.8);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px); text-align: center;
         }
-        .card:hover { transform: translateY(-10px); background: #fff; }
+        .card:hover { transform: translateY(-12px); box-shadow: 0 20px 45px rgba(0,0,0,0.5); background: #ffffff; }
 
         .iks-card { border-top: 10px solid var(--s); grid-column: 1 / -1; text-align: left; }
-        .shlok { font-size: 1.4rem; color: #bf360c; font-weight: 700; display: block; margin: 15px 0; }
+        .shlok { font-size: 1.4rem; color: #bf360c; font-weight: 700; display: block; margin: 15px 0; line-height: 1.5; }
 
-        .btn { padding: 14px; border-radius: 12px; font-weight: 700; color: white; border: none; display: block; width: 100%; margin-bottom: 12px; cursor: pointer; text-decoration: none; text-align: center; transition: 0.3s; }
+        .btn { padding: 14px; border-radius: 12px; font-weight: 700; color: white; border: none; display: block; width: 100%; margin-bottom: 12px; cursor: pointer; text-decoration: none; text-align: center; transition: 0.3s; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
         .btn-ai { background: #6200ea; }
         .btn-edu { background: #00796b; }
         .btn-wa { background: #25D366; }
@@ -43,19 +50,22 @@
         .btn-primary { background: var(--p); }
 
         .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
-        .staff-sel { width: 100%; max-width: 400px; padding: 15px; border-radius: 12px; border: 2px solid #ddd; font-weight: 600; color: var(--p); margin-bottom: 25px; }
+        .staff-sel { width: 100%; max-width: 420px; padding: 15px; border-radius: 12px; border: 2px solid #ddd; font-weight: 600; color: var(--p); margin-bottom: 30px; cursor: pointer; }
 
-        /* શિક્ષક કાર્ડ ડિઝાઇન */
-        .t-card { display: none; background: white; border-radius: 20px; overflow: hidden; animation: slideUp 0.5s ease; border: 1px solid #eee; }
-        .t-head { background: var(--p); color: white; padding: 25px; text-align: center; }
-        .t-img { width: 140px; height: 140px; border-radius: 50%; border: 5px solid #fff; object-fit: cover; display: block; margin: 0 auto; }
+        /* શિક્ષક પ્રોફાઈલ કાર્ડ */
+        .t-card { display: none; background: white; border-radius: 25px; overflow: hidden; animation: slideUp 0.5s ease; border: 1px solid #ddd; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .t-head { background: var(--p); color: white; padding: 30px; text-align: center; }
+        
+        /* ફોટો એકદમ ગોળ કરવા માટે */
+        .t-img { width: 150px; height: 150px; border-radius: 50%; border: 6px solid #fff; object-fit: cover; display: block; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         
         .info-tab { width: 100%; border-collapse: collapse; }
-        .info-tab td { padding: 12px 15px; border-bottom: 1px solid #f1f1f1; text-align: left; font-size: 0.95rem; }
-        .info-tab td:first-child { font-weight: 700; color: var(--p); width: 45%; background: #f9f9f9; }
+        .info-tab td { padding: 14px 20px; border-bottom: 1px solid #f1f1f1; text-align: left; font-size: 1rem; }
+        .info-tab td:first-child { font-weight: 700; color: var(--p); width: 45%; background: #fcfcfc; }
+        .info-tab tr:last-child td { border-bottom: none; }
 
-        footer { background: white; padding: 40px 20px; text-align: center; margin-top: 50px; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        footer { background: #fff; padding: 40px; text-align: center; margin-top: 50px; border-top: 3px solid var(--p); }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body oncontextmenu="return false;" onkeydown="return checkKey(event);">
@@ -65,7 +75,7 @@
     <p>તાલુકો: વિજાપુર | DISE: 24040801701 | પિનકોડ: 384570</p>
 </header>
 
-<div class="marquee-bar"><marquee id="tht">વિદ્યા વિનયથી શોભે છે...</marquee></div>
+<div class="marquee-bar"><marquee id="tht">લોડ થઈ રહ્યું છે...</marquee></div>
 
 <div class="container">
     <div class="card iks-card">
@@ -77,16 +87,16 @@
 
     <div class="card" style="border-top: 10px solid #6200ea;">
         <h3 style="color: #6200ea; margin-bottom: 20px;">🚀 ભવિષ્યની ટેકનોલોજી</h3>
-        <a href="https://indiaai.gov.in/" target="_blank" class="btn btn-ai">🤖 India AI (સરકારી પોર્ટલ)</a>
-        <a href="https://www.youtube.com/results?search_query=What+is+AI+in+Gujarati" target="_blank" class="btn btn-ai">📽️ AI શું છે? (ગુજરાતી)</a>
-        <a href="https://scratch.mit.edu/" target="_blank" class="btn btn-ai">🎮 કોડિંગ શીખો</a>
+        <a href="https://indiaai.gov.in/" target="_blank" class="btn btn-ai">🤖 India AI (ગવર્મેન્ટ)</a>
+        <a href="https://www.youtube.com/results?search_query=What+is+AI+in+Gujarati" target="_blank" class="btn btn-ai">📽️ AI સમજૂતી (ગુજરાતી)</a>
+        <a href="https://scratch.mit.edu/" target="_blank" class="btn btn-ai">🎮 કોડિંગ અને પ્રોજેક્ટ્સ</a>
     </div>
 
     <div class="card" style="border-top: 10px solid #00796b;">
-        <h3 style="color: #00796b; margin-bottom: 20px;">💻 Digital પ્લેટફોર્મ</h3>
+        <h3 style="color: #00796b; margin-bottom: 20px;">💻 ડિજિટલ શિક્ષણ</h3>
         <a href="https://gshala.gujarat.gov.in/" target="_blank" class="btn btn-edu">🎓 G-SHALA પોર્ટલ</a>
-        <a href="https://gcert.gujarat.gov.in/" target="_blank" class="btn btn-edu">🏫 GCERT સાહિત્ય</a>
-        <a href="https://diksha.gov.in/" target="_blank" class="btn btn-edu">📖 DIKSHA બુક્સ</a>
+        <a href="https://gcert.gujarat.gov.in/" target="_blank" class="btn btn-edu">🏫 GCERT ઇ-કન્ટેન્ટ</a>
+        <a href="https://diksha.gov.in/" target="_blank" class="btn btn-edu">📖 DIKSHA પાઠ્યપુસ્તકો</a>
     </div>
 
     <div class="card" style="border-top: 10px solid var(--accent);">
@@ -106,18 +116,19 @@
 </div>
 
 <footer>
-    <div style="font-weight: 700; color: var(--p);">Design by <span style="color:var(--s)">Nilesh Patel (SRG-MATHS)</span></div>
-    <p>© 2026 ફલુ અનુપમ પ્રાથમિક શાળા</p>
+    <div style="font-weight: 700; color: var(--p); font-size: 1.1rem;">Design by <span style="color:var(--s)">Nilesh Patel (SRG-MATHS)</span></div>
+    <p style="margin-top: 10px; color: #666;">© 2026 ફલુ અનુપમ પ્રાથમિક શાળા | પિનકોડ: 384570</p>
 </footer>
 
 <script>
+    // Security
     function checkKey(e) { if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false; }
 
     function pL(u) {
         var d = new Date().getDate();
-        var p = prompt("પાસવર્ડ:");
+        var p = prompt("સુરક્ષિત ગેલેરી માટે પાસવર્ડ:");
         if (p === "falu" + d) window.open(u, "_blank");
-        else if (p !== null) alert("ખોટો પાસવર્ડ!");
+        else if (p !== null) alert("ખોટો પાસવર્ડ! આજનો પાસવર્ડ નિલેશભાઈ પાસેથી મેળવો.");
     }
 
     const iksD = [
@@ -125,7 +136,7 @@
         {r:"ઋગ્વેદ ૧.૮૯.૧", s:"આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।", m:"ચારે દિશાઓમાંથી કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.", t:"સત્યનો જ વિજય થાય છે."}
     ];
 
-    const sL = ["શ્રી નિલેશકુમાર પી. પટેલ", "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", "શિક્ષક ૩", "શિક્ષક ૪", "શિક્ષક ૫", "શિક્ષક ૬", "શિક્ષક ૭", "શિક્ષક ૮", "શિક્ષક ૯", "શિક્ષક ૧૦", "શિક્ષક ૧૧", "શિક્ષક ૧૨", "શિક્ષક ૧૩", "શિક્ષક ૧૪", "શિક્ષક ૧૫"];
+    const sL = ["શ્રી નિલેશકુમાર પી. પટેલ", "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", "શિક્ષક ૩", "શિક્ષક ૪", "શિક્ષક ૫", "શિક્ષક ૬", "શિક્ષક ૭", "શિક્ષક ૮", "શિક્ષક ૯", "શિક્ષક ૧૦", "શિક્ષક ૧૧", "શિક્ષક ૧૮", "શિક્ષક ૧૩", "શિક્ષક ૧૪", "શિક્ષક ૧૫"];
 
     function init() {
         const d = new Date().getDate();
@@ -142,8 +153,8 @@
             sel.innerHTML += `<option value="${id}">${id}. ${n}</option>`;
             disp.innerHTML += `<div id="t-${id}" class="t-card">
                 <div class="t-head">
-                    <img src="${id==1?'https://files.catbox.moe/8b8w7y.jpg':id==2?'https://files.catbox.moe/vxtq6i.jpg':'https://via.placeholder.com/140'}" class="t-img">
-                    <h4 style="margin-top:15px; font-size:1.3rem;">${n}</h4>
+                    <img src="${id==1?'https://files.catbox.moe/8b8w7y.jpg':id==2?'https://files.catbox.moe/vxtq6i.jpg':'https://via.placeholder.com/150/ffffff/1a237e?text=Photo'}" class="t-img">
+                    <h4 style="margin-top:18px; font-size:1.4rem;">${n}</h4>
                 </div>
                 <table class="info-tab">
                     <tr><td>📍 વતન:</td><td>-</td></tr>
