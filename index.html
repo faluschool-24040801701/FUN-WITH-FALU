@@ -7,15 +7,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --cream-bg: #fff8e1; /* નવો ક્રિમ બેકગ્રાઉન્ડ કલર */
-            --p: #1a237e; /* ઘેરો વાદળી */
-            --s: #ff6f00; /* ઘેરો નારંગી */
-            --accent: #c62828; /* ઘેરો લાલ */
+            --cream-bg: #fff8e1;
+            --p: #1a237e; 
+            --s: #ff6f00; 
+            --accent: #c62828; 
         }
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; font-family: 'Hind Vadodara', sans-serif; }
         
         body { 
-            background-color: var(--cream-bg); /* આખા પેજનું બેકગ્રાઉન્ડ ક્રિમ */
+            background-color: var(--cream-bg); 
             min-height: 100vh;
             color: #333;
         }
@@ -26,7 +26,8 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         }
         header h1 { color: var(--p); font-size: 2rem; font-weight: 700; margin-bottom: 5px; }
-        header p { font-size: 1rem; color: #555; font-weight: 600; }
+        header p { font-size: 1rem; color: #555; font-weight: 600; margin-bottom: 5px; }
+        #live-clock { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
 
         .marquee-bar { background: var(--s); color: white; padding: 12px 0; font-weight: 700; text-align: center; font-size: 1.1rem; box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
 
@@ -37,7 +38,7 @@
         }
         
         .card { 
-            background: rgba(255, 255, 255, 0.98); /* કાર્ડનો બેકગ્રાઉન્ડ સફેદ અને થોડો અપારદર્શક */
+            background: rgba(255, 255, 255, 0.98); 
             border-radius: 25px; padding: 30px; 
             box-shadow: 0 15px 40px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.9);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -57,14 +58,13 @@
             text-decoration: none; text-align: center; transition: 0.3s ease;
             box-shadow: 0 5px 10px rgba(0,0,0,0.2); font-size: 1rem;
         }
-        .btn span { margin-right: 10px; font-size: 1.3rem; } /* આઇકોન માટે */
+        .btn span { margin-right: 10px; font-size: 1.3rem; }
         .btn:hover { filter: brightness(1.1); transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.3); }
         .btn:active { transform: scale(0.97); }
 
-        /* બટનના કલર થીમ્સ */
-        .btn-ai { background: #4527a0; border-bottom: 4px solid #311b92; } /* ઘેરો જાંબલી */
-        .btn-edu { background: #004d40; border-bottom: 4px solid #002d25; } /* ઘેરો લીલો */
-        .btn-wa { background: #2e7d32; border-bottom: 4px solid #1b5e20; } /* ડાર્ક વોટ્સએપ ગ્રીન */
+        .btn-ai { background: #4527a0; border-bottom: 4px solid #311b92; }
+        .btn-edu { background: #004d40; border-bottom: 4px solid #002d25; }
+        .btn-wa { background: #2e7d32; border-bottom: 4px solid #1b5e20; }
         .btn-accent { background: var(--accent); border-bottom: 4px solid #b71c1c; }
         .btn-primary { background: var(--p); border-bottom: 4px solid #0d1246; }
 
@@ -89,7 +89,7 @@
         .info-tab td { padding: 18px; border-bottom: 1px solid #ebebeb; text-align: left; font-size: 1.05rem; }
         .info-tab td:first-child { font-weight: 700; color: var(--p); width: 40%; padding-left: 25px; background-color: #f9f9f9; }
         .info-tab tr:last-child td { border-bottom: none; }
-        .achievement { color: #e65100; font-weight: 700; } /* સિદ્ધિ માટે ખાસ કલર */
+        .achievement { color: #e65100; font-weight: 700; }
 
         footer { 
             background: #ffffff; 
@@ -126,12 +126,12 @@
 <header>
     <h1>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</h1>
     <p>તાલુકો: વિજાપુર | DISE કોડ: 24040801701 | પિનકોડ: 384570</p>
+    <div id="live-clock">સમય લોડ થઈ રહ્યો છે...</div>
 </header>
 
 <div class="marquee-bar"><marquee id="tht">જ્ઞાન એ અમૂલ્ય ધન છે જે વહેંચવાથી વધે છે.</marquee></div>
 
 <div class="container">
-    
     <div class="card iks-card">
         <h3 style="color:var(--accent); font-size: 1.5rem; margin-bottom: 15px;">🔱 ભારતીય જ્ઞાન પરંપરા (IKS)</h3>
         <p id="iks-r" style="font-weight: 700; color: #5d4037; margin-top: 12px; font-size: 1rem;"></p>
@@ -156,8 +156,8 @@
 
     <div class="card" style="border-top: 12px solid var(--accent);">
         <h3 style="color: var(--p); margin-bottom: 25px; font-size: 1.5rem;">🔐 સુરક્ષિત ગેલેરી</h3>
-        <button onclick="pL('LINK1')" class="btn btn-accent"><span>🖼️</span> ૧. શાળા પ્રવૃત્તિઓ</button>
-        <button onclick="pL('LINK2')" class="btn btn-primary"><span>🎉</span> ૨. શૈક્ષણિક ઉત્સવો</button>
+        <button onclick="pL('https://LINK_TO_ACTIVITY')" class="btn btn-accent"><span>🖼️</span> ૧. શાળા પ્રવૃત્તિઓ</button>
+        <button onclick="pL('https://LINK_TO_FESTIVAL')" class="btn btn-primary"><span>🎉</span> ૨. શૈક્ષણિક ઉત્સવો</button>
         <a href="https://wa.me/919574456156?text=નમસ્તે નિલેશભાઈ, મારે ફલુ શાળાની ગેલેરી માટે આજનો પાસવર્ડ જોઈએ છે." target="_blank" class="btn btn-wa"><span>💬</span> પાસવર્ડ માટે વોટ્સએપ</a>
     </div>
 
@@ -214,27 +214,40 @@
 </footer>
 
 <script>
-    // Security: Block Keyboard Shortcuts (F12, Ctrl+Shift+I/J, Ctrl+U)
     function checkKey(e) {
         if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
             return false;
         }
     }
 
-    // Dynamic Password & Obfuscated Link Opener
+    function updateTime() {
+        const now = new Date();
+        const options = { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric', 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit',
+            hour12: true 
+        };
+        document.getElementById('live-clock').innerText = "📅 " + now.toLocaleDateString('gu-IN', options);
+    }
+    setInterval(updateTime, 1000);
+
     function pL(u) {
-        var _0x1 = new Date().getDate(); // આજની તારીખ
-        var _0x2 = prompt("સુરક્ષિત પાસવર્ડ દાખલ કરો:"); // યુઝરનો ઇનપુટ
-        var _0x3 = "falu" + _0x1; // ડાયનેમિક પાસવર્ડ
+        var _0x1 = new Date().getDate(); 
+        var _0x2 = prompt("સુરક્ષિત પાસવર્ડ દાખલ કરો:"); 
+        var _0x3 = "falu" + _0x1; 
 
         if (_0x2 === _0x3) {
-            window.open(u, "_blank"); // જો પાસવર્ડ સાચો હોય તો લિંક ખોલો
+            window.open(u, "_blank"); 
         } else if (_0x2 !== null) {
             alert("ખોટો પાસવર્ડ! આજનો સાચો પાસવર્ડ મેળવવા વોટ્સએપ બટન પર ક્લિક કરો.");
         }
     }
 
-    // IKS Data (Indian Knowledge System) - 31 Days Cycle
     const iksD = [
         {r:"શ્રીમદ્ ભગવદ્ ગીતા ૪.૩૯", s:"શ્રદ્ધાવાંલ્લભતે જ્ઞાનં તત્પર: સંયતેન્દ્રિય: ।", m:"શ્રદ્ધાવાન, કર્તવ્યનિષ્ઠ અને ઇન્દ્રિયો પર સંયમ રાખનાર મનુષ્ય જ્ઞાન પ્રાપ્ત કરે છે.", t:"વિદ્યા વિનયથી શોભે છે."},
         {r:"ઋગ્વેદ ૧.૮૯.૧", s:"આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।", m:"અમારા માટે ચારે દિશાઓમાંથી કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.", t:"સત્યનો જ વિજય થાય છે."},
@@ -270,20 +283,21 @@
     ];
 
     function init() {
-        const d = new Date().getDate(); // Current date (1-31)
-        const it = iksD[(d - 1) % iksD.length] || iksD[0]; // Get IKS data for today
+        updateTime();
+        const d = new Date().getDate(); 
+        const it = iksD[(d - 1) % iksD.length] || iksD[0]; 
         document.getElementById('iks-r').innerText = "સંદર્ભ: " + it.r;
         document.getElementById('iks-s').innerText = it.s;
         document.getElementById('iks-m').innerText = "અર્થ: " + it.m;
-        document.getElementById('tht').innerText = "📢 આજનો સુવિચાર: " + it.t; // Marquee text
+        document.getElementById('tht').innerText = "📢 આજનો સુવિચાર: " + it.t; 
     }
 
     function sT(id) {
-        document.querySelectorAll('.t-card').forEach(c => c.style.display = 'none'); // Hide all cards
-        if(id) document.getElementById('t-' + id).style.display = 'block'; // Show selected card
+        document.querySelectorAll('.t-card').forEach(c => c.style.display = 'none'); 
+        if(id) document.getElementById('t-' + id).style.display = 'block'; 
     }
 
-    window.onload = init; // Initialize on page load
+    window.onload = init;
 </script>
 </body>
 </html>
