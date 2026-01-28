@@ -9,44 +9,33 @@
     <style>
         :root { 
             --cream-bg: #fff8e1;
-            --p: #1a237e; 
-            --s: #ff6f00; 
-            --accent: #c62828;
-            --kids-theme: #6a1b9a;
-            --game-theme: #00796b;
-            --gold: #ffd700;
+            --p: #1a237e; --s: #ff6f00; --accent: #c62828;
+            --kids-theme: #6a1b9a; --game-theme: #00796b; --gold: #ffd700;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; font-family: 'Hind Vadodara', sans-serif; }
-        
         body { background-color: var(--cream-bg); min-height: 100vh; color: #333; overflow-x: hidden; }
-
         header { background: #ffffff; padding: 25px; text-align: center; border-bottom: 6px solid var(--p); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
         header h1 { color: var(--p); font-size: 1.8rem; font-weight: 700; }
         #live-clock { color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-top: 8px; }
-
         .marquee-bar { background: var(--s); color: white; padding: 10px 0; font-weight: 700; text-align: center; }
-
         .container { padding: 40px 15px; max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        
         .card { background: #fff; border-radius: 25px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: 0.4s; text-align: center; border: 1px solid #eee; position: relative; }
         .card:hover { transform: translateY(-10px); }
 
-        /* QUIZ STYLE */
+        /* QUIZ & RIDDLE STYLE */
         .quiz-card { border: 3px solid var(--gold); background: linear-gradient(145deg, #ffffff, #fff9e6); }
+        .riddle-card { border: 3px solid var(--game-theme); background: linear-gradient(145deg, #e0f2f1, #ffffff); }
         .quiz-option { padding: 12px; margin: 8px 0; border: 2px solid #ddd; border-radius: 12px; cursor: pointer; transition: 0.3s; font-weight: 600; }
         .quiz-option:hover { background: #fff3e0; border-color: var(--s); }
 
         .btn { padding: 15px; border-radius: 15px; font-weight: 700; color: white; border: none; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; text-decoration: none; transition: 0.3s ease; box-shadow: 0 6px 12px rgba(0,0,0,0.15); cursor: pointer;}
         .btn span { margin-right: 12px; font-size: 1.5rem; }
-        
         .btn-kids { background: linear-gradient(135deg, #9c27b0, #6a1b9a); border-bottom: 4px solid #4a148c; }
         .btn-game { background: linear-gradient(135deg, #00bfa5, #00796b); border-bottom: 4px solid #004d40; }
         .btn-edu { background: #37474f; border-bottom: 4px solid #102027; }
-        .btn-wa { background: #2e7d32; border-bottom: 4px solid #1b5e20; }
-        .btn-accent { background: var(--accent); }
         .btn-gold { background: #b8860b; border-bottom: 4px solid #5d4305; }
+        .btn-accent { background: var(--accent); }
 
-        /* STAFF SECTION */
         .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
         .profile-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; align-items: center; margin-top: 20px; }
         .side-btns { display: flex; flex-direction: column; gap: 10px; }
@@ -76,15 +65,21 @@
         <div id="quiz-msg" style="margin-top: 10px; font-weight: bold; height: 20px;"></div>
     </div>
 
+    <div class="card riddle-card">
+        <h3 style="color: var(--game-theme);">🧩 આજનો તાર્કિક કોયડો</h3>
+        <p id="riddle-text" style="margin: 15px 0; font-weight: 700;"></p>
+        <button onclick="showRiddleAns()" id="btn-ans" class="btn btn-game" style="font-size: 0.9rem; padding: 8px;">જવાબ અને સમજ જુઓ</button>
+        <div id="riddle-explanation" style="display:none; margin-top:15px; background:#fff; padding:10px; border-radius:10px; border-left:5px solid var(--game-theme); text-align: left; font-size: 0.9rem;"></div>
+    </div>
+
     <div class="card" style="border: 2px dashed var(--p);">
         <h3 style="color: var(--p);">🛠️ શિક્ષક શક્તિ (Staff Only)</h3>
-        <p style="font-size: 0.8rem; margin-bottom: 15px; color: #666;">બધી સરકારી એન્ટ્રી એક જ જગ્યાએ</p>
-        <button onclick="teacherLogin()" class="btn btn-gold"><span>🔐</span> એડમિન લોગિન</button>
-        <div id="staff-links" style="display: none; animation: slideUp 0.5s ease; margin-top: 15px;">
+        <button onclick="teacherLogin()" class="btn btn-gold" style="margin-top:15px;"><span>🔐</span> એડમિન લોગિન</button>
+        <div id="staff-links" style="display: none; margin-top: 15px;">
             <a href="https://www.ssagujarat.org/" target="_blank" class="btn btn-edu">SSA એન્ટ્રી</a>
             <a href="https://www.ssgujarat.org/CTELogin.aspx/" target="_blank" class="btn btn-edu">ચાઈલ્ડ ટ્રેકિંગ</a>
             <a href="https://gshala.schoolnetindia.com//" target="_blank" class="btn btn-edu">G-Shala</a>
-            <a href="https://www.digitalgujarat.gov.in/" target="_blank" class="btn btn-edu">digital gujarat</a>
+            <a href="https://www.digitalgujarat.gov.in/" target="_blank" class="btn btn-edu">Digital Gujarat</a>
             <a href="https://udiseplus.gov.in/#/en/page/statelogin" target="_blank" class="btn btn-edu">Udise+</a>
             <a href="https://web.convegenius.ai/?botId=0281209145078149/" target="_blank" class="btn btn-edu">ઓનલાઈન હાજરી</a>
         </div>
@@ -106,17 +101,15 @@
     <div class="card" style="border-top: 10px solid var(--game-theme);">
         <h3 style="color: var(--game-theme); margin-bottom: 20px;">🎮 રમત અને વાર્તા</h3>
         <a href="https://cugujarat.ac.in/ChildrensCorner/" target="_blank" class="btn btn-game"><span>🧸</span> ૧. ચિલ્ડ્રન યુનિ.</a>
-        <a href="https://www.youtube.com/@gcertgandhinagar8400/search?query=વાર્તા" target="_blank" class="btn btn-game"><span>📺</span> ૨. બોધ વાર્તાઓ અને રમત</a>
-        <a href="https://readalong.google.com/" target="_blank" class="btn btn-game"><span>🗣️</span> ૩. વાર્તા વાંચો</a>
+        <a href="https://www.youtube.com/@gcertgandhinagar8400/search?query=વાર્તા" target="_blank" class="btn btn-game"><span>📺</span> ૨. બોધ વાર્તાઓ</a>
     </div>
 
     <div class="card staff-section">
         <h3 style="color: var(--p); margin-bottom: 20px;">👨‍🏫 શાળા પરિવાર પરિચય</h3>
-        <select style="width: 100%; max-width: 450px; padding: 15px; border-radius: 12px; border: 2px solid var(--p); font-weight: bold;" onchange="showTeacher(this.value)">
-            <option value="">-- શિક્ષક પસંદ કરો (૧ થી ૧૫) --</option>
+        <select style="width: 100%; max-width: 450px; padding: 15px; border-radius: 12px; border: 2px solid var(--p);" onchange="showTeacher(this.value)">
+            <option value="">-- શિક્ષક પસંદ કરો --</option>
             <option value="1">૧. શ્રી નિલેશકુમાર પી. પટેલ</option>
             <option value="2">૨. શ્રી રાજેન્દ્રકુમાર બી. પટેલ</option>
-            <option value="3">૩. ખાલી વિગત (એડિટ કરો)</option>
         </select>
         <div id="t-display"></div>
     </div>
@@ -124,81 +117,72 @@
     <div class="card" style="border-top: 10px solid var(--accent);">
         <h3 style="color: var(--p); margin-bottom: 20px;">🔐 સુરક્ષિત ગેલેરી</h3>
         <button onclick="pL('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn btn-accent"><span>🖼️</span> શાળા પ્રવૃત્તિઓ</button>
-        <a href="https://wa.me/919574456156" target="_blank" class="btn btn-wa"><span>💬</span> વોટ્સએપ સંપર્ક</a>
+        <a href="https://wa.me/919574456156" target="_blank" class="btn btn-wa"><span>💬</span> સંપર્ક</a>
     </div>
 
 </div>
 
 <footer>
     <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b></p>
-    <p style="margin-top: 10px;">ડિઝાઈન: <span style="color: var(--s);">નિલેશ પટેલ (SRG-MATHS)</span></p>
+    <p>ડિઝાઈન: <span style="color: var(--s);">નિલેશ પટેલ</span></p>
 </footer>
 
 <script>
-    // ગુજરાત પાઠ્યપુસ્તક આધારિત ૩૬૫ દિવસના મિક્સ સવાલોનું બંડલ
+    // ૧. સવાલોનું લિસ્ટ
     const questions = [
         { q: "ગુજરાતનું રાજ્ય પ્રાણી કયું છે?", opt: ["વાઘ", "સિંહ", "ચિત્તો"], a: 1 },
-        { q: "કવિ નર્મદનું જન્મસ્થળ કયું છે?", opt: ["સુરત", "અમદાવાદ", "ભરુચ"], a: 0 },
         { q: "પૃથ્વી પર દિવસ-રાત કોના કારણે થાય છે?", opt: ["પરિભ્રમણ", "પરિક્રમણ", "ગ્રહણ"], a: 0 },
-        { q: "સૌથી નાની પ્રાકૃતિક સંખ્યા કઈ છે?", opt: ["૦", "૧", "૧૦"], a: 1 },
-        { q: "દાંડીકૂચ કયા સત્યાગ્રહ માટે થઈ હતી?", opt: ["ખેડા", "મીઠા", "ચંપારણ"], a: 1 },
-        { q: "કયા વાયુને પ્રાણવાયુ કહેવામાં આવે છે?", opt: ["નાઈટ્રોજન", "કાર્બન", "ઓક્સિજન"], a: 2 },
-        { q: "નરસિંહ મહેતાનો જન્મ ક્યાં થયો હતો?", opt: ["જૂનાગઢ", "તળાજા", "ભાવનગર"], a: 1 },
-        { q: "ગુજરાતમાં અણુશક્તિ મથક ક્યાં આવેલું છે?", opt: ["કાકરાપાર", "ધ્રુવારણ", "ઉકાઈ"], a: 0 },
-        { q: "કયું અંગ રુધિરને આખા શરીરમાં પમ્પ કરે છે?", opt: ["ફેફસાં", "જઠર", "હૃદય"], a: 2 },
-        { q: "કચ્છમાં કયું અભયારણ્ય આવેલું છે?", opt: ["ગીર", "ઘુડખર", "વેળાવદર"], a: 1 },
-        { q: "લીંબુમાં કયું એસિડ હોય છે?", opt: ["સાઇટ્રિક", "લેક્ટિક", "એસિટિક"], a: 0 },
-        { q: "ગુજરાતની સ્થાપના ક્યારે થઈ હતી?", opt: ["૧ મે ૧૯૬૦", "૧૫ ઓગસ્ટ ૧૯૪૭", "૨૬ જાન્યુઆરી ૧૯૫૦"], a: 0 },
-        { q: "શૂન્યનો ગુણાકાર કોઈ પણ સંખ્યા સાથે શું થાય?", opt: ["૧", "એ જ સંખ્યા", "૦"], a: 2 },
         { q: "ભારતનું રાષ્ટ્રગીત કોણે લખ્યું છે?", opt: ["બંકિમચંદ્ર", "રવીન્દ્રનાથ ટાગોર", "ગાંધીજી"], a: 1 },
-        { q: "વનસ્પતિ શ્વસનમાં કયો વાયુ લે છે?", opt: ["ઓક્સિજન", "નાઈટ્રોજન", "કાર્બન ડાયોક્સાઇડ"], a: 2 }
-        // આ લિસ્ટ ૩૬૫ દિવસ સુધી ઓટો-સાયકલ થશે.
+        { q: "શૂન્યનો ગુણાકાર કોઈ પણ સંખ્યા સાથે શું થાય?", opt: ["૧", "એ જ સંખ્યા", "૦"], a: 2 }
     ];
 
-    function loadDailyQuiz() {
+    // ૨. તાર્કિક કોયડાનું લિસ્ટ
+    const riddles = [
+        { q: "એવી કઈ વસ્તુ છે જે તમારી છે, પણ બીજા લોકો તેનો તમારા કરતા વધુ ઉપયોગ કરે છે?", a: "તમારું નામ", s: "કારણ કે આપણે આપણું નામ બોલવાને બદલે બીજા લોકો જ આપણને બોલાવવા માટે તેનો વધુ ઉપયોગ કરે છે." },
+        { q: "એવી કઈ વસ્તુ છે જેને તોડ્યા પછી જ ઉપયોગ કરી શકાય છે?", a: "ઇંડું", s: "ઇંડું રાંધવા કે ખાવા માટે તેને પહેલા તોડવું જ પડે છે." },
+        { q: "જેટલી વધારે તમે તેમાંથી લેશો, તેટલું મોટું થતું જશે. તે શું છે?", a: "ખાડો", s: "ખાડામાંથી તમે જેટલી માટી બહાર કાઢશો, તેટલો જ ખાડો મોટો થતો જશે." },
+        { q: "એક લાઇન (લીટી) ને અડ્યા વગર તેને નાની કેવી રીતે કરશો?", a: "તેની બાજુમાં મોટી લાઇન દોરીને", s: "બાજુમાં મોટી લીટી દોરવાથી પેલી જૂની લીટી આપોઆપ નાની દેખાવા લાગશે." }
+    ];
+
+    function loadDailyQuizAndRiddle() {
         const today = new Date();
         const start = new Date(today.getFullYear(), 0, 0);
         const dayOfYear = Math.floor((today - start) / 86400000);
+
+        // સવાલ લોડ કરો
         const quiz = questions[dayOfYear % questions.length];
-        
         document.getElementById('q-text').innerText = quiz.q;
-        let html = "";
-        quiz.opt.forEach((o, i) => {
-            html += `<div class="quiz-option" onclick="checkAns(this, ${i === quiz.a})">${o}</div>`;
-        });
-        document.getElementById('quiz-options').innerHTML = html;
+        let qHtml = "";
+        quiz.opt.forEach((o, i) => qHtml += `<div class="quiz-option" onclick="checkAns(this, ${i === quiz.a})">${o}</div>`);
+        document.getElementById('quiz-options').innerHTML = qHtml;
+
+        // કોયડો લોડ કરો
+        const rid = riddles[dayOfYear % riddles.length];
+        document.getElementById('riddle-text').innerText = rid.q;
+        document.getElementById('riddle-explanation').innerHTML = `<b>જવાબ:</b> ${rid.a}<br><br><b>સમજૂતી:</b> ${rid.s}`;
+    }
+
+    function showRiddleAns() {
+        const div = document.getElementById('riddle-explanation');
+        div.style.display = (div.style.display === 'none') ? 'block' : 'none';
+        document.getElementById('btn-ans').innerText = (div.style.display === 'none') ? 'જવાબ અને સમજ જુઓ' : 'માહિતી છુપાવો';
     }
 
     function checkAns(el, isCorrect) {
         const msg = document.getElementById('quiz-msg');
         if(isCorrect) {
-            msg.innerHTML = "🎉 સાચો જવાબ! ખૂબ સરસ બાળક!";
-            msg.style.color = "green";
+            msg.innerHTML = "🎉 સાચો જવાબ!"; msg.style.color = "green";
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        } else {
-            msg.innerHTML = "❌ ફરી પ્રયત્ન કરો!";
-            msg.style.color = "red";
-        }
+        } else { msg.innerHTML = "❌ ફરી પ્રયત્ન કરો!"; msg.style.color = "red"; }
     }
 
-    function teacherLogin() {
-        let p = prompt("શિક્ષક કોડ (Password) નાખો:");
-        if(p === "falu123") { 
-            document.getElementById('staff-links').style.display = 'block';
-        } else if (p !== null) { alert("ખોટો કોડ!"); }
-    }
-
+    function teacherLogin() { if(prompt("પાસવર્ડ:") === "falu123") document.getElementById('staff-links').style.display='block'; }
+    
     function updateTime() {
         const now = new Date();
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-        document.getElementById('live-clock').innerText = "📅 " + now.toLocaleDateString('gu-IN', options);
+        document.getElementById('live-clock').innerText = "📅 " + now.toLocaleDateString('gu-IN', {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:true});
     }
     setInterval(updateTime, 1000);
-
-    function pL(u) {
-        let d = new Date().getDate();
-        if(prompt("પાસવર્ડ:") === "falu" + d) { window.open(u, "_blank"); }
-    }
 
     const tData = {
         "1": { n: "શ્રી નિલેશકુમાર પી. પટેલ", v: "જેપુર", s: "ગણિત-વિજ્ઞાન", i: "https://files.catbox.moe/8b8w7y.jpg" },
@@ -208,29 +192,14 @@
     function showTeacher(id) {
         const d = document.getElementById('t-display');
         if(!id) { d.innerHTML = ""; return; }
-        const t = tData[id] || { n: "શિક્ષકનું નામ", v: "વતન", s: "વિષય", i: "https://via.placeholder.com/150" };
-        d.innerHTML = `
-            <div class="profile-grid" style="animation: slideUp 0.5s ease;">
-                <div class="side-btns">
-                    <a href="#" class="s-btn">📄 હાજરી પત્રક</a>
-                    <a href="#" class="s-btn">📂 પ્રોફાઇલ PDF</a>
-                </div>
-                <div class="main-info">
-                    <img src="${t.i}" class="t-img">
-                    <h4>${t.n}</h4>
-                    <p>📍 વતન: ${t.v}<br>📖 વિષય: ${t.s}</p>
-                </div>
-                <div class="side-btns">
-                    <a href="#" class="s-btn">📞 સંપર્ક કરો</a>
-                    <a href="#" class="s-btn">🖼️ પ્રવૃત્તિઓ</a>
-                </div>
-            </div>
-        `;
+        const t = tData[id];
+        d.innerHTML = `<div class="profile-grid"><div class="side-btns"><a href="#" class="s-btn">📄 હાજરી</a><a href="#" class="s-btn">📂 પ્રોફાઇલ</a></div><div class="main-info"><img src="${t.i}" class="t-img"><h4>${t.n}</h4><p>📍 વતન: ${t.v}<br>📖 વિષય: ${t.s}</p></div><div class="side-btns"><a href="#" class="s-btn">📞 સંપર્ક</a><a href="#" class="s-btn">🖼️ પ્રવૃત્તિ</a></div></div>`;
     }
 
+    function pL(u) { if(prompt("પાસવર્ડ:") === "falu" + new Date().getDate()) window.open(u, "_blank"); }
+
     window.onload = () => {
-        updateTime();
-        loadDailyQuiz(); // ક્વિઝ લોડ કરવાનું ફંક્શન ઉમેર્યું
+        updateTime(); loadDailyQuizAndRiddle();
         document.getElementById('iks-s').innerText = "આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।";
         document.getElementById('iks-m').innerText = "અર્થ: અમારા માટે ચારે દિશાઓમાંથી કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.";
     };
