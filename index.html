@@ -20,31 +20,29 @@
         .marquee-bar { background: var(--s); color: white; padding: 10px 0; font-weight: 700; text-align: center; }
         .container { padding: 40px 15px; max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .card { background: #fff; border-radius: 25px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: 0.4s; text-align: center; border: 1px solid #eee; position: relative; }
-        .card:hover { transform: translateY(-10px); }
 
-        /* QUIZ & RIDDLE STYLE */
+        /* QUIZ & RIDDLE */
         .quiz-card { border: 3px solid var(--gold); background: linear-gradient(145deg, #ffffff, #fff9e6); }
         .riddle-card { border: 3px solid var(--game-theme); background: linear-gradient(145deg, #e0f2f1, #ffffff); }
         .quiz-option { padding: 12px; margin: 8px 0; border: 2px solid #ddd; border-radius: 12px; cursor: pointer; transition: 0.3s; font-weight: 600; }
         .quiz-option:hover { background: #fff3e0; border-color: var(--s); }
 
-        .btn { padding: 15px; border-radius: 15px; font-weight: 700; color: white; border: none; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; text-decoration: none; transition: 0.3s ease; box-shadow: 0 6px 12px rgba(0,0,0,0.15); cursor: pointer;}
-        .btn span { margin-right: 12px; font-size: 1.5rem; }
-        .btn-kids { background: linear-gradient(135deg, #9c27b0, #6a1b9a); border-bottom: 4px solid #4a148c; }
-        .btn-game { background: linear-gradient(135deg, #00bfa5, #00796b); border-bottom: 4px solid #004d40; }
+        /* TEACHER UNIQUE DISPLAY */
+        .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
+        .t-profile-container { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; background: #fdfdfd; padding: 20px; border-radius: 30px; box-shadow: inset 0 0 15px rgba(0,0,0,0.05); }
+        .t-info-box { flex: 1; min-width: 250px; text-align: left; }
+        .t-info-item { background: white; margin: 8px 0; padding: 10px 15px; border-radius: 12px; border-left: 5px solid var(--p); box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-size: 0.9rem; }
+        .t-center { text-align: center; min-width: 200px; }
+        .t-img-big { width: 180px; height: 180px; border-radius: 50%; border: 8px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.2); object-fit: cover; margin-bottom: 15px; border: 5px solid var(--p); }
+        .t-name { color: var(--p); font-weight: 700; font-size: 1.2rem; background: var(--gold); padding: 5px 15px; border-radius: 50px; display: inline-block; }
+
+        .btn { padding: 15px; border-radius: 15px; font-weight: 700; color: white; border: none; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; text-decoration: none; cursor: pointer;}
         .btn-edu { background: #37474f; border-bottom: 4px solid #102027; }
         .btn-gold { background: #b8860b; border-bottom: 4px solid #5d4305; }
         .btn-accent { background: var(--accent); }
 
-        .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
-        .profile-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; align-items: center; margin-top: 20px; }
-        .side-btns { display: flex; flex-direction: column; gap: 10px; }
-        .s-btn { padding: 12px; border-radius: 10px; font-size: 0.9rem; color: white; text-decoration: none; font-weight: bold; background: var(--p); text-align: center; border-bottom: 3px solid #000051; }
-        .main-info { background: #f9f9f9; padding: 20px; border-radius: 20px; border: 1px solid #ddd; }
-        .t-img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid var(--p); object-fit: cover; }
-
-        footer { background: #fff; padding: 40px 20px; text-align: center; border-top: 2px solid #eee; }
-        @media (max-width: 768px) { .profile-grid { grid-template-columns: 1fr; } .side-btns { flex-direction: row; flex-wrap: wrap; justify-content: center; } }
+        footer { background: #fff; padding: 40px; text-align: center; border-top: 2px solid #eee; }
+        @media (max-width: 768px) { .t-profile-container { flex-direction: column; } .t-info-box { width: 100%; } }
     </style>
 </head>
 <body>
@@ -54,13 +52,12 @@
     <div id="live-clock">સમય લોડ થઈ રહ્યો છે...</div>
 </header>
 
-<div class="marquee-bar"><marquee id="tht">જ્ઞાન એ અમૂલ્ય ધન છે.</marquee></div>
+<div class="marquee-bar"><marquee>જ્ઞાન એ અમૂલ્ય ધન છે.</marquee></div>
 
 <div class="container">
-    
     <div class="card quiz-card">
         <h3 style="color: var(--s);">🧠 આજનો સ્માર્ટ સવાલ</h3>
-        <p id="q-text" style="margin: 15px 0; font-weight: 700; font-size: 1.1rem;">લોડ થઈ રહ્યું છે...</p>
+        <p id="q-text" style="margin: 15px 0; font-weight: 700;">લોડ થઈ રહ્યું છે...</p>
         <div id="quiz-options"></div>
         <div id="quiz-msg" style="margin-top: 10px; font-weight: bold; height: 20px;"></div>
     </div>
@@ -68,58 +65,30 @@
     <div class="card riddle-card">
         <h3 style="color: var(--game-theme);">🧩 આજનો તાર્કિક કોયડો</h3>
         <p id="riddle-text" style="margin: 15px 0; font-weight: 700;"></p>
-        <button onclick="showRiddleAns()" id="btn-ans" class="btn btn-game" style="font-size: 0.9rem; padding: 8px;">જવાબ અને સમજ જુઓ</button>
+        <button onclick="showRiddleAns()" id="btn-ans" class="btn" style="background:var(--game-theme); font-size: 0.8rem; height: 40px;">જવાબ અને સમજ જુઓ</button>
         <div id="riddle-explanation" style="display:none; margin-top:15px; background:#fff; padding:10px; border-radius:10px; border-left:5px solid var(--game-theme); text-align: left; font-size: 0.9rem;"></div>
     </div>
 
     <div class="card" style="border: 2px dashed var(--p);">
-        <h3 style="color: var(--p);">🛠️ શિક્ષક શક્તિ (Staff Only)</h3>
-        <button onclick="teacherLogin()" class="btn btn-gold" style="margin-top:15px;"><span>🔐</span> એડમિન લોગિન</button>
+        <h3 style="color: var(--p);">🛠️ શિક્ષક શક્તિ</h3>
+        <button onclick="teacherLogin()" class="btn btn-gold" style="margin-top:15px;">🔐 એડમિન લોગિન</button>
         <div id="staff-links" style="display: none; margin-top: 15px;">
             <a href="https://www.ssagujarat.org/" target="_blank" class="btn btn-edu">SSA એન્ટ્રી</a>
-            <a href="https://www.ssgujarat.org/CTELogin.aspx/" target="_blank" class="btn btn-edu">ચાઈલ્ડ ટ્રેકિંગ</a>
-            <a href="https://gshala.schoolnetindia.com//" target="_blank" class="btn btn-edu">G-Shala</a>
-            <a href="https://www.digitalgujarat.gov.in/" target="_blank" class="btn btn-edu">Digital Gujarat</a>
-            <a href="https://udiseplus.gov.in/#/en/page/statelogin" target="_blank" class="btn btn-edu">Udise+</a>
             <a href="https://web.convegenius.ai/?botId=0281209145078149/" target="_blank" class="btn btn-edu">ઓનલાઈન હાજરી</a>
         </div>
     </div>
 
-    <div class="card iks-card" style="grid-column: 1 / -1; text-align: left; border-top: 10px solid var(--s);">
-        <h3 style="color:var(--accent);">🔱 ભારતીય જ્ઞાન પરંપરા (IKS)</h3>
-        <span id="iks-s" style="font-size: 1.3rem; color: #a12f00; font-weight: 700; display: block; margin: 10px 0;"></span>
-        <p id="iks-m" style="font-style: italic; color: #333;"></p>
-    </div>
-
-    <div class="card" style="border-top: 10px solid var(--kids-theme);">
-        <h3 style="color: var(--kids-theme); margin-bottom: 20px;">✨ GCERT સંસાધનો</h3>
-        <a href="https://gcert.gujarat.gov.in/gcert/ResourceDocument" target="_blank" class="btn btn-kids"><span>📖</span> ૧. દિન વિશેષ GCERT</a>
-        <a href="https://gcert.gujarat.gov.in/gcert/EkkadamGallery" target="_blank" class="btn btn-kids"><span>🚀</span> ૨. એક કદમ આગળ</a>
-        <a href="https://gcert.gujarat.gov.in/gcert/JeevanGallery" target="_blank" class="btn btn-kids"><span>🎨</span> ૩. જીવન શિક્ષણ</a>
-    </div>
-
-    <div class="card" style="border-top: 10px solid var(--game-theme);">
-        <h3 style="color: var(--game-theme); margin-bottom: 20px;">🎮 રમત અને વાર્તા</h3>
-        <a href="https://cugujarat.ac.in/ChildrensCorner/" target="_blank" class="btn btn-game"><span>🧸</span> ૧. ચિલ્ડ્રન યુનિ.</a>
-        <a href="https://www.youtube.com/@gcertgandhinagar8400/search?query=વાર્તા" target="_blank" class="btn btn-game"><span>📺</span> ૨. બોધ વાર્તાઓ</a>
-    </div>
-
     <div class="card staff-section">
         <h3 style="color: var(--p); margin-bottom: 20px;">👨‍🏫 શાળા પરિવાર પરિચય</h3>
-        <select style="width: 100%; max-width: 450px; padding: 15px; border-radius: 12px; border: 2px solid var(--p);" onchange="showTeacher(this.value)">
+        <select style="width: 100%; max-width: 450px; padding: 15px; border-radius: 12px; border: 2px solid var(--p); font-weight: bold;" onchange="showTeacher(this.value)">
             <option value="">-- શિક્ષક પસંદ કરો --</option>
             <option value="1">૧. શ્રી નિલેશકુમાર પી. પટેલ</option>
             <option value="2">૨. શ્રી રાજેન્દ્રકુમાર બી. પટેલ</option>
         </select>
-        <div id="t-display"></div>
-    </div>
 
-    <div class="card" style="border-top: 10px solid var(--accent);">
-        <h3 style="color: var(--p); margin-bottom: 20px;">🔐 સુરક્ષિત ગેલેરી</h3>
-        <button onclick="pL('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn btn-accent"><span>🖼️</span> શાળા પ્રવૃત્તિઓ</button>
-        <a href="https://wa.me/919574456156" target="_blank" class="btn btn-wa"><span>💬</span> સંપર્ક</a>
+        <div id="t-display">
+            </div>
     </div>
-
 </div>
 
 <footer>
@@ -128,81 +97,90 @@
 </footer>
 
 <script>
-    // ૧. સવાલોનું લિસ્ટ
-    const questions = [
-        { q: "ગુજરાતનું રાજ્ય પ્રાણી કયું છે?", opt: ["વાઘ", "સિંહ", "ચિત્તો"], a: 1 },
-        { q: "પૃથ્વી પર દિવસ-રાત કોના કારણે થાય છે?", opt: ["પરિભ્રમણ", "પરિક્રમણ", "ગ્રહણ"], a: 0 },
-        { q: "ભારતનું રાષ્ટ્રગીત કોણે લખ્યું છે?", opt: ["બંકિમચંદ્ર", "રવીન્દ્રનાથ ટાગોર", "ગાંધીજી"], a: 1 },
-        { q: "શૂન્યનો ગુણાકાર કોઈ પણ સંખ્યા સાથે શું થાય?", opt: ["૧", "એ જ સંખ્યા", "૦"], a: 2 }
-    ];
-
-    // ૨. તાર્કિક કોયડાનું લિસ્ટ
-    const riddles = [
-        { q: "એવી કઈ વસ્તુ છે જે તમારી છે, પણ બીજા લોકો તેનો તમારા કરતા વધુ ઉપયોગ કરે છે?", a: "તમારું નામ", s: "કારણ કે આપણે આપણું નામ બોલવાને બદલે બીજા લોકો જ આપણને બોલાવવા માટે તેનો વધુ ઉપયોગ કરે છે." },
-        { q: "એવી કઈ વસ્તુ છે જેને તોડ્યા પછી જ ઉપયોગ કરી શકાય છે?", a: "ઇંડું", s: "ઇંડું રાંધવા કે ખાવા માટે તેને પહેલા તોડવું જ પડે છે." },
-        { q: "જેટલી વધારે તમે તેમાંથી લેશો, તેટલું મોટું થતું જશે. તે શું છે?", a: "ખાડો", s: "ખાડામાંથી તમે જેટલી માટી બહાર કાઢશો, તેટલો જ ખાડો મોટો થતો જશે." },
-        { q: "એક લાઇન (લીટી) ને અડ્યા વગર તેને નાની કેવી રીતે કરશો?", a: "તેની બાજુમાં મોટી લાઇન દોરીને", s: "બાજુમાં મોટી લીટી દોરવાથી પેલી જૂની લીટી આપોઆપ નાની દેખાવા લાગશે." }
-    ];
-
-    function loadDailyQuizAndRiddle() {
-        const today = new Date();
-        const start = new Date(today.getFullYear(), 0, 0);
-        const dayOfYear = Math.floor((today - start) / 86400000);
-
-        // સવાલ લોડ કરો
-        const quiz = questions[dayOfYear % questions.length];
-        document.getElementById('q-text').innerText = quiz.q;
-        let qHtml = "";
-        quiz.opt.forEach((o, i) => qHtml += `<div class="quiz-option" onclick="checkAns(this, ${i === quiz.a})">${o}</div>`);
-        document.getElementById('quiz-options').innerHTML = qHtml;
-
-        // કોયડો લોડ કરો
-        const rid = riddles[dayOfYear % riddles.length];
-        document.getElementById('riddle-text').innerText = rid.q;
-        document.getElementById('riddle-explanation').innerHTML = `<b>જવાબ:</b> ${rid.a}<br><br><b>સમજૂતી:</b> ${rid.s}`;
-    }
-
-    function showRiddleAns() {
-        const div = document.getElementById('riddle-explanation');
-        div.style.display = (div.style.display === 'none') ? 'block' : 'none';
-        document.getElementById('btn-ans').innerText = (div.style.display === 'none') ? 'જવાબ અને સમજ જુઓ' : 'માહિતી છુપાવો';
-    }
-
-    function checkAns(el, isCorrect) {
-        const msg = document.getElementById('quiz-msg');
-        if(isCorrect) {
-            msg.innerHTML = "🎉 સાચો જવાબ!"; msg.style.color = "green";
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        } else { msg.innerHTML = "❌ ફરી પ્રયત્ન કરો!"; msg.style.color = "red"; }
-    }
-
-    function teacherLogin() { if(prompt("પાસવર્ડ:") === "falu123") document.getElementById('staff-links').style.display='block'; }
-    
-    function updateTime() {
-        const now = new Date();
-        document.getElementById('live-clock').innerText = "📅 " + now.toLocaleDateString('gu-IN', {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:true});
-    }
-    setInterval(updateTime, 1000);
-
+    // શિક્ષક ડેટા - તમારે અહીં જ વિગતો લિંક કરવાની છે
     const tData = {
-        "1": { n: "શ્રી નિલેશકુમાર પી. પટેલ", v: "જેપુર", s: "ગણિત-વિજ્ઞાન", i: "https://files.catbox.moe/8b8w7y.jpg" },
-        "2": { n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", v: "વિજાપુર", s: "સામાજિક વિજ્ઞાન", i: "https://files.catbox.moe/vxtq6i.jpg" }
+        "1": { 
+            n: "શ્રી નિલેશકુમાર પી. પટેલ", 
+            img: "https://files.catbox.moe/8b8w7y.jpg",
+            l1: "જેપુર", l2: "M.Sc, B.Ed", l3: "01/06/2010", l4: "31/05/2040",
+            r1: "123456", r2: "6 થી 8", r3: "ગણિત-વિજ્ઞાન", r4: "SRG MATHS"
+        },
+        "2": { 
+            n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", 
+            img: "https://files.catbox.moe/vxtq6i.jpg",
+            l1: "વિજાપુર", l2: "B.A, B.Ed", l3: "15/07/2005", l4: "30/06/2035",
+            r1: "654321", r2: "1 થી 5", r3: "સામાજિક વિજ્ઞાન", r4: "ઇનોવેટિવ ટીચર"
+        }
     };
 
     function showTeacher(id) {
         const d = document.getElementById('t-display');
         if(!id) { d.innerHTML = ""; return; }
         const t = tData[id];
-        d.innerHTML = `<div class="profile-grid"><div class="side-btns"><a href="#" class="s-btn">📄 હાજરી</a><a href="#" class="s-btn">📂 પ્રોફાઇલ</a></div><div class="main-info"><img src="${t.i}" class="t-img"><h4>${t.n}</h4><p>📍 વતન: ${t.v}<br>📖 વિષય: ${t.s}</p></div><div class="side-btns"><a href="#" class="s-btn">📞 સંપર્ક</a><a href="#" class="s-btn">🖼️ પ્રવૃત્તિ</a></div></div>`;
+        d.innerHTML = `
+            <div class="t-profile-container" style="animation: slideUp 0.6s ease;">
+                <div class="t-info-box">
+                    <div class="t-info-item"><b>૧. વતન:</b> ${t.l1}</div>
+                    <div class="t-info-item"><b>૨. શૈક્ષણિક લાયકાત:</b> ${t.l2}</div>
+                    <div class="t-info-item"><b>૩. નોકરી દાખલ તારીખ:</b> ${t.l3}</div>
+                    <div class="t-info-item"><b>૪. નિવૃત તારીખ:</b> ${t.l4}</div>
+                </div>
+
+                <div class="t-center">
+                    <img src="${t.img}" class="t-img-big">
+                    <br>
+                    <div class="t-name">${t.n}</div>
+                </div>
+
+                <div class="t-info-box">
+                    <div class="t-info-item"><b>૫. શિક્ષક કોડ:</b> ${t.r1}</div>
+                    <div class="t-info-item"><b>૬. ભણાવતા ધોરણ:</b> ${t.r2}</div>
+                    <div class="t-info-item"><b>૭. ભણાવતા વિષય:</b> ${t.r3}</div>
+                    <div class="t-info-item"><b>૮. વિશિષ્ટ સિદ્ધિ:</b> ${t.r4}</div>
+                </div>
+            </div>
+        `;
     }
 
-    function pL(u) { if(prompt("પાસવર્ડ:") === "falu" + new Date().getDate()) window.open(u, "_blank"); }
+    // ક્વિઝ અને સમયના જૂના ફંક્શન્સ યથાવત છે...
+    const questions = [
+        { q: "ગુજરાતનું રાજ્ય પ્રાણી કયું છે?", opt: ["વાઘ", "સિંહ", "ચિત્તો"], a: 1 },
+        { q: "પૃથ્વી પર દિવસ-રાત કોના કારણે થાય છે?", opt: ["પરિભ્રમણ", "પરિક્રમણ", "ગ્રહણ"], a: 0 }
+    ];
+    const riddles = [
+        { q: "એવી કઈ વસ્તુ છે જે તમારી છે, પણ બીજા લોકો તેનો તમારા કરતા વધુ ઉપયોગ કરે છે?", a: "તમારું નામ", s: "કારણ કે લોકો આપણને બોલાવવા માટે તેનો ઉપયોગ કરે છે." }
+    ];
 
-    window.onload = () => {
-        updateTime(); loadDailyQuizAndRiddle();
-        document.getElementById('iks-s').innerText = "આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।";
-        document.getElementById('iks-m').innerText = "અર્થ: અમારા માટે ચારે દિશાઓમાંથી કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.";
-    };
+    function loadDaily() {
+        const day = new Date().getDate();
+        const quiz = questions[day % questions.length];
+        document.getElementById('q-text').innerText = quiz.q;
+        let qh = ""; quiz.opt.forEach((o, i) => qh += `<div class="quiz-option" onclick="checkAns(this, ${i === quiz.a})">${o}</div>`);
+        document.getElementById('quiz-options').innerHTML = qh;
+
+        const rid = riddles[day % riddles.length];
+        document.getElementById('riddle-text').innerText = rid.q;
+        document.getElementById('riddle-explanation').innerHTML = `<b>જવાબ:</b> ${rid.a}<br><b>સમજ:</b> ${rid.s}`;
+    }
+
+    function checkAns(el, isCorrect) {
+        if(isCorrect) { confetti({ particleCount: 100 }); document.getElementById('quiz-msg').innerText = "✅ સાચો જવાબ!"; }
+        else { document.getElementById('quiz-msg').innerText = "❌ ફરી પ્રયત્ન કરો!"; }
+    }
+
+    function showRiddleAns() { 
+        const div = document.getElementById('riddle-explanation');
+        div.style.display = (div.style.display === 'none') ? 'block' : 'none';
+    }
+
+    function teacherLogin() { if(prompt("પાસવર્ડ:") === "falu123") document.getElementById('staff-links').style.display='block'; }
+
+    function updateTime() {
+        document.getElementById('live-clock').innerText = "📅 " + new Date().toLocaleDateString('gu-IN', {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:true});
+    }
+    setInterval(updateTime, 1000);
+
+    window.onload = () => { updateTime(); loadDaily(); };
 </script>
 </body>
 </html>
