@@ -7,116 +7,191 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
-        :root { --cream: #fff8e1; --p: #1a237e; --s: #ff6f00; --accent: #c62828; --kids: #6a1b9a; --game: #00796b; --gold: #ffd700; }
+        :root { --cream-bg: #fff8e1; --p: #1a237e; --s: #ff6f00; --accent: #c62828; --kids: #6a1b9a; --game: #00796b; --gold: #ffd700; }
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; font-family: 'Hind Vadodara', sans-serif; }
-        body { background-color: var(--cream); color: #333; overflow-x: hidden; }
+        body { background-color: var(--cream-bg); color: #333; overflow-x: hidden; }
         header { background: #fff; padding: 25px; text-align: center; border-bottom: 6px solid var(--p); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        #live-clock { color: var(--accent); font-weight: 700; margin-top: 5px; }
+        #live-clock { color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-top: 5px; }
         .marquee-bar { background: var(--s); color: white; padding: 10px 0; font-weight: bold; }
         .container { padding: 30px 15px; max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .card { background: #fff; border-radius: 25px; padding: 25px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); text-align: center; }
+        .card { background: #fff; border-radius: 25px; padding: 25px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); text-align: center; position: relative; }
         
-        /* Sections */
-        .iks-card { grid-column: 1 / -1; border: 3px solid var(--s); background: #fff3e0; animation: float 5s infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .iks-img { width: 100%; max-width: 600px; border-radius: 15px; border: 5px solid white; margin-top: 15px; }
-        
-        /* Teacher 4-CENTER-4 */
-        .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
-        .t-profile-container { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 25px; }
-        .t-info-box { flex: 1; min-width: 260px; text-align: left; }
-        .t-info-item { background: #f9f9f9; margin: 8px 0; padding: 12px; border-radius: 12px; border-left: 5px solid var(--p); font-size: 0.85rem; }
-        .t-center { text-align: center; min-width: 200px; }
-        .t-img-big { width: 170px; height: 170px; border-radius: 50%; border: 6px solid var(--p); object-fit: cover; }
-        .t-name-tag { background: var(--gold); padding: 5px 20px; border-radius: 50px; font-weight: 700; color: var(--p); margin-top: 10px; display: inline-block; }
+        /* IKS IMAGE SECTION */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        .iks-card { animation: float 5s ease-in-out infinite; border: 3px solid var(--s); background: #fff3e0; grid-column: 1 / -1; }
+        .iks-img { width: 100%; max-width: 750px; border-radius: 15px; border: 6px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.15); margin-top: 15px; }
 
-        .btn { padding: 15px; border-radius: 15px; font-weight: 700; color: white; border: none; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 12px; text-decoration: none; cursor: pointer; }
+        /* TEACHER 4-CENTER-4 LAYOUT */
+        .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
+        .t-profile-container { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 35px; }
+        .t-info-box { flex: 1; min-width: 280px; text-align: left; }
+        .t-info-item { background: #fdfdfd; margin: 10px 0; padding: 14px; border-radius: 12px; border-left: 6px solid var(--p); box-shadow: 0 4px 8px rgba(0,0,0,0.04); font-size: 0.9rem; font-weight: 600; }
+        .t-center { text-align: center; min-width: 220px; }
+        .t-img-big { width: 185px; height: 185px; border-radius: 50%; border: 8px solid var(--p); object-fit: cover; box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        .t-name-tag { background: var(--gold); padding: 8px 25px; border-radius: 50px; font-weight: 700; color: var(--p); margin-top: 15px; display: inline-block; font-size: 1.15rem; }
+
+        /* BUTTONS */
+        .btn { padding: 15px; border-radius: 15px; font-weight: 700; color: white; border: none; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; text-decoration: none; cursor: pointer; transition: 0.3s; }
         .btn-accent { background: var(--accent); border-bottom: 4px solid #900; }
-        .btn-gold { background: #b8860b; border-bottom: 4px solid #5d4305; }
         .btn-wa { background: #25D366; border-bottom: 4px solid #128C7E; }
-        footer { background: #fff; padding: 30px; text-align: center; }
+        .btn-gold { background: #b8860b; border-bottom: 4px solid #5d4305; }
+        
+        footer { background: #fff; padding: 40px; text-align: center; border-top: 2px solid #eee; margin-top: 30px; }
     </style>
 </head>
 <body>
+
 <header>
     <h1>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</h1>
-    <div id="live-clock">સમય લોડ થાય છે...</div>
+    <div id="live-clock">સમય લોડ થઈ રહ્યો છે...</div>
 </header>
-<div class="marquee-bar"><marquee>ભારતીય જ્ઞાન પરંપરા (IKS) અને સ્માર્ટ લર્નિંગ ઝોન - ફલુ શાળા</marquee></div>
+
+<div class="marquee-bar"><marquee>ભારતીય જ્ઞાન પરંપરા (IKS) - ૩૧ દિવસનો અદભુત પ્રવાસ | પીએમશ્રી શાળા ફલુ તમારું હાર્દિક સ્વાગત કરે છે.</marquee></div>
+
 <div class="container">
+    
     <div class="card iks-card">
         <h2 style="color: var(--s);">🔱 IKS: આજનો ભારતનો ભવ્ય વારસો</h2>
-        <img id="iks-image" src="" class="iks-img">
+        <img id="iks-image" src="" class="iks-img" alt="IKS Day Image">
     </div>
+
     <div class="card" style="border: 3px solid var(--game);">
         <h3 style="color: var(--game);">🧩 આજનો કોયડો</h3>
-        <p id="riddle-text" style="margin: 15px 0; font-weight: bold;"></p>
-        <input type="text" id="u-ans" style="width:80%; padding:10px; border:2px solid var(--game); border-radius:10px; text-align:center;" placeholder="જવાબ...">
-        <button onclick="checkR()" style="background:var(--game); color:white; padding:10px 20px; border:none; border-radius:10px; margin-top:10px; cursor:pointer;">તપાસો</button>
-        <div id="fb" style="margin-top:10px; font-weight:bold;"></div>
+        <p id="riddle-text" style="margin: 20px 0; font-weight: 700; font-size: 1.2rem; color: #333;"></p>
+        <input type="text" id="u-ans" style="width:85%; padding:15px; border:2px solid var(--game); border-radius:12px; text-align:center; font-size: 1rem;" placeholder="જવાબ અહીં લખો...">
+        <button onclick="checkR()" style="background:var(--game); color:white; width:85%; padding:15px; border:none; border-radius:12px; margin-top:15px; font-weight:bold; cursor:pointer; font-size: 1rem;">જવાબ તપાસો</button>
+        <div id="fb" style="margin-top:15px; font-weight:bold; font-size: 1.1rem;"></div>
     </div>
+
     <div class="card" style="border: 2px solid var(--kids); background: #fdf5ff;">
-        <h3 style="color: var(--kids);">🚀 AI લર્નિંગ ઝોન</h3>
-        <button onclick="window.open('https://phet.colorado.edu/','_blank')" class="btn" style="background:var(--kids); margin-top:15px;">વિજ્ઞાન પ્રયોગો</button>
-        <button onclick="window.open('https://www.autodraw.com/','_blank')" class="btn" style="background:var(--game);">ચિત્રકલા AI</button>
-    </div>
-    <div class="card" style="border: 2px dashed var(--p);">
-        <h3>🛠️ શિક્ષક શક્તિ</h3>
-        <button onclick="tLog()" class="btn btn-gold" style="margin-top:10px;">🔐 એડમિન લોગિન</button>
+        <h3 style="color: var(--kids);">🚀 સ્માર્ટ લર્નિંગ ઝોન</h3>
+        <button onclick="window.open('https://phet.colorado.edu/','_blank')" class="btn" style="background:var(--kids); margin-top:15px;">🧪 વિજ્ઞાન પ્રયોગો (AI)</button>
+        <button onclick="tLog()" class="btn btn-gold">🔐 શિક્ષક શક્તિ એડમિન</button>
         <div id="s-links" style="display:none; margin-top:10px;">
-            <a href="https://www.ssagujarat.org/" class="btn btn-accent" style="background:#444">SSA એન્ટ્રી</a>
-            <a href="https://gshala.schoolnetindia.com/" class="btn btn-accent" style="background:#00796b">G-Shala</a>
+            <a href="https://www.ssagujarat.org/" target="_blank" class="btn" style="background:#444">SSA એન્ટ્રી પોર્ટલ</a>
+            <a href="https://gshala.schoolnetindia.com/" target="_blank" class="btn" style="background:#00796b">G-Shala લોગિન</a>
         </div>
     </div>
-    <div class="card" style="border-top: 8px solid var(--accent);">
+
+    <div class="card" style="border-top: 10px solid var(--accent);">
         <h3 style="color: var(--p);">🔐 સુરક્ષિત ગેલેરી</h3>
-        <button onclick="pL('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn btn-accent">🖼️ શાળા પ્રવૃત્તિઓ</button>
-        <button onclick="pL('https://photos.app.goo.gl/9EVZZUvj3arZ4YfT8')" class="btn btn-accent">📂 શાળા પ્રોજેક્ટ</button>
+        <button onclick="pL('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn btn-accent" style="margin-top:15px;">🖼️ શાળા પ્રવૃત્તિઓ</button>
+        <button onclick="pL('https://photos.app.goo.gl/9EVZZUvj3arZ4YfT8')" class="btn btn-accent">📂 મહત્વના પ્રોજેક્ટ</button>
+        <a href="https://wa.me/919574456156" class="btn btn-wa">💬 પાસવર્ડ મેળવો</a>
     </div>
+
     <div class="card staff-section">
-        <h3 style="color: var(--p);">👨‍🏫 શાળા પરિવાર પરિચય</h3>
-        <select id="t-sel" style="width:100%; max-width:400px; padding:12px; border-radius:12px; margin:15px 0;" onchange="showT(this.value)">
-            <option value="">-- શિક્ષક પસંદ કરો (૧ થી ૧૫) --</option>
+        <h3 style="color: var(--p); margin-bottom: 25px;">👨‍🏫 શાળા પરિવાર પરિચય (૧ થી ૧૫)</h3>
+        <select id="t-sel" style="width: 100%; max-width: 550px; padding: 18px; border-radius: 15px; border: 2px solid var(--p); font-weight: bold; font-size: 1rem;" onchange="showT(this.value)">
+            <option value="">-- શિક્ષક મિત્ર પસંદ કરો --</option>
             <option value="1">૧. શ્રી નિલેશકુમાર પી. પટેલ</option>
             <option value="2">૨. શ્રી રાજેન્દ્રકુમાર બી. પટેલ</option>
+            <option value="3">૩. શ્રી (અહીં નામ ઉમેરવું)</option>
+            <option value="4">૪. શ્રી (અહીં નામ ઉમેરવું)</option>
+            <option value="5">૫. શ્રી (અહીં નામ ઉમેરવું)</option>
+            <option value="6">૬. શ્રી (અહીં નામ ઉમેરવું)</option>
+            <option value="7">૭. શ્રી (અહીં નામ ઉમેરવું)</option>
+            <option value="8">૮. શ્રી (અહીં નામ ઉમેરવું)</option>
+            <option value="9">૯. શ્રી (અહીં નામ ઉમેરવું)</option>
+            <option value="10">૧૦. શ્રી (અહીં નામ ઉમેરવું)</option>
+            <option value="11">૧૧. શ્રી (અહીં નામ ઉમેરવું)</option>
+            <option value="12">૧૨. શ્રી (અહીં નામ ઉમેરવું)</option>
+            <option value="13">૧૩. શ્રી (અહીં નામ ઉમેરવું)</option>
+            <option value="14">૧૪. શ્રી (અહીં નામ ઉમેરવું)</option>
+            <option value="15">૧૫. શ્રી (અહીં નામ ઉમેરવું)</option>
         </select>
         <div id="t-disp"></div>
     </div>
+
 </div>
-<footer><p><b>ફલુ અનુપમ પ્રાથમિક શાળા</b> | ડિઝાઇન: નિલેશ પટેલ</p></footer>
+
+<footer>
+    <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b></p>
+    <p>ડિઝાઇન અને સંચાલન: <span style="color: var(--s);">નિલેશ પટેલ (SRG-MATHS)</span></p>
+</footer>
+
 <script>
+    // શિક્ષક ડેટા - ૧ થી ૧૫ (૪-CENTER-૪ માળખા માટે)
     const tData = {
         "1": { n: "શ્રી નિલેશકુમાર પી. પટેલ", img: "https://files.catbox.moe/8b8w7y.jpg", v: "જેપુર", l: "M.Sc, B.Ed", nt: "01/06/2010", rt: "31/05/2040", c: "123456", d: "6 થી 8", s: "ગણિત-વિજ્ઞાન", a: "SRG MATHS" },
         "2": { n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", img: "https://files.catbox.moe/vxtq6i.jpg", v: "વિજાપુર", l: "B.A, B.Ed", nt: "15/07/2005", rt: "30/06/2035", c: "654321", d: "1 થી 5", s: "સામાજિક વિજ્ઞાન", a: "ઇનોવેટિવ ટીચર" }
+        // બાકીના ૧૩ શિક્ષકોનો ડેટા અહીં તમે ઉમેરી શકો છો...
     };
 
+    // ૩૧ દિવસના કોયડા અને જવાબ
     const riddles = {
-        1: { q: "૫૦ ના અડધા કેટલા?", a: "25" },
-        2: { q: "૧ ડઝન એટલે કેટલા નંગ?", a: "12" },
-        31: { q: "ભારતનું રાષ્ટ્રીય ફૂલ?", a: "કમળ" }
+        1: { q: "૫૦ ના અડધા કેટલા થાય?", a: "25" },
+        2: { q: "એક ડઝન કેળા એટલે કેટલા નંગ?", a: "12" },
+        3: { q: "ત્રિકોણને કુલ કેટલા ખૂણા હોય છે?", a: "3" },
+        4: { q: "ચોરસની ચારેય બાજુઓ કેવી હોય છે?", a: "સરખી" },
+        5: { q: "ભારતનું રાષ્ટ્રીય પ્રાણી કયું છે?", a: "વાઘ" },
+        // ... આ રીતે ૩૧ સુધી સળંગ
+        31: { q: "સૌથી નાની પ્રાકૃતિક સંખ્યા કઈ છે?", a: "1" }
     };
 
+    // શિક્ષક પ્રદર્શન ફંક્શન (૮ બોક્સ માળખું)
     function showT(id) {
-        const d = document.getElementById('t-disp'); if(!id) { d.innerHTML=""; return; }
-        const t = tData[id];
-        d.innerHTML = `<div class="t-profile-container"><div class="t-info-box"><div class="t-info-item"><b>૧. વતન:</b> ${t.v}</div><div class="t-info-item"><b>૨. લાયકાત:</b> ${t.l}</div><div class="t-info-item"><b>૩. નોકરી તા:</b> ${t.nt}</div><div class="t-info-item"><b>૪. નિવૃત્તિ:</b> ${t.rt}</div></div><div class="t-center"><img src="${t.img}" class="t-img-big"><br><div class="t-name-tag">${t.n}</div></div><div class="t-info-box"><div class="t-info-item"><b>૫. કોડ:</b> ${t.c}</div><div class="t-info-item"><b>૬. ધોરણ:</b> ${t.d}</div><div class="t-info-item"><b>૭. વિષય:</b> ${t.s}</div><div class="t-info-item"><b>૮. સિદ્ધિ:</b> ${t.a}</div></div></div>`;
+        const disp = document.getElementById('t-disp'); 
+        if(!id) { disp.innerHTML=""; return; }
+        const t = tData[id] || tData["1"];
+        disp.innerHTML = `
+            <div class="t-profile-container">
+                <div class="t-info-box">
+                    <div class="t-info-item">૧. વતન: ${t.v}</div>
+                    <div class="t-info-item">૨. લાયકાત: ${t.l}</div>
+                    <div class="t-info-item">૩. નોકરી તા: ${t.nt}</div>
+                    <div class="t-info-item">૪. નિવૃત્તિ તા: ${t.rt}</div>
+                </div>
+                <div class="t-center">
+                    <img src="${t.img}" class="t-img-big">
+                    <br><div class="t-name-tag">${t.n}</div>
+                </div>
+                <div class="t-info-box">
+                    <div class="t-info-item">૫. કોડ: ${t.c}</div>
+                    <div class="t-info-item">૬. ધોરણ: ${t.d}</div>
+                    <div class="t-info-item">૭. વિષય: ${t.s}</div>
+                    <div class="t-info-item">૮. સિદ્ધિ: ${t.a}</div>
+                </div>
+            </div>`;
     }
 
+    // કોયડો તપાસવાનું ફંક્શન
     function checkR() {
-        const d = new Date().getDate(); const r = riddles[d] || riddles[1];
-        const u = document.getElementById('u-ans').value;
-        if(u == r.a) { document.getElementById('fb').innerHTML="✅ સાચો!"; confetti(); } else document.getElementById('fb').innerHTML="❌ ખોટો!";
+        const day = new Date().getDate();
+        const r = riddles[day] || riddles[1];
+        const uAns = document.getElementById('u-ans').value.trim();
+        const fb = document.getElementById('fb');
+        if(uAns == r.a) {
+            fb.innerHTML = "✅ અદભુત! તમારો જવાબ સાચો છે.";
+            fb.style.color = "green";
+            confetti();
+        } else {
+            fb.innerHTML = "❌ ફરી પ્રયત્ન કરો, તમે નજીક છો!";
+            fb.style.color = "red";
+        }
     }
 
-    function tLog() { if(prompt("પાસવર્ડ:") === "falu123") document.getElementById('s-links').style.display='block'; }
-    function pL(u) { if(prompt("પાસવર્ડ:") === "falu" + new Date().getDate()) window.open(u, "_blank"); else alert("ખોટો!"); }
+    // પાસવર્ડ ફંક્શન્સ
+    function tLog() { if(prompt("એડમિન પાસવર્ડ:") === "falu123") document.getElementById('s-links').style.display='block'; }
+    function pL(url) { 
+        const pass = "falu" + new Date().getDate();
+        if(prompt("સુરક્ષિત ગેલેરી પાસવર્ડ:") === pass) window.open(url, "_blank"); 
+        else alert("ખોટો પાસવર્ડ! આજના કોડ માટે નિલેશભાઈનો સંપર્ક કરો."); 
+    }
 
+    // ઓનલોડ સેટિંગ્સ
     window.onload = () => {
-        const d = new Date().getDate();
-        document.getElementById('iks-image').src = `https://raw.githubusercontent.com/nileshpatel88/iks/main/day${d}.jpg`;
-        document.getElementById('riddle-text').innerText = (riddles[d] || riddles[1]).q;
-        setInterval(() => { document.getElementById('live-clock').innerText = new Date().toLocaleTimeString('gu-IN'); }, 1000);
+        const today = new Date().getDate();
+        // IKS ઈમેજ ઓટોમેટિક (તારીખ મુજબ)
+        document.getElementById('iks-image').src = `https://raw.githubusercontent.com/nileshpatel88/iks/main/day${today}.jpg`;
+        // કોયડો ઓટોમેટિક (તારીખ મુજબ)
+        document.getElementById('riddle-text').innerText = (riddles[today] || riddles[1]).q;
+        // લાઈવ ઘડિયાળ
+        setInterval(() => {
+            document.getElementById('live-clock').innerText = "📅 " + new Date().toLocaleTimeString('gu-IN');
+        }, 1000);
     };
 </script>
+
 </body>
 </html>
