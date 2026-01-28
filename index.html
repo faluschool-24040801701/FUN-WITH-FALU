@@ -58,20 +58,27 @@
         .btn-accent { background: var(--accent); }
         .btn-primary { background: var(--p); }
 
+        /* STAFF SECTION NEW STYLE */
         .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
-        .staff-sel { width: 100%; max-width: 400px; padding: 12px; border-radius: 12px; border: 2px solid #ddd; font-size: 1.1rem; margin-bottom: 20px; }
+        .staff-sel { width: 100%; max-width: 500px; padding: 15px; border-radius: 15px; border: 2px solid var(--p); font-size: 1.2rem; margin-bottom: 30px; font-weight: bold; }
 
-        .t-card { display: none; background: white; border-radius: 20px; border: 1px solid #ddd; overflow: hidden; animation: slideUp 0.5s ease; }
-        .t-head { background: var(--p); color: white; padding: 25px; }
-        .t-img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid #fff; object-fit: cover; }
+        .profile-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; align-items: center; margin-top: 20px; }
+        .side-btns { display: flex; flex-direction: column; gap: 10px; }
+        .s-btn { padding: 12px; border-radius: 10px; font-size: 0.9rem; color: white; text-decoration: none; font-weight: bold; background: var(--p); text-align: center; border-bottom: 3px solid #000051; }
+        .s-btn-alt { background: var(--game-theme); border-bottom: 3px solid #004d40; }
+
+        .main-info { background: #f9f9f9; padding: 20px; border-radius: 20px; border: 1px solid #ddd; }
+        .t-img { width: 130px; height: 130px; border-radius: 50%; border: 5px solid var(--p); object-fit: cover; margin-bottom: 10px; }
+        
         .info-tab { width: 100%; border-collapse: collapse; }
-        .info-tab td { padding: 15px; border-bottom: 1px solid #eee; text-align: left; }
-        .info-tab td:first-child { font-weight: 700; color: var(--p); background: #f9f9f9; width: 40%; }
+        .info-tab td { padding: 10px; border-bottom: 1px solid #eee; text-align: left; }
+        .info-tab td:first-child { font-weight: 700; color: var(--p); width: 40%; }
 
         footer { background: #fff; padding: 40px 20px; text-align: center; border-top: 2px solid #eee; }
         .legal { background: #fffbe9; border: 1px dashed #ffd600; padding: 20px; border-radius: 15px; font-size: 0.9rem; max-width: 900px; margin: auto; }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) { .profile-grid { grid-template-columns: 1fr; } .side-btns { flex-direction: row; flex-wrap: wrap; justify-content: center; } }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -123,34 +130,26 @@
     </div>
 
     <div class="card staff-section">
-        <h3 style="color: var(--p); margin-bottom: 25px;">👨‍🏫 શાળા પરિવાર પરિચય</h3>
-        <select class="staff-sel" onchange="sT(this.value)">
-            <option value="">-- શિક્ષકનું નામ પસંદ કરો --</option>
-            <option value="1">1. શ્રી નિલેશકુમાર પી. પટેલ</option>
-            <option value="2">2. શ્રી રાજેન્દ્રકુમાર બી. પટેલ</option>
+        <h3 style="color: var(--p); margin-bottom: 20px;">👨‍🏫 શાળા પરિવાર પરિચય</h3>
+        <select class="staff-sel" onchange="showTeacher(this.value)">
+            <option value="">-- શિક્ષક પસંદ કરો (૧ થી ૧૫) --</option>
+            <option value="1">૧. શ્રી નિલેશકુમાર પી. પટેલ</option>
+            <option value="2">૨. શ્રી રાજેન્દ્રકુમાર બી. પટેલ</option>
+            <option value="3">૩. ખાલી વિગત (એડિટ કરો)</option>
+            <option value="4">૪. ખાલી વિગત (એડિટ કરો)</option>
+            <option value="5">૫. ખાલી વિગત (એડિટ કરો)</option>
+            <option value="6">૬. ખાલી વિગત (એડિટ કરો)</option>
+            <option value="7">૭. ખાલી વિગત (એડિટ કરો)</option>
+            <option value="8">૮. ખાલી વિગત (એડિટ કરો)</option>
+            <option value="9">૯. ખાલી વિગત (એડિટ કરો)</option>
+            <option value="10">૧૦. ખાલી વિગત (એડિટ કરો)</option>
+            <option value="11">૧૧. ખાલી વિગત (એડિટ કરો)</option>
+            <option value="12">૧૨. ખાલી વિગત (એડિટ કરો)</option>
+            <option value="13">૧૩. ખાલી વિગત (એડિટ કરો)</option>
+            <option value="14">૧૪. ખાલી વિગત (એડિટ કરો)</option>
+            <option value="15">૧૫. ખાલી વિગત (એડિટ કરો)</option>
         </select>
-        <div id="t-disp">
-            <div id="t-1" class="t-card">
-                <div class="t-head">
-                    <img src="https://files.catbox.moe/8b8w7y.jpg" class="t-img">
-                    <h4>શ્રી નિલેશકુમાર પી. પટેલ</h4>
-                </div>
-                <table class="info-tab">
-                    <tr><td>📍 વતન:</td><td>જેપુર</td></tr>
-                    <tr><td>📖 વિષય:</td><td>ગણિત-વિજ્ઞાન</td></tr>
-                    <tr><td>🏆 સિદ્ધિ:</td><td style="color:var(--accent); font-weight:700;">જિલ્લા શ્રેષ્ઠ શિક્ષક 2021</td></tr>
-                </table>
-            </div>
-            <div id="t-2" class="t-card">
-                <div class="t-head">
-                    <img src="https://files.catbox.moe/vxtq6i.jpg" class="t-img">
-                    <h4>શ્રી રાજેન્દ્રકુમાર બી. પટેલ</h4>
-                </div>
-                <table class="info-tab">
-                    <tr><td>🏘️ તાલુકો:</td><td>વિજાપુર</td></tr>
-                </table>
-            </div>
-        </div>
+        <div id="t-display"></div>
     </div>
 </div>
 
@@ -174,9 +173,38 @@
         else if (p !== null) { alert("ખોટો પાસવર્ડ!"); }
     }
 
-    function sT(id) {
-        document.querySelectorAll('.t-card').forEach(c => c.style.display = 'none'); 
-        if(id) document.getElementById('t-' + id).style.display = 'block';
+    const tData = {
+        "1": { n: "શ્રી નિલેશકુમાર પી. પટેલ", v: "જેપુર", s: "ગણિત-વિજ્ઞાન", a: "જિલ્લા શ્રેષ્ઠ શિક્ષક 2021", i: "https://files.catbox.moe/8b8w7y.jpg" },
+        "2": { n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", v: "વિજાપુર", s: "સામાજિક વિજ્ઞાન", a: "અનુભવી શિક્ષક", i: "https://files.catbox.moe/vxtq6i.jpg" }
+    };
+
+    function showTeacher(id) {
+        const d = document.getElementById('t-display');
+        if(!id) { d.innerHTML = ""; return; }
+        const t = tData[id] || { n: "શિક્ષકનું નામ", v: "વતન", s: "વિષય", a: "સિદ્ધિ", i: "https://via.placeholder.com/150" };
+        d.innerHTML = `
+            <div class="profile-grid" style="animation: slideUp 0.5s ease;">
+                <div class="side-btns">
+                    <a href="#" class="s-btn">📄 હાજરી</a>
+                    <a href="#" class="s-btn s-btn-alt">📂 પ્રોફાઇલ</a>
+                    <a href="#" class="s-btn">🏅 એવોર્ડ્સ</a>
+                </div>
+                <div class="main-info">
+                    <img src="${t.i}" class="t-img">
+                    <h4>${t.n}</h4>
+                    <table class="info-tab">
+                        <tr><td>📍 વતન:</td><td>${t.v}</td></tr>
+                        <tr><td>📖 વિષય:</td><td>${t.s}</td></tr>
+                        <tr><td>🏆 સિદ્ધિ:</td><td>${t.a}</td></tr>
+                    </table>
+                </div>
+                <div class="side-btns">
+                    <a href="#" class="s-btn">📞 સંપર્ક</a>
+                    <a href="#" class="s-btn s-btn-alt">🖼️ પ્રવૃત્તિ</a>
+                    <a href="#" class="s-btn">✉️ સંદેશ</a>
+                </div>
+            </div>
+        `;
     }
 
     const iksD = [
