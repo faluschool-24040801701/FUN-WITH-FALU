@@ -21,27 +21,25 @@
         .container { padding: 40px 15px; max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .card { background: #fff; border-radius: 25px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: 0.4s; text-align: center; border: 1px solid #eee; position: relative; }
 
-        /* QUIZ & RIDDLE */
-        .quiz-card { border: 3px solid var(--gold); background: linear-gradient(145deg, #ffffff, #fff9e6); }
+        /* RIDDLE SECTION WITH INPUT */
         .riddle-card { border: 3px solid var(--game-theme); background: linear-gradient(145deg, #e0f2f1, #ffffff); }
-        .quiz-option { padding: 12px; margin: 8px 0; border: 2px solid #ddd; border-radius: 12px; cursor: pointer; transition: 0.3s; font-weight: 600; }
-        .quiz-option:hover { background: #fff3e0; border-color: var(--s); }
+        .ans-input { width: 80%; padding: 12px; border: 2px solid var(--game-theme); border-radius: 10px; font-size: 1.1rem; text-align: center; margin: 15px 0; outline: none; }
+        .riddle-btn { background: var(--game-theme); color: white; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 80%; margin-bottom: 10px; }
+        .feedback { font-weight: 700; margin-bottom: 10px; }
 
-        /* TEACHER UNIQUE DISPLAY */
+        /* TEACHER PROFILE UNIQUE DESIGN */
         .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
-        .t-profile-container { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; background: #fdfdfd; padding: 20px; border-radius: 30px; box-shadow: inset 0 0 15px rgba(0,0,0,0.05); }
+        .t-profile-container { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; background: #fdfdfd; padding: 20px; border-radius: 30px; }
         .t-info-box { flex: 1; min-width: 250px; text-align: left; }
         .t-info-item { background: white; margin: 8px 0; padding: 10px 15px; border-radius: 12px; border-left: 5px solid var(--p); box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-size: 0.9rem; }
         .t-center { text-align: center; min-width: 200px; }
-        .t-img-big { width: 180px; height: 180px; border-radius: 50%; border: 8px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.2); object-fit: cover; margin-bottom: 15px; border: 5px solid var(--p); }
-        .t-name { color: var(--p); font-weight: 700; font-size: 1.2rem; background: var(--gold); padding: 5px 15px; border-radius: 50px; display: inline-block; }
+        .t-img-big { width: 180px; height: 180px; border-radius: 50%; border: 5px solid var(--p); object-fit: cover; margin-bottom: 10px; }
+        .t-name { color: var(--p); font-weight: 700; background: var(--gold); padding: 5px 15px; border-radius: 50px; display: inline-block; }
 
         .btn { padding: 15px; border-radius: 15px; font-weight: 700; color: white; border: none; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; text-decoration: none; cursor: pointer;}
-        .btn-edu { background: #37474f; border-bottom: 4px solid #102027; }
         .btn-gold { background: #b8860b; border-bottom: 4px solid #5d4305; }
-        .btn-accent { background: var(--accent); }
 
-        footer { background: #fff; padding: 40px; text-align: center; border-top: 2px solid #eee; }
+        footer { background: #fff; padding: 40px; text-align: center; }
         @media (max-width: 768px) { .t-profile-container { flex-direction: column; } .t-info-box { width: 100%; } }
     </style>
 </head>
@@ -55,27 +53,24 @@
 <div class="marquee-bar"><marquee>જ્ઞાન એ અમૂલ્ય ધન છે.</marquee></div>
 
 <div class="container">
-    <div class="card quiz-card">
-        <h3 style="color: var(--s);">🧠 આજનો સ્માર્ટ સવાલ</h3>
-        <p id="q-text" style="margin: 15px 0; font-weight: 700;">લોડ થઈ રહ્યું છે...</p>
-        <div id="quiz-options"></div>
-        <div id="quiz-msg" style="margin-top: 10px; font-weight: bold; height: 20px;"></div>
-    </div>
-
+    
     <div class="card riddle-card">
-        <h3 style="color: var(--game-theme);">🧩 આજનો તાર્કિક કોયડો</h3>
-        <p id="riddle-text" style="margin: 15px 0; font-weight: 700;"></p>
-        <button onclick="showRiddleAns()" id="btn-ans" class="btn" style="background:var(--game-theme); font-size: 0.8rem; height: 40px;">જવાબ અને સમજ જુઓ</button>
-        <div id="riddle-explanation" style="display:none; margin-top:15px; background:#fff; padding:10px; border-radius:10px; border-left:5px solid var(--game-theme); text-align: left; font-size: 0.9rem;"></div>
+        <h3 style="color: var(--game-theme);">🧩 આજનો ગાણિતિક કોયડો</h3>
+        <p id="riddle-text" style="margin: 15px 0; font-weight: 700; font-size: 1.1rem;"></p>
+        <input type="text" id="user-ans" class="ans-input" placeholder="તમારો જવાબ લખો...">
+        <button onclick="checkRiddle()" class="riddle-btn">જવાબ તપાસો</button>
+        <div id="feedback" class="feedback"></div>
+        <div id="explanation-box" style="display:none; text-align: left; background: white; padding: 15px; border-radius: 15px; border-left: 5px solid var(--s);">
+            <strong style="color: var(--s);">💡 સમજૂતી:</strong>
+            <p id="riddle-explanation" style="font-size: 0.9rem; margin-top: 5px;"></p>
+        </div>
     </div>
 
-    <div class="card" style="border: 2px dashed var(--p);">
-        <h3 style="color: var(--p);">🛠️ શિક્ષક શક્તિ</h3>
-        <button onclick="teacherLogin()" class="btn btn-gold" style="margin-top:15px;">🔐 એડમિન લોગિન</button>
-        <div id="staff-links" style="display: none; margin-top: 15px;">
-            <a href="https://www.ssagujarat.org/" target="_blank" class="btn btn-edu">SSA એન્ટ્રી</a>
-            <a href="https://web.convegenius.ai/?botId=0281209145078149/" target="_blank" class="btn btn-edu">ઓનલાઈન હાજરી</a>
-        </div>
+    <div class="card" style="border: 3px solid var(--gold);">
+        <h3 style="color: var(--s);">🧠 આજનો સ્માર્ટ સવાલ</h3>
+        <p id="q-text" style="margin: 15px 0; font-weight: 700;"></p>
+        <div id="quiz-options"></div>
+        <div id="quiz-msg" style="margin-top: 10px; font-weight: bold;"></div>
     </div>
 
     <div class="card staff-section">
@@ -85,101 +80,96 @@
             <option value="1">૧. શ્રી નિલેશકુમાર પી. પટેલ</option>
             <option value="2">૨. શ્રી રાજેન્દ્રકુમાર બી. પટેલ</option>
         </select>
-
-        <div id="t-display">
-            </div>
+        <div id="t-display"></div>
     </div>
 </div>
 
-<footer>
-    <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b></p>
-    <p>ડિઝાઈન: <span style="color: var(--s);">નિલેશ પટેલ</span></p>
-</footer>
-
 <script>
-    // શિક્ષક ડેટા - તમારે અહીં જ વિગતો લિંક કરવાની છે
+    // શિક્ષક ડેટા (તમારી વિગતો અહીં સેટ કરો)
     const tData = {
         "1": { 
-            n: "શ્રી નિલેશકુમાર પી. પટેલ", 
-            img: "https://files.catbox.moe/8b8w7y.jpg",
+            n: "શ્રી નિલેશકુમાર પી. પટેલ", img: "https://files.catbox.moe/8b8w7y.jpg",
             l1: "જેપુર", l2: "M.Sc, B.Ed", l3: "01/06/2010", l4: "31/05/2040",
             r1: "123456", r2: "6 થી 8", r3: "ગણિત-વિજ્ઞાન", r4: "SRG MATHS"
         },
         "2": { 
-            n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", 
-            img: "https://files.catbox.moe/vxtq6i.jpg",
+            n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", img: "https://files.catbox.moe/vxtq6i.jpg",
             l1: "વિજાપુર", l2: "B.A, B.Ed", l3: "15/07/2005", l4: "30/06/2035",
             r1: "654321", r2: "1 થી 5", r3: "સામાજિક વિજ્ઞાન", r4: "ઇનોવેટિવ ટીચર"
         }
     };
+
+    // ૩૬૫ દિવસના ગાણિતિક કોયડા
+    const riddles = [
+        { q: "એક સંખ્યાના બમણામાં ૫ ઉમેરતા ૧૫ મળે, તો તે સંખ્યા કઈ?", a: "5", s: "ધારો કે સંખ્યા x છે. 2x + 5 = 15, તેથી 2x = 10, માટે x = 5." },
+        { q: "બાલવાટિકા: તમારી પાસે ૩ સફરજન છે, મમ્મી બીજા ૨ આપે તો કુલ કેટલા થાય?", a: "5", s: "૩ + ૨ = ૫ સફરજન થાય." }
+    ];
+
+    // ૩૬૫ દિવસના સ્માર્ટ સવાલો
+    const questions = [
+        { q: "ગુજરાતનું રાજ્ય પ્રાણી કયું છે?", opt: ["વાઘ", "સિંહ", "ચિત્તો"], a: 1 }
+    ];
+
+    function loadDaily() {
+        const day = new Date().getDate();
+        const rid = riddles[day % riddles.length];
+        document.getElementById('riddle-text').innerText = rid.q;
+        document.getElementById('riddle-explanation').innerText = rid.s;
+        
+        const qz = questions[day % questions.length];
+        document.getElementById('q-text').innerText = qz.q;
+        let qh = ""; qz.opt.forEach((o,i) => qh += `<div style="padding:10px; border:1px solid #ddd; margin:5px; border-radius:10px; cursor:pointer;" onclick="checkQz(this,${i===qz.a})">${o}</div>`);
+        document.getElementById('quiz-options').innerHTML = qh;
+    }
+
+    function checkRiddle() {
+        const uAns = document.getElementById('user-ans').value.trim();
+        const day = new Date().getDate();
+        const sAns = riddles[day % riddles.length].a;
+        const fb = document.getElementById('feedback');
+        if(uAns === sAns) {
+            fb.innerHTML = "🎉 સાચો જવાબ!"; fb.style.color = "green";
+            confetti({ particleCount: 100 });
+        } else {
+            fb.innerHTML = "❌ ખોટો જવાબ, ફરી વિચારો!"; fb.style.color = "red";
+        }
+        document.getElementById('explanation-box').style.display = 'block';
+    }
+
+    function checkQz(el, isC) {
+        document.getElementById('quiz-msg').innerText = isC ? "✅ સાચું!" : "❌ ખોટું!";
+        if(isC) confetti();
+    }
 
     function showTeacher(id) {
         const d = document.getElementById('t-display');
         if(!id) { d.innerHTML = ""; return; }
         const t = tData[id];
         d.innerHTML = `
-            <div class="t-profile-container" style="animation: slideUp 0.6s ease;">
+            <div class="t-profile-container">
                 <div class="t-info-box">
                     <div class="t-info-item"><b>૧. વતન:</b> ${t.l1}</div>
                     <div class="t-info-item"><b>૨. શૈક્ષણિક લાયકાત:</b> ${t.l2}</div>
                     <div class="t-info-item"><b>૩. નોકરી દાખલ તારીખ:</b> ${t.l3}</div>
                     <div class="t-info-item"><b>૪. નિવૃત તારીખ:</b> ${t.l4}</div>
                 </div>
-
                 <div class="t-center">
                     <img src="${t.img}" class="t-img-big">
-                    <br>
-                    <div class="t-name">${t.n}</div>
+                    <br><div class="t-name">${t.n}</div>
                 </div>
-
                 <div class="t-info-box">
                     <div class="t-info-item"><b>૫. શિક્ષક કોડ:</b> ${t.r1}</div>
                     <div class="t-info-item"><b>૬. ભણાવતા ધોરણ:</b> ${t.r2}</div>
                     <div class="t-info-item"><b>૭. ભણાવતા વિષય:</b> ${t.r3}</div>
                     <div class="t-info-item"><b>૮. વિશિષ્ટ સિદ્ધિ:</b> ${t.r4}</div>
                 </div>
-            </div>
-        `;
+            </div>`;
     }
-
-    // ક્વિઝ અને સમયના જૂના ફંક્શન્સ યથાવત છે...
-    const questions = [
-        { q: "ગુજરાતનું રાજ્ય પ્રાણી કયું છે?", opt: ["વાઘ", "સિંહ", "ચિત્તો"], a: 1 },
-        { q: "પૃથ્વી પર દિવસ-રાત કોના કારણે થાય છે?", opt: ["પરિભ્રમણ", "પરિક્રમણ", "ગ્રહણ"], a: 0 }
-    ];
-    const riddles = [
-        { q: "એવી કઈ વસ્તુ છે જે તમારી છે, પણ બીજા લોકો તેનો તમારા કરતા વધુ ઉપયોગ કરે છે?", a: "તમારું નામ", s: "કારણ કે લોકો આપણને બોલાવવા માટે તેનો ઉપયોગ કરે છે." }
-    ];
-
-    function loadDaily() {
-        const day = new Date().getDate();
-        const quiz = questions[day % questions.length];
-        document.getElementById('q-text').innerText = quiz.q;
-        let qh = ""; quiz.opt.forEach((o, i) => qh += `<div class="quiz-option" onclick="checkAns(this, ${i === quiz.a})">${o}</div>`);
-        document.getElementById('quiz-options').innerHTML = qh;
-
-        const rid = riddles[day % riddles.length];
-        document.getElementById('riddle-text').innerText = rid.q;
-        document.getElementById('riddle-explanation').innerHTML = `<b>જવાબ:</b> ${rid.a}<br><b>સમજ:</b> ${rid.s}`;
-    }
-
-    function checkAns(el, isCorrect) {
-        if(isCorrect) { confetti({ particleCount: 100 }); document.getElementById('quiz-msg').innerText = "✅ સાચો જવાબ!"; }
-        else { document.getElementById('quiz-msg').innerText = "❌ ફરી પ્રયત્ન કરો!"; }
-    }
-
-    function showRiddleAns() { 
-        const div = document.getElementById('riddle-explanation');
-        div.style.display = (div.style.display === 'none') ? 'block' : 'none';
-    }
-
-    function teacherLogin() { if(prompt("પાસવર્ડ:") === "falu123") document.getElementById('staff-links').style.display='block'; }
 
     function updateTime() {
         document.getElementById('live-clock').innerText = "📅 " + new Date().toLocaleDateString('gu-IN', {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:true});
     }
     setInterval(updateTime, 1000);
-
     window.onload = () => { updateTime(); loadDaily(); };
 </script>
 </body>
