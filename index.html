@@ -34,42 +34,35 @@
         
         .card { 
             background: #fff; border-radius: 25px; padding: 25px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: 0.4s;
             text-align: center; border: 1px solid #eee;
         }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
+        .card:hover { transform: translateY(-10px); }
 
         .iks-card { border-top: 10px solid var(--s); grid-column: 1 / -1; text-align: left; }
         .shlok { font-size: 1.4rem; color: #a12f00; font-weight: 700; display: block; margin: 15px 0; }
         
-        /* ફ્લોટિંગ બટન સ્ટાઈલ */
         .btn { 
             padding: 15px; border-radius: 15px; font-weight: 700; color: white; border: none; 
             display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; 
             text-decoration: none; transition: 0.3s ease; box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
         .btn span { margin-right: 12px; font-size: 1.5rem; }
-        .btn:hover { transform: translateY(-3px) scale(1.02); filter: brightness(1.1); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .btn:hover { transform: scale(1.02); filter: brightness(1.1); }
 
-        /* બાલસૃષ્ટિ વિભાગના બટન્સ */
+        /* Sections Color Coding */
         .btn-kids { background: linear-gradient(135deg, #9c27b0, #6a1b9a); border-bottom: 4px solid #4a148c; }
-        .btn-isro { background: linear-gradient(135deg, #2196f3, #1565c0); border-bottom: 4px solid #0d47a1; }
-        .btn-art { background: linear-gradient(135deg, #ff5722, #e64a19); border-bottom: 4px solid #bf360c; }
-        
-        /* રમત-ગમત વિભાગના બટન્સ */
-        .btn-read { background: linear-gradient(135deg, #00bfa5, #00796b); border-bottom: 4px solid #004d40; }
-        .btn-quiz { background: linear-gradient(135deg, #0091ea, #01579b); border-bottom: 4px solid #002f6c; }
-        .btn-draw { background: linear-gradient(135deg, #fbc02d, #f9a825); border-bottom: 4px solid #c49000; }
-
+        .btn-game { background: linear-gradient(135deg, #00bfa5, #00796b); border-bottom: 4px solid #004d40; }
         .btn-edu { background: #37474f; border-bottom: 4px solid #102027; }
+        .btn-seb { background: #d32f2f; border-bottom: 4px solid #b71c1c; }
         .btn-wa { background: #2e7d32; border-bottom: 4px solid #1b5e20; }
-        .btn-accent { background: var(--accent); border-bottom: 4px solid #8e0000; }
-        .btn-primary { background: var(--p); border-bottom: 4px solid #000051; }
+        .btn-accent { background: var(--accent); }
+        .btn-primary { background: var(--p); }
 
         .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
         .staff-sel { width: 100%; max-width: 400px; padding: 12px; border-radius: 12px; border: 2px solid #ddd; font-size: 1.1rem; margin-bottom: 20px; }
 
-        .t-card { display: none; background: white; border-radius: 20px; border: 1px solid #ddd; animation: slideUp 0.5s ease; overflow: hidden; }
+        .t-card { display: none; background: white; border-radius: 20px; border: 1px solid #ddd; overflow: hidden; animation: slideUp 0.5s ease; }
         .t-head { background: var(--p); color: white; padding: 25px; }
         .t-img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid #fff; object-fit: cover; }
         .info-tab { width: 100%; border-collapse: collapse; }
@@ -77,7 +70,7 @@
         .info-tab td:first-child { font-weight: 700; color: var(--p); background: #f9f9f9; width: 40%; }
 
         footer { background: #fff; padding: 40px 20px; text-align: center; border-top: 2px solid #eee; }
-        .legal { background: #fffbe9; border: 1px dashed #ffd600; padding: 20px; border-radius: 15px; font-size: 0.9rem; max-width: 900px; margin: auto; line-height: 1.6; }
+        .legal { background: #fffbe9; border: 1px dashed #ffd600; padding: 20px; border-radius: 15px; font-size: 0.9rem; max-width: 900px; margin: auto; }
 
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -90,7 +83,7 @@
     <div id="live-clock">સમય લોડ થઈ રહ્યો છે...</div>
 </header>
 
-<div class="marquee-bar"><marquee id="tht">જ્ઞાન એ અમૂલ્ય ધન છે જે વહેંચવાથી વધે છે.</marquee></div>
+<div class="marquee-bar"><marquee id="tht">જ્ઞાન એ અમૂલ્ય ધન છે.</marquee></div>
 
 <div class="container">
     <div class="card iks-card">
@@ -100,32 +93,33 @@
         <p id="iks-m" style="font-style: italic; color: #333; border-top: 1px solid #eee; padding-top: 10px;"></p>
     </div>
 
-    <div class="card" style="border-top: 12px solid var(--kids-theme); background: #f3e5f5;">
-        <h3 style="color: var(--kids-theme); margin-bottom: 25px; font-size: 1.5rem;">✨ બાલ સૃષ્ટિ અને જાદુઈ દુનિયા</h3>
+    <div class="card" style="border-top: 12px solid var(--kids-theme);">
+        <h3 style="color: var(--kids-theme); margin-bottom: 25px;">✨ બાલ સૃષ્ટિ અને જાદુઈ દુનિયા</h3>
         <a href="https://gujarat-education.gov.in/textbook/balsrushti/index.htm" target="_blank" class="btn btn-kids"><span>📖</span> બાલસૃષ્ટિ મેગેઝીન</a>
-        <a href="https://www.isro.gov.in/ISRO_Kids.html" target="_blank" class="btn btn-isro"><span>🚀</span> ISRO કિડ્સ (વિજ્ઞાન)</a>
-        <a href="https://www.youtube.com/results?search_query=moral+stories+and+drawing+for+kids+in+gujarati" target="_blank" class="btn btn-art"><span>🎨</span> ચિત્રકામ અને વાર્તાઓ</a>
+        <a href="https://www.isro.gov.in/STEM.html" target="_blank" class="btn btn-kids"><span>🚀</span> ISRO STEM (વિજ્ઞાન)</a>
+        <a href="https://www.youtube.com/results?search_query=બાળ+વાર્તાઓ+અને+ચિત્રકામ" target="_blank" class="btn btn-kids"><span>🎨</span> ગુજરાતી વાર્તા અને ચિત્ર</a>
     </div>
 
-    <div class="card" style="border-top: 12px solid var(--game-theme); background: #e0f2f1;">
-        <h3 style="color: var(--game-theme); margin-bottom: 25px; font-size: 1.5rem;">🎮 રમત-રમત માં નવું શીખો</h3>
-        <a href="https://readalong.google.com/" target="_blank" class="btn btn-read"><span>🗣️</span> Google Read Along (વાંચતા શીખો)</a>
-        <a href="https://www.kidsgujarati.com/p/quiz.html" target="_blank" class="btn btn-quiz"><span>🧩</span> ગુજરાતી પઝલ્સ અને ક્વિઝ</a>
-        <a href="https://quickdraw.withgoogle.com/?locale=gu" target="_blank" class="btn btn-draw"><span>🖌️</span> ચિત્ર અને સર્જનાત્મકતા (AI)</a>
+    <div class="card" style="border-top: 12px solid var(--game-theme);">
+        <h3 style="color: var(--game-theme); margin-bottom: 25px;">🎮 રમત-રમત માં નવું શીખો</h3>
+        <a href="https://readalong.google.com/" target="_blank" class="btn btn-game"><span>🗣️</span> વાર્તા વાંચો (Read Along)</a>
+        <a href="https://vadanu.com/gujarati-puzzles/" target="_blank" class="btn btn-game"><span>🧩</span> ગુજરાતી ઉખાણાં-પઝલ્સ</a>
+        <a href="https://quickdraw.withgoogle.com/?locale=gu" target="_blank" class="btn btn-game"><span>🖌️</span> ચિત્ર ઓળખો (AI ગેમ)</a>
     </div>
 
     <div class="card" style="border-top: 12px solid #37474f;">
         <h3 style="color: #37474f; margin-bottom: 25px;">💻 Digital પ્લેટફોર્મ</h3>
-        <a href="https://gshala.gujarat.gov.in/" target="_blank" class="btn btn-edu"><span>🎓</span> G-SHALA પોર્ટલ</a>
-        <a href="https://ssagujarat.org/" target="_blank" class="btn btn-edu"><span>📊</span> SSA-GUJARAT પોર્ટલ</a>
-        <a href="https://diksha.gov.in/" target="_blank" class="btn btn-edu"><span>📖</span> DIKSHA ડિજિટલ બુક્સ</a>
+        <a href="https://gshala.gujarat.gov.in/Login.aspx" target="_blank" class="btn btn-edu"><span>🎓</span> G-SHALA પોર્ટલ</a>
+        <a href="https://gcert.gujarat.gov.in/" target="_blank" class="btn btn-edu"><span>📚</span> GCERT ઓફિશિયલ</a>
+        <a href="https://sebexam.org/" target="_blank" class="btn btn-seb"><span>📝</span> SEB EXAM (પરીક્ષા બોર્ડ)</a>
+        <a href="https://ssagujarat.org/" target="_blank" class="btn btn-edu"><span>📊</span> SSA-GUJARAT</a>
     </div>
 
     <div class="card" style="border-top: 12px solid var(--accent);">
         <h3 style="color: var(--p); margin-bottom: 25px;">🔐 સુરક્ષિત ગેલેરી</h3>
         <button onclick="pL('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn btn-accent"><span>🖼️</span> ૧. શાળા પ્રવૃત્તિઓ</button>
         <button onclick="pL('https://photos.app.goo.gl/9EVZZUvj3arZ4YfT8')" class="btn btn-primary"><span>🎉</span> ૨. શૈક્ષણિક ઉત્સવો</button>
-        <a href="https://wa.me/919574456156?text=નમસ્તે નિલેશભાઈ, ગેલેરીનો પાસવર્ડ આપશો." target="_blank" class="btn btn-wa"><span>💬</span> પાસવર્ડ માટે વોટ્સએપ</a>
+        <a href="https://wa.me/919574456156?text=નમસ્તે નિલેશભાઈ, પાસવર્ડ જોઈએ છે." target="_blank" class="btn btn-wa"><span>💬</span> વોટ્સએપ સંપર્ક</a>
     </div>
 
     <div class="card staff-section">
@@ -143,7 +137,7 @@
                 </div>
                 <table class="info-tab">
                     <tr><td>📍 વતન:</td><td>જેપુર</td></tr>
-                    <tr><td>📖 વિષય:</td><td>6 થી 8, ગણિત-વિજ્ઞાન</td></tr>
+                    <tr><td>📖 વિષય:</td><td>ગણિત-વિજ્ઞાન</td></tr>
                     <tr><td>🏆 સિદ્ધિ:</td><td style="color:var(--accent); font-weight:700;">જિલ્લા શ્રેષ્ઠ શિક્ષક 2021</td></tr>
                 </table>
             </div>
@@ -153,7 +147,6 @@
                     <h4>શ્રી રાજેન્દ્રકુમાર બી. પટેલ</h4>
                 </div>
                 <table class="info-tab">
-                    <tr><td>📍 વતન:</td><td>-</td></tr>
                     <tr><td>🏘️ તાલુકો:</td><td>વિજાપુર</td></tr>
                 </table>
             </div>
@@ -162,10 +155,8 @@
 </div>
 
 <footer>
-    <div class="legal">
-        <b>⚖️ કાયદાકીય જોગવાઈ:</b> આ વેબસાઈટની તમામ વિગતો અને ફોટોગ્રાફ્સ "પીએમશ્રી ફલુ અનુપમ પ્રાથમિક શાળા" ની માલિકીની છે.
-    </div>
-    <div style="margin-top: 30px; font-weight: 700; color: var(--p); font-size: 1.2rem;">Design by <span style="color:var(--s)">Nilesh Patel (SRG-MATHS)</span></div>
+    <div class="legal"><b>⚖️ નોટિસ:</b> તમામ સામગ્રી પીએમશ્રી ફલુ શાળાની માલિકીની છે.</div>
+    <div style="margin-top: 30px; font-weight: 700;">Design by <span style="color:var(--s)">Nilesh Patel (SRG-MATHS)</span></div>
 </footer>
 
 <script>
@@ -178,17 +169,14 @@
 
     function pL(u) {
         var d = new Date().getDate(); 
-        var p = prompt("સુરક્ષિત પાસવર્ડ દાખલ કરો:"); 
+        var p = prompt("પાસવર્ડ:"); 
         if (p === "falu" + d) { window.open(u, "_blank"); } 
         else if (p !== null) { alert("ખોટો પાસવર્ડ!"); }
     }
 
     function sT(id) {
         document.querySelectorAll('.t-card').forEach(c => c.style.display = 'none'); 
-        if(id) {
-            let target = document.getElementById('t-' + id);
-            target.style.display = 'block';
-        }
+        if(id) document.getElementById('t-' + id).style.display = 'block';
     }
 
     const iksD = [
@@ -202,7 +190,7 @@
         document.getElementById('iks-r').innerText = "સંદર્ભ: " + it.r;
         document.getElementById('iks-s').innerText = it.s;
         document.getElementById('iks-m').innerText = "અર્થ: " + it.m;
-        document.getElementById('tht').innerText = "📢 આજનો સુવિચાર: " + it.t;
+        document.getElementById('tht').innerText = "📢 સુવિચાર: " + it.t;
     };
 </script>
 </body>
