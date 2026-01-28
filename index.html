@@ -36,9 +36,7 @@
         .t-img-big { width: 170px; height: 170px; border-radius: 50%; border: 5px solid var(--p); object-fit: cover; margin-bottom: 10px; background: #eee; }
         .t-name { color: var(--p); font-weight: 700; background: var(--gold); padding: 5px 20px; border-radius: 50px; display: inline-block; font-size: 1.1rem; }
 
-        /* BUTTON STYLES */
         .btn { padding: 15px; border-radius: 15px; font-weight: 700; color: white; border: none; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; text-decoration: none; cursor: pointer; transition: 0.3s; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
         .btn-gold { background: #b8860b; border-bottom: 4px solid #5d4305; }
         .btn-edu { background: #37474f; border-bottom: 4px solid #102027; }
         .btn-wa { background: #25D366; border-bottom: 4px solid #128C7E; }
@@ -57,7 +55,7 @@
     <div id="live-clock">સમય લોડ થઈ રહ્યો છે...</div>
 </header>
 
-<div class="marquee-bar"><marquee>જ્ઞાન, શિસ્ત અને સંસ્કાર એ જ અમારું લક્ષ્ય.</marquee></div>
+<div class="marquee-bar"><marquee>શિક્ષણ એ જ પરમ શક્તિ છે.</marquee></div>
 
 <div class="container">
     
@@ -76,7 +74,7 @@
     <div class="card" style="border-top: 10px solid var(--accent);">
         <h3 style="color: var(--p); margin-bottom: 20px;">🔐 સુરક્ષિત ગેલેરી</h3>
         <button onclick="pL('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn btn-accent"><span>🖼️</span> ૧. શાળા પ્રવૃત્તિઓ</button>
-        <button onclick="pL('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn btn-accent"><span>📂</span> ૨. શાળા પ્રોજેક્ટ</button>
+        <button onclick="pL('https://photos.app.goo.gl/9EVZZUvj3arZ4YfT8')" class="btn btn-accent"><span>📂</span> ૨. શાળા પ્રોજેક્ટ</button>
         <a href="https://wa.me/919574456156?text=નમસ્તે સર, મને ગેલેરીનો પાસવર્ડ આપવા વિનંતી." target="_blank" class="btn btn-wa"><span>💬</span> પાસવર્ડ મેળવવા વોટ્સએપ</a>
     </div>
 
@@ -106,7 +104,7 @@
 
     <div class="card staff-section">
         <h3 style="color: var(--p); margin-bottom: 20px;">👨‍🏫 શાળા પરિવાર પરિચય</h3>
-        <select id="teacher-select" style="width: 100%; max-width: 500px; padding: 15px; border-radius: 15px; border: 2px solid var(--p); font-weight: bold; font-size: 1rem;" onchange="showTeacher(this.value)">
+        <select id="teacher-select" style="width: 100%; max-width: 500px; padding: 15px; border-radius: 15px; border: 2px solid var(--p); font-weight: bold;" onchange="showTeacher(this.value)">
             <option value="">-- શિક્ષક પસંદ કરો (૧ થી ૧૫) --</option>
             <option value="1">૧. શ્રી નિલેશકુમાર પી. પટેલ</option>
             <option value="2">૨. શ્રી રાજેન્દ્રકુમાર બી. પટેલ</option>
@@ -116,7 +114,7 @@
             <option value="6">૬. શિક્ષક ૬</option>
             <option value="7">૭. શિક્ષક ૭</option>
             <option value="8">૮. શિક્ષક ૮</option>
-            <option value="9">૯. શિક્ષક ૧૦</option>
+            <option value="9">૯. શિક્ષક ૯</option>
             <option value="10">૧૦. શિક્ષક ૧૦</option>
             <option value="11">૧૧. શિક્ષક ૧૧</option>
             <option value="12">૧૨. શિક્ષક ૧૨</option>
@@ -131,30 +129,25 @@
 
 <footer>
     <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b></p>
-    <p style="margin-top:10px;">ડિઝાઈન અને ડેવલપમેન્ટ: <span style="color: var(--s); font-weight:700;">નિલેશ પટેલ (SRG-MATHS)</span></p>
+    <p style="margin-top:10px;">ડિઝાઈન: <span style="color: var(--s); font-weight:700;">નિલેશ પટેલ</span></p>
 </footer>
 
 <script>
-    // શિક્ષક ડેટા
     const tData = {
         "1": { n: "શ્રી નિલેશકુમાર પી. પટેલ", img: "https://files.catbox.moe/8b8w7y.jpg", l1: "જેપુર", l2: "M.Sc, B.Ed", l3: "01/06/2010", l4: "31/05/2040", r1: "123456", r2: "6 થી 8", r3: "ગણિત-વિજ્ઞાન", r4: "SRG MATHS" },
         "2": { n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", img: "https://files.catbox.moe/vxtq6i.jpg", l1: "વિજાપુર", l2: "B.A, B.Ed", l3: "15/07/2005", l4: "30/06/2035", r1: "654321", r2: "1 થી 5", r3: "સામાજિક વિજ્ઞાન", r4: "ઇનોવેટિવ ટીચર" }
     };
 
-    // કોયડો
     const riddles = [
-        { q: "એક રૂમમાં ૪ ખૂણા છે, દરેક ખૂણામાં એક બિલાડી છે. દરેક બિલાડી સામે ૩ બિલાડી છે. તો કુલ કેટલી બિલાડી?", a: "4", s: "દરેક ખૂણાની બિલાડી બાકીના ૩ ખૂણાની બિલાડીને જુએ છે, એટલે કુલ ૪ જ બિલાડી હોય." }
+        { q: "એક રૂમમાં ૪ ખૂણા છે, દરેક ખૂણામાં એક બિલાડી છે. દરેક બિલાડી સામે ૩ બિલાડી છે. તો કુલ કેટલી બિલાડી?", a: "4", s: "દરેક ખૂણામાં એક એટલે કુલ ૪ જ બિલાડી હોય." }
     ];
 
     function checkRiddle() {
         const uAns = document.getElementById('user-ans').value.trim();
         const rid = riddles[0];
         const fb = document.getElementById('feedback');
-        if(uAns === rid.a) { 
-            fb.innerHTML = "🎉 વાહ! સાચો જવાબ."; fb.style.color = "green"; confetti(); 
-        } else { 
-            fb.innerHTML = "❌ ખોટું છે, ફરી પ્રયત્ન કરો."; fb.style.color = "red"; 
-        }
+        if(uAns === rid.a) { fb.innerHTML = "🎉 સાચો જવાબ!"; fb.style.color = "green"; confetti(); }
+        else { fb.innerHTML = "❌ ખોટું છે, ફરી પ્રયત્ન કરો."; fb.style.color = "red"; }
         document.getElementById('riddle-explanation').innerText = rid.s;
         document.getElementById('explanation-box').style.display = 'block';
     }
@@ -188,11 +181,8 @@
     
     function pL(u) { 
         let pass = prompt("ગેલેરી પાસવર્ડ નાખો:"); 
-        if(pass === "falu" + new Date().getDate()) {
-            window.open(u, "_blank");
-        } else if(pass !== null) {
-            alert("ખોટો પાસવર્ડ! પાસવર્ડ મેળવવા માટે વોટ્સએપ બટનનો ઉપયોગ કરો.");
-        }
+        if(pass === "falu" + new Date().getDate()) { window.open(u, "_blank"); }
+        else if(pass !== null) { alert("ખોટો પાસવર્ડ! મદદ માટે વોટ્સએપ કરો."); }
     }
 
     window.onload = () => {
