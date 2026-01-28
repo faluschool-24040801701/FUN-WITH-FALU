@@ -55,7 +55,7 @@
     <div id="live-clock">સમય લોડ થઈ રહ્યો છે...</div>
 </header>
 
-<div class="marquee-bar"><marquee>શિક્ષણ એ જ પરમ શક્તિ છે.</marquee></div>
+<div class="marquee-bar"><marquee>શિક્ષણ એ જ પરમ શક્તિ છે. જ્ઞાન, શિસ્ત અને સંસ્કાર એ જ અમારું લક્ષ્ય.</marquee></div>
 
 <div class="container">
     
@@ -129,26 +129,46 @@
 
 <footer>
     <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b></p>
-    <p style="margin-top:10px;">ડિઝાઈન: <span style="color: var(--s); font-weight:700;">નિલેશ પટેલ</span></p>
+    <p style="margin-top:10px;">ડિઝાઈન અને ડેવલપમેન્ટ: <span style="color: var(--s); font-weight:700;">નિલેશ પટેલ (SRG-MATHS)</span></p>
 </footer>
 
 <script>
+    // શિક્ષક ડેટા
     const tData = {
         "1": { n: "શ્રી નિલેશકુમાર પી. પટેલ", img: "https://files.catbox.moe/8b8w7y.jpg", l1: "જેપુર", l2: "M.Sc, B.Ed", l3: "01/06/2010", l4: "31/05/2040", r1: "123456", r2: "6 થી 8", r3: "ગણિત-વિજ્ઞાન", r4: "SRG MATHS" },
         "2": { n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", img: "https://files.catbox.moe/vxtq6i.jpg", l1: "વિજાપુર", l2: "B.A, B.Ed", l3: "15/07/2005", l4: "30/06/2035", r1: "654321", r2: "1 થી 5", r3: "સામાજિક વિજ્ઞાન", r4: "ઇનોવેટિવ ટીચર" }
     };
 
+    // ૩૬૫ દિવસ માટેના કોયડાની યાદી
     const riddles = [
-        { q: "એક રૂમમાં ૪ ખૂણા છે, દરેક ખૂણામાં એક બિલાડી છે. દરેક બિલાડી સામે ૩ બિલાડી છે. તો કુલ કેટલી બિલાડી?", a: "4", s: "દરેક ખૂણામાં એક એટલે કુલ ૪ જ બિલાડી હોય." }
+        { q: "૫૦ ના અડધા કેટલા થાય?", a: "25", s: "૫૦ ને ૨ વડે ભાગતા ૨૫ મળે." },
+        { q: "૧ થી ૧૦૦ માં ૯ કેટલી વાર આવે?", a: "20", s: "૯, ૧૯, ૨૯... ૮૯ (૧૦ વાર) અને ૯૦ થી ૯૯ (૧૦ વાર) એમ કુલ ૨૦ વાર." },
+        { q: "એક ડઝન એટલે કેટલા નંગ?", a: "12", s: "૧ ડઝન = ૧૨ નંગ." },
+        { q: "ત્રિકોણને કેટલા ખૂણા હોય છે?", a: "3", s: "ત્રિકોણ એટલે ત્રણ ખૂણાવાળી આકૃતિ." },
+        { q: "સૌથી નાની એકી અવિભાજ્ય સંખ્યા કઈ?", a: "3", s: "૨ બેકી છે, એટલે ૩ સૌથી નાની એકી અવિભાજ્ય છે." }
     ];
+
+    // તારીખ મુજબ ઓટોમેટિક સવાલ પસંદગી
+    function getTodayRiddle() {
+        const today = new Date();
+        const start = new Date(today.getFullYear(), 0, 0);
+        const diff = today - start;
+        const oneDay = 1000 * 60 * 60 * 24;
+        const dayOfYear = Math.floor(diff / oneDay);
+        return riddles[dayOfYear % riddles.length];
+    }
+
+    const currentRiddle = getTodayRiddle();
 
     function checkRiddle() {
         const uAns = document.getElementById('user-ans').value.trim();
-        const rid = riddles[0];
         const fb = document.getElementById('feedback');
-        if(uAns === rid.a) { fb.innerHTML = "🎉 સાચો જવાબ!"; fb.style.color = "green"; confetti(); }
-        else { fb.innerHTML = "❌ ખોટું છે, ફરી પ્રયત્ન કરો."; fb.style.color = "red"; }
-        document.getElementById('riddle-explanation').innerText = rid.s;
+        if(uAns === currentRiddle.a) { 
+            fb.innerHTML = "🎉 સાચો જવાબ!"; fb.style.color = "green"; confetti(); 
+        } else { 
+            fb.innerHTML = "❌ ફરી પ્રયત્ન કરો."; fb.style.color = "red"; 
+        }
+        document.getElementById('riddle-explanation').innerText = currentRiddle.s;
         document.getElementById('explanation-box').style.display = 'block';
     }
 
@@ -186,7 +206,7 @@
     }
 
     window.onload = () => {
-        document.getElementById('riddle-text').innerText = riddles[0].q;
+        document.getElementById('riddle-text').innerText = currentRiddle.q;
         setInterval(() => {
             document.getElementById('live-clock').innerText = "📅 " + new Date().toLocaleDateString('gu-IN', {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:true});
         }, 1000);
