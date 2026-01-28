@@ -22,12 +22,22 @@
         .container { padding: 40px 15px; max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .card { background: #fff; border-radius: 25px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: 0.4s; text-align: center; border: 1px solid #eee; position: relative; }
 
+        /* Floating Animation */
+        @keyframes floatAnim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .floating-zone { animation: floatAnim 4s ease-in-out infinite; border: 3px solid var(--kids-theme) !important; background: #f3e5f5 !important; grid-column: 1 / -1; }
+
+        .btn-std { padding: 10px 20px; border-radius: 50px; border: 2px solid var(--kids-theme); background: white; color: var(--kids-theme); font-weight: bold; cursor: pointer; margin: 5px; transition: 0.3s; }
+        .btn-std:hover { background: var(--kids-theme); color: white; }
+        .act-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 20px; }
+        .act-card { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: pointer; border-bottom: 4px solid var(--s); transition: 0.3s; }
+        .act-card:hover { transform: scale(1.05); }
+
         /* RIDDLE SECTION */
         .riddle-card { border: 3px solid var(--game-theme); background: linear-gradient(145deg, #e0f2f1, #ffffff); }
         .ans-input { width: 85%; padding: 12px; border: 2px solid var(--game-theme); border-radius: 10px; font-size: 1.1rem; text-align: center; margin: 15px 0; outline: none; }
         .riddle-btn { background: var(--game-theme); color: white; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 85%; }
         
-        /* TEACHER PROFILE UNIQUE (4-CENTER-4) */
+        /* TEACHER PROFILE */
         .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
         .t-profile-container { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; background: #fdfdfd; padding: 20px; border-radius: 30px; }
         .t-info-box { flex: 1; min-width: 260px; text-align: left; }
@@ -41,28 +51,36 @@
         .btn-edu { background: #37474f; border-bottom: 4px solid #102027; }
         .btn-wa { background: #25D366; border-bottom: 4px solid #128C7E; }
         .btn-accent { background: var(--accent); border-bottom: 4px solid #7f0000; }
-        .btn-kids { background: var(--kids-theme); border-bottom: 4px solid #4a148c; }
-        .btn-game { background: var(--game-theme); border-bottom: 4px solid #004d40; }
 
         footer { background: #fff; padding: 40px; text-align: center; border-top: 2px solid #eee; margin-top: 50px; }
-        @media (max-width: 768px) { .t-profile-container { flex-direction: column; } .t-info-box { width: 100%; } }
+        @media (max-width: 768px) { .t-profile-container { flex-direction: column; } }
     </style>
 </head>
 <body>
 
 <header>
     <h1>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</h1>
-    <div id="live-clock">સમય લોડ થઈ રહ્યો છે...</div>
+    <div id="live-clock">લોડિંગ...</div>
 </header>
 
 <div class="marquee-bar"><marquee>શિક્ષણ એ જ પરમ શક્તિ છે. જ્ઞાન, શિસ્ત અને સંસ્કાર એ જ અમારું લક્ષ્ય.</marquee></div>
 
 <div class="container">
     
+    <div class="card floating-zone">
+        <h2 style="color: var(--kids-theme);">🚀 જ્ઞાન-ગમ્મત AI ઝોન</h2>
+        <p style="margin-top:5px;">રમતા રમતા ભણવા માટે તમારું ધોરણ પસંદ કરો</p>
+        <div style="margin: 15px 0;">
+            <button onclick="loadAct('low')" class="btn-std">ધોરણ ૧ થી ૫</button>
+            <button onclick="loadAct('high')" class="btn-std">ધોરણ ૬ થી ૮</button>
+        </div>
+        <div id="act-display" class="act-grid"></div>
+    </div>
+
     <div class="card riddle-card">
         <h3 style="color: var(--game-theme);">🧩 આજનો ગાણિતિક કોયડો</h3>
         <p id="riddle-text" style="margin: 15px 0; font-weight: 700; font-size: 1.1rem;"></p>
-        <input type="text" id="user-ans" class="ans-input" placeholder="જવાબ અહીં લખો...">
+        <input type="text" id="user-ans" class="ans-input" placeholder="જવાબ લખો...">
         <button onclick="checkRiddle()" class="riddle-btn">જવાબ તપાસો</button>
         <div id="feedback" style="font-weight:700; margin-top:10px;"></div>
         <div id="explanation-box" style="display:none; text-align: left; background: white; padding: 15px; border-radius: 15px; border-left: 5px solid var(--s); margin-top: 10px;">
@@ -79,49 +97,21 @@
     </div>
 
     <div class="card" style="border: 2px dashed var(--p);">
-        <h3 style="color: var(--p);">🛠️ શિક્ષક શક્તિ (Staff Only)</h3>
+        <h3 style="color: var(--p);">🛠️ શિક્ષક શક્તિ</h3>
         <button onclick="teacherLogin()" class="btn btn-gold" style="margin-top:15px;">🔐 એડમિન લોગિન</button>
         <div id="staff-links" style="display: none; margin-top: 15px;">
             <a href="https://www.ssagujarat.org/" target="_blank" class="btn btn-edu">SSA એન્ટ્રી</a>
-            <a href="https://www.ssgujarat.org/CTELogin.aspx/" target="_blank" class="btn btn-edu">ચાઈલ્ડ ટ્રેકિંગ</a>
             <a href="https://gshala.schoolnetindia.com/" target="_blank" class="btn btn-edu">G-Shala</a>
-            <a href="https://web.convegenius.ai/?botId=0281209145078149/" target="_blank" class="btn btn-edu">ઓનલાઈન હાજરી</a>
         </div>
-    </div>
-
-    <div class="card" style="border-top: 10px solid var(--kids-theme);">
-        <h3 style="color: var(--kids-theme); margin-bottom: 20px;">📖 શૈક્ષણિક સંસાધનો</h3>
-        <a href="https://gcert.gujarat.gov.in/gcert/ResourceDocument" target="_blank" class="btn btn-kids">દિન વિશેષ GCERT</a>
-        <a href="https://gcert.gujarat.gov.in/gcert/EkkadamGallery" target="_blank" class="btn btn-kids">એક કદમ આગળ</a>
-        <a href="https://gcert.gujarat.gov.in/gcert/JeevanGallery" target="_blank" class="btn btn-kids">જીવન શિક્ષણ</a>
-    </div>
-
-    <div class="card" style="border-top: 10px solid var(--game-theme);">
-        <h3 style="color: var(--game-theme); margin-bottom: 20px;">🎮 રમત અને વાર્તા</h3>
-        <a href="https://cugujarat.ac.in/ChildrensCorner/" target="_blank" class="btn btn-game">ચિલ્ડ્રન યુનિવર્સિટી</a>
-        <a href="https://www.youtube.com/@gcertgandhinagar8400" target="_blank" class="btn btn-game">બોધ વાર્તાઓ</a>
     </div>
 
     <div class="card staff-section">
         <h3 style="color: var(--p); margin-bottom: 20px;">👨‍🏫 શાળા પરિવાર પરિચય</h3>
-        <select id="teacher-select" style="width: 100%; max-width: 500px; padding: 15px; border-radius: 15px; border: 2px solid var(--p); font-weight: bold;" onchange="showTeacher(this.value)">
+        <select id="t-select" style="width: 100%; max-width: 500px; padding: 15px; border-radius: 15px; border: 2px solid var(--p); font-weight: bold;" onchange="showT(this.value)">
             <option value="">-- શિક્ષક પસંદ કરો (૧ થી ૧૫) --</option>
             <option value="1">૧. શ્રી નિલેશકુમાર પી. પટેલ</option>
             <option value="2">૨. શ્રી રાજેન્દ્રકુમાર બી. પટેલ</option>
-            <option value="3">૩. શિક્ષક ૩</option>
-            <option value="4">૪. શિક્ષક ૪</option>
-            <option value="5">૫. શિક્ષક ૫</option>
-            <option value="6">૬. શિક્ષક ૬</option>
-            <option value="7">૭. શિક્ષક ૭</option>
-            <option value="8">૮. શિક્ષક ૮</option>
-            <option value="9">૯. શિક્ષક ૯</option>
-            <option value="10">૧૦. શિક્ષક ૧૦</option>
-            <option value="11">૧૧. શિક્ષક ૧૧</option>
-            <option value="12">૧૨. શિક્ષક ૧૨</option>
-            <option value="13">૧૩. શિક્ષક ૧૩</option>
-            <option value="14">૧૪. શિક્ષક ૧૪</option>
-            <option value="15">૧૫. શિક્ષક ૧૫</option>
-        </select>
+            </select>
         <div id="t-display"></div>
     </div>
 
@@ -129,7 +119,7 @@
 
 <footer>
     <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b></p>
-    <p style="margin-top:10px;">ડિઝાઈન અને ડેવલપમેન્ટ: <span style="color: var(--s); font-weight:700;">નિલેશ પટેલ (SRG-MATHS)</span></p>
+    <p style="margin-top:10px;">ડિઝાઈન: <span style="color: var(--s); font-weight:700;">નિલેશ પટેલ (SRG-MATHS)</span></p>
 </footer>
 
 <script>
@@ -139,76 +129,66 @@
         "2": { n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", img: "https://files.catbox.moe/vxtq6i.jpg", l1: "વિજાપુર", l2: "B.A, B.Ed", l3: "15/07/2005", l4: "30/06/2035", r1: "654321", r2: "1 થી 5", r3: "સામાજિક વિજ્ઞાન", r4: "ઇનોવેટિવ ટીચર" }
     };
 
-    // ૩૬૫ દિવસ માટેના કોયડાની યાદી
+    // ૩૬૫ દિવસ કોયડા લોજિક
     const riddles = [
         { q: "૫૦ ના અડધા કેટલા થાય?", a: "25", s: "૫૦ ને ૨ વડે ભાગતા ૨૫ મળે." },
         { q: "૧ થી ૧૦૦ માં ૯ કેટલી વાર આવે?", a: "20", s: "૯, ૧૯, ૨૯... ૮૯ (૧૦ વાર) અને ૯૦ થી ૯૯ (૧૦ વાર) એમ કુલ ૨૦ વાર." },
         { q: "એક ડઝન એટલે કેટલા નંગ?", a: "12", s: "૧ ડઝન = ૧૨ નંગ." },
-        { q: "ત્રિકોણને કેટલા ખૂણા હોય છે?", a: "3", s: "ત્રિકોણ એટલે ત્રણ ખૂણાવાળી આકૃતિ." },
-        { q: "સૌથી નાની એકી અવિભાજ્ય સંખ્યા કઈ?", a: "3", s: "૨ બેકી છે, એટલે ૩ સૌથી નાની એકી અવિભાજ્ય છે." }
+        { q: "ત્રિકોણને કેટલા ખૂણા હોય છે?", a: "3", s: "ત્રિકોણ એટલે ત્રણ ખૂણાવાળી આકૃતિ." }
     ];
 
-    // તારીખ મુજબ ઓટોમેટિક સવાલ પસંદગી
-    function getTodayRiddle() {
-        const today = new Date();
-        const start = new Date(today.getFullYear(), 0, 0);
-        const diff = today - start;
-        const oneDay = 1000 * 60 * 60 * 24;
-        const dayOfYear = Math.floor(diff / oneDay);
-        return riddles[dayOfYear % riddles.length];
+    function getRiddle() {
+        const d = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+        return riddles[d % riddles.length];
     }
-
-    const currentRiddle = getTodayRiddle();
+    const curR = getRiddle();
 
     function checkRiddle() {
-        const uAns = document.getElementById('user-ans').value.trim();
+        const u = document.getElementById('user-ans').value.trim();
         const fb = document.getElementById('feedback');
-        if(uAns === currentRiddle.a) { 
-            fb.innerHTML = "🎉 સાચો જવાબ!"; fb.style.color = "green"; confetti(); 
-        } else { 
-            fb.innerHTML = "❌ ફરી પ્રયત્ન કરો."; fb.style.color = "red"; 
-        }
-        document.getElementById('riddle-explanation').innerText = currentRiddle.s;
+        if(u === curR.a) { fb.innerHTML = "✅ સાચો જવાબ!"; fb.style.color = "green"; confetti(); }
+        else { fb.innerHTML = "❌ ફરી પ્રયત્ન કરો."; fb.style.color = "red"; }
+        document.getElementById('riddle-explanation').innerText = curR.s;
         document.getElementById('explanation-box').style.display = 'block';
     }
 
-    function showTeacher(id) {
-        const d = document.getElementById('t-display');
-        if(!id || !tData[id]) { d.innerHTML = ""; return; }
-        const t = tData[id];
-        d.innerHTML = `
-            <div class="t-profile-container">
-                <div class="t-info-box">
-                    <div class="t-info-item"><b>૧. વતન:</b> ${t.l1}</div>
-                    <div class="t-info-item"><b>૨. શૈક્ષણિક લાયકાત:</b> ${t.l2}</div>
-                    <div class="t-info-item"><b>૩. નોકરી દાખલ તારીખ:</b> ${t.l3}</div>
-                    <div class="t-info-item"><b>૪. નિવૃત તારીખ:</b> ${t.l4}</div>
-                </div>
-                <div class="t-center">
-                    <img src="${t.img}" class="t-img-big">
-                    <br><div class="t-name">${t.n}</div>
-                </div>
-                <div class="t-info-box">
-                    <div class="t-info-item"><b>૫. શિક્ષક કોડ:</b> ${t.r1}</div>
-                    <div class="t-info-item"><b>૬. ભણાવતા ધોરણ:</b> ${t.r2}</div>
-                    <div class="t-info-item"><b>૭. ભણાવતા વિષય:</b> ${t.r3}</div>
-                    <div class="t-info-item"><b>૮. વિશિષ્ટ સિદ્ધિ:</b> ${t.r4}</div>
-                </div>
-            </div>`;
+    // AI લર્નિંગ ઝોન લોજિક
+    const acts = {
+        low: [
+            { n: "ગણિત ગમ્મત", i: "🔢", l: "https://www.topmarks.co.uk/maths-games/5-7-years/counting" },
+            { n: "ભાષા રમત", i: "🅰️", l: "https://www.abcya.com/" },
+            { n: "ચિત્ર કામ", i: "🎨", l: "https://www.autodraw.com/" }
+        ],
+        high: [
+            { n: "વિજ્ઞાન પ્રયોગ", i: "🧪", l: "https://phet.colorado.edu/" },
+            { n: "નકશા રમત", i: "🌍", l: "https://world-geography-games.com/" },
+            { n: "કોડિંગ રમત", i: "💻", l: "https://code.org/dance" }
+        ]
+    };
+
+    function loadAct(t) {
+        const d = document.getElementById('act-display'); d.innerHTML = "";
+        acts[t].forEach(a => {
+            const c = document.createElement('div'); c.className="act-card";
+            c.innerHTML = `<div style="font-size:1.8rem">${a.i}</div><div style="font-weight:bold">${a.n}</div>`;
+            c.onclick = () => window.open(a.l, "_blank");
+            d.appendChild(c);
+        });
     }
 
-    function teacherLogin() { if(prompt("એડમિન પાસવર્ડ:") === "falu123") document.getElementById('staff-links').style.display='block'; }
-    
-    function pL(u) { 
-        let pass = prompt("ગેલેરી પાસવર્ડ નાખો:"); 
-        if(pass === "falu" + new Date().getDate()) { window.open(u, "_blank"); }
-        else if(pass !== null) { alert("ખોટો પાસવર્ડ! મદદ માટે વોટ્સએપ કરો."); }
+    function showT(id) {
+        const d = document.getElementById('t-display'); if(!id || !tData[id]) { d.innerHTML=""; return; }
+        const t = tData[id];
+        d.innerHTML = `<div class="t-profile-container"><div class="t-info-box"><div class="t-info-item"><b>વતન:</b> ${t.l1}</div><div class="t-info-item"><b>લાયકાત:</b> ${t.l2}</div><div class="t-info-item"><b>નોકરી તા:</b> ${t.l3}</div><div class="t-info-item"><b>નિવૃત્તિ:</b> ${t.l4}</div></div><div class="t-center"><img src="${t.img}" class="t-img-big"><br><div class="t-name">${t.n}</div></div><div class="t-info-box"><div class="t-info-item"><b>કોડ:</b> ${t.r1}</div><div class="t-info-item"><b>ધોરણ:</b> ${t.r2}</div><div class="t-info-item"><b>વિષય:</b> ${t.r3}</div><div class="t-info-item"><b>સિદ્ધિ:</b> ${t.r4}</div></div></div>`;
     }
+
+    function teacherLogin() { if(prompt("પાસવર્ડ:") === "falu123") document.getElementById('staff-links').style.display='block'; }
+    function pL(u) { let p = prompt("પાસવર્ડ:"); if(p === "falu" + new Date().getDate()) window.open(u, "_blank"); else alert("ખોટો પાસવર્ડ!"); }
 
     window.onload = () => {
-        document.getElementById('riddle-text').innerText = currentRiddle.q;
+        document.getElementById('riddle-text').innerText = curR.q;
         setInterval(() => {
-            document.getElementById('live-clock').innerText = "📅 " + new Date().toLocaleDateString('gu-IN', {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:true});
+            document.getElementById('live-clock').innerText = "📅 " + new Date().toLocaleTimeString('gu-IN');
         }, 1000);
     };
 </script>
