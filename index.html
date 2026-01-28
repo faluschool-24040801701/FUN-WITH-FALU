@@ -17,12 +17,11 @@
         header { background: #ffffff; padding: 25px; text-align: center; border-bottom: 6px solid var(--p); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
         header h1 { color: var(--p); font-size: 1.8rem; font-weight: 700; }
         #live-clock { color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-top: 8px; }
-        .marquee-bar { background: var(--s); color: white; padding: 10px 0; font-weight: 700; text-align: center; }
+        .marquee-bar { background: var(--s); color: white; padding: 12px 0; font-weight: 700; text-align: center; border-bottom: 3px solid #b34e00; }
         
         .container { padding: 40px 15px; max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .card { background: #fff; border-radius: 25px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: 0.4s; text-align: center; border: 1px solid #eee; position: relative; }
 
-        /* Floating Animation */
         @keyframes floatAnim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .floating-zone { animation: floatAnim 4s ease-in-out infinite; border: 3px solid var(--kids-theme) !important; background: #f3e5f5 !important; grid-column: 1 / -1; }
 
@@ -32,12 +31,10 @@
         .act-card { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: pointer; border-bottom: 4px solid var(--s); transition: 0.3s; }
         .act-card:hover { transform: scale(1.05); }
 
-        /* RIDDLE SECTION */
         .riddle-card { border: 3px solid var(--game-theme); background: linear-gradient(145deg, #e0f2f1, #ffffff); }
         .ans-input { width: 85%; padding: 12px; border: 2px solid var(--game-theme); border-radius: 10px; font-size: 1.1rem; text-align: center; margin: 15px 0; outline: none; }
         .riddle-btn { background: var(--game-theme); color: white; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 85%; }
         
-        /* TEACHER PROFILE */
         .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
         .t-profile-container { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; background: #fdfdfd; padding: 20px; border-radius: 30px; }
         .t-info-box { flex: 1; min-width: 260px; text-align: left; }
@@ -46,17 +43,16 @@
         .t-img-big { width: 170px; height: 170px; border-radius: 50%; border: 5px solid var(--p); object-fit: cover; margin-bottom: 10px; background: #eee; }
         .t-name { color: var(--p); font-weight: 700; background: var(--gold); padding: 5px 20px; border-radius: 50px; display: inline-block; font-size: 1.1rem; }
 
-        /* BUTTONS */
         .btn { padding: 15px; border-radius: 15px; font-weight: 700; color: white; border: none; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; text-decoration: none; cursor: pointer; transition: 0.3s; }
         .btn-gold { background: #b8860b; border-bottom: 4px solid #5d4305; }
         .btn-edu { background: #37474f; border-bottom: 4px solid #102027; margin-bottom: 10px; font-size: 0.9rem; }
         .btn-wa { background: #25D366; border-bottom: 4px solid #128C7E; }
         .btn-accent { background: var(--accent); border-bottom: 4px solid #7f0000; }
 
-        /* STAFF LINKS GRID */
         .staff-links-grid { display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
 
         footer { background: #fff; padding: 40px; text-align: center; border-top: 2px solid #eee; margin-top: 50px; }
+        .legal-footer { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 1px solid #ddd; margin-top: 20px; text-align: justify; font-size: 0.85rem; color: #444; }
         @media (max-width: 768px) { .t-profile-container { flex-direction: column; } }
     </style>
 </head>
@@ -67,7 +63,9 @@
     <div id="live-clock">લોડિંગ...</div>
 </header>
 
-<div class="marquee-bar"><marquee>શિક્ષણ એ જ પરમ શક્તિ છે. જ્ઞાન, શિસ્ત અને સંસ્કાર એ જ અમારું લક્ષ્ય.</marquee></div>
+<div class="marquee-bar">
+    <marquee id="iks-marquee">લોડિંગ IKS મુદ્દો...</marquee>
+</div>
 
 <div class="container">
     
@@ -96,7 +94,7 @@
     <div class="card" style="border-top: 10px solid var(--accent);">
         <h3 style="color: var(--p); margin-bottom: 20px;">🔐 સુરક્ષિત ગેલેરી</h3>
         <button onclick="pL('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn btn-accent"><span>🖼️</span> ૧. શાળા પ્રવૃત્તિઓ</button>
-        <button onclick="pL('https://photos.app.goo.gl/9EVZZUvj3arZ4YfT8')" class="btn btn-accent"><span>📂</span> ૨. શાળા પ્રોજેક્ટ</button>
+        <button onclick="pL('https://photos.app.goo.gl/9EVZZUvj3arT4YfT8')" class="btn btn-accent"><span>📂</span> ૨. શાળા પ્રોજેક્ટ</button>
         <a href="https://wa.me/919574456156?text=નમસ્તે સર, મને ગેલેરીનો પાસવર્ડ આપવા વિનંતી." target="_blank" class="btn btn-wa"><span>💬</span> પાસવર્ડ મેળવવા વોટ્સએપ</a>
     </div>
 
@@ -107,10 +105,10 @@
         <div id="staff-links" class="staff-links-grid">
             <a href="https://www.ssagujarat.org/" target="_blank" class="btn btn-edu">SSA એન્ટ્રી</a>
             <a href="https://gshala.schoolnetindia.com/" target="_blank" class="btn btn-edu">G-Shala</a>
-            <a href="https://childtracking.gujarat.gov.in/" target="_blank" class="btn btn-edu">Child Tracking</a>
+            <a href="https://www.ssgujarat.org/CTELogin.aspx/" target="_blank" class="btn btn-edu">Child Tracking</a>
             <a href="https://www.digitalgujarat.gov.in/" target="_blank" class="btn btn-edu">Digital Gujarat</a>
-            <a href="https://web.whatsapp.com/" target="_blank" class="btn btn-edu" style="background:#25D366; border-bottom-color:#128C7E;">WhatsApp Web</a>
-            <a href="https://nileshsrg.github.io/falu/" target="_blank" class="btn btn-edu" style="background:var(--s); border-bottom-color:#b34e00;">School Site</a>
+            <a href="https://web.convegenius.ai/?botId=0281209145078149/" target="_blank" class="btn btn-edu" style="background:#25D366; border-bottom-color:#128C7E;">swiftchat</a>
+            <a href="https://udiseplus.gov.in/#/en/page/statelogin/" target="_blank" class="btn btn-edu" style="background:var(--s); border-bottom-color:#b34e00;">Udise+</a>
         </div>
     </div>
 
@@ -128,17 +126,53 @@
 
 <footer>
     <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b></p>
+    <div class="legal-footer">
+        <b>⚠️ કાયદાકીય નોંધ:</b> આ વેબસાઈટ પરનું તમામ કન્ટેન્ટ, ફોટા અને IKS માહિતી શૈક્ષણિક હેતુ માટે છે. GCERT ગાંધીનગર દ્વારા નિર્ધારિત IKS મોડ્યુલનો અહીં સંદર્ભ લેવામાં આવ્યો છે. આ ડેટાનો કોઈ પણ પ્રકારનો દુરુપયોગ કે અનધિકૃત ઉપયોગ કરનાર સામે કાયદેસરની કાર્યવાહી થઈ શકે છે.
+    </div>
     <p style="margin-top:10px;">ડિઝાઈન: <span style="color: var(--s); font-weight:700;">નિલેશ પટેલ (SRG-MATHS)</span></p>
 </footer>
 
 <script>
-    // શિક્ષક ડેટા
+    // ૩૧ દિવસના ૩૧ IKS મુદ્દાઓ
+    const iksDaily = {
+        1: "શૂન્યની શોધ ભારત દ્વારા થઈ હતી. (સંદર્ભ: બ્રહ્મગુપ્ત)",
+        2: "પાય (π) ની ચોક્કસ કિંમત આર્યભટ્ટે આપી હતી. (સંદર્ભ: આર્યભટીયમ)",
+        3: "પ્લાસ્ટિક સર્જરીના જનક મહર્ષિ સુશ્રુત હતા. (સંદર્ભ: સુશ્રુત સંહિતા)",
+        4: "આયુર્વેદ વિશ્વની સૌથી જૂની ચિકિત્સા પદ્ધતિ છે. (સંદર્ભ: ચરક સંહિતા)",
+        5: "દશાંશ પદ્ધતિનો ઉદ્ભવ પ્રાચીન ભારતમાં થયો હતો.",
+        6: "પાણિનીએ વિશ્વનું પ્રથમ વ્યાકરણ લખ્યું હતું. (સંદર્ભ: અષ્ટાધ્યાયી)",
+        7: "પૃથ્વી ગોળ છે અને પોતાની ધરી પર ફરે છે તેવું આર્યભટ્ટે વર્ષો પહેલા કહ્યું હતું.",
+        8: "અણુ સિદ્ધાંતના પ્રણેતા મહર્ષિ કણાદ હતા. (સંદર્ભ: વૈશેષિક સૂત્ર)",
+        9: "વિશ્વની પ્રથમ યુનિવર્સિટી તક્ષશિલા (ભારત) માં હતી.",
+        10: "યોગ વિદ્યા ભારતની અમૂલ્ય ભેટ છે. (સંદર્ભ: પતંજલિ યોગસૂત્ર)",
+        11: "ચિહ્ન વિજ્ઞાન અને અંકગણિતમાં ભારત અગ્રેસર રહ્યું છે.",
+        12: "બૌધાયન પ્રમેય (પાયથાગોરસ પ્રમેય) ભારતીય દેણ છે.",
+        13: "નૌકાશાસ્ત્રની શરૂઆત સિંધુ ખીણની સભ્યતાથી થઈ હતી.",
+        14: "ખગોળશાસ્ત્રમાં નક્ષત્રોનું જ્ઞાન વેદોમાં વર્ણિત છે.",
+        15: "લોખંડ અને ધાતુકામમાં હડપ્પીય સંસ્કૃતિ નિપુણ હતી.",
+        16: "પિંગલાચાર્યે દ્વિઅંકી (Binary) પદ્ધતિનો પાયો નાખ્યો હતો.",
+        17: "લીલાવતી ગ્રંથમાં અંકગણિતના જટિલ પ્રશ્નોના ઉકેલ છે. (સંદર્ભ: ભાસ્કરાચાર્ય)",
+        18: "ભારતીય સ્થાપત્ય કલા વિજ્ઞાન અને ગણિત પર આધારિત છે.",
+        19: "ચંદ્રગ્રહણ અને સૂર્યગ્રહણના કારણો પ્રાચીન ભારતે શોધ્યા હતા.",
+        20: "રંગશાસ્ત્ર અને કાપડ ઉદ્યોગમાં ભારત વિશ્વગુરુ હતું.",
+        21: "શ્રીધરાચાર્યે દ્વિઘાત સમીકરણ ઉકેલવાની રીત આપી હતી.",
+        22: "ભારતીય સંગીત વિજ્ઞાન (સામવેદ) ધ્વનિશાસ્ત્ર પર આધારિત છે.",
+        23: "મહારાજા સવાઈ જયસિંહે જંતર-મંતર જેવી વેધશાળાઓ બનાવી હતી.",
+        24: "ભારતીય કૃષિ વિજ્ઞાન પર ઋષિ પરાશરે ગ્રંથ લખ્યો હતો.",
+        25: "કાળ ગણના (Time calculation) માં ભારત સૌથી ચોક્કસ હતું.",
+        26: "સૂર્ય સિદ્ધાંત ખગોળશાસ્ત્રનો પાયાનો ગ્રંથ છે.",
+        27: "વરાહમિહિરે પંચસિદ્ધાંતિકામાં ખગોળનું ઊંડું જ્ઞાન આપ્યું છે.",
+        28: "ભારતીય દરિયાઈ વેપાર અને વહાણવટું અત્યંત વિકસિત હતું.",
+        29: "તર્કશાસ્ત્ર અને ન્યાયશાસ્ત્રમાં ભારતની તોલે કોઈ ન આવે.",
+        30: "વાસ્તુશાસ્ત્ર એ સૂર્યપ્રકાશ અને પવનના વિજ્ઞાન પર આધારિત છે.",
+        31: "જ્ઞાન-વિજ્ઞાનની તમામ શાખાઓનું મૂળ ભારતીય જ્ઞાન પરંપરા છે."
+    };
+
     const tData = {
         "1": { n: "શ્રી નિલેશકુમાર પી. પટેલ", img: "https://files.catbox.moe/8b8w7y.jpg", l1: "જેપુર", l2: "M.Sc, B.Ed", l3: "01/06/2010", l4: "31/05/2040", r1: "123456", r2: "6 થી 8", r3: "ગણિત-વિજ્ઞાન", r4: "SRG MATHS" },
         "2": { n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", img: "https://files.catbox.moe/vxtq6i.jpg", l1: "વિજાપુર", l2: "B.A, B.Ed", l3: "15/07/2005", l4: "30/06/2035", r1: "654321", r2: "1 થી 5", r3: "સામાજિક વિજ્ઞાન", r4: "ઇનોવેટિવ ટીચર" }
     };
 
-    // ૩૬૫ દિવસ કોયડા લોજિક
     const riddles = [
         { q: "૫૦ ના અડધા કેટલા થાય?", a: "25", s: "૫૦ ને ૨ વડે ભાગતા ૨૫ મળે." },
         { q: "૧ થી ૧૦૦ માં ૯ કેટલી વાર આવે?", a: "20", s: "૯, ૧૯, ૨૯... ૮૯ (૧૦ વાર) અને ૯૦ થી ૯૯ (૧૦ વાર) એમ કુલ ૨૦ વાર." },
@@ -161,7 +195,6 @@
         document.getElementById('explanation-box').style.display = 'block';
     }
 
-    // AI લર્નિંગ ઝોન લોજિક
     const acts = {
         low: [
             { n: "ગણિત ગમ્મત", i: "🔢", l: "https://www.topmarks.co.uk/maths-games/5-7-years/counting" },
@@ -206,6 +239,12 @@
 
     window.onload = () => {
         document.getElementById('riddle-text').innerText = curR.q;
+        
+        // ૩૧ દિવસના IKS મુદ્દા સેટ કરવા માટેનું લોજિક
+        const day = new Date().getDate();
+        const iksMsg = iksDaily[day] || iksDaily[1];
+        document.getElementById('iks-marquee').innerText = "🌟 આજનું IKS: " + iksMsg + " | પીએમશ્રી શાળા ફલુમાં આપનું સ્વાગત છે.";
+
         setInterval(() => {
             document.getElementById('live-clock').innerText = "📅 " + new Date().toLocaleTimeString('gu-IN');
         }, 1000);
