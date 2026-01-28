@@ -46,11 +46,15 @@
         .t-img-big { width: 170px; height: 170px; border-radius: 50%; border: 5px solid var(--p); object-fit: cover; margin-bottom: 10px; background: #eee; }
         .t-name { color: var(--p); font-weight: 700; background: var(--gold); padding: 5px 20px; border-radius: 50px; display: inline-block; font-size: 1.1rem; }
 
+        /* BUTTONS */
         .btn { padding: 15px; border-radius: 15px; font-weight: 700; color: white; border: none; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; text-decoration: none; cursor: pointer; transition: 0.3s; }
         .btn-gold { background: #b8860b; border-bottom: 4px solid #5d4305; }
-        .btn-edu { background: #37474f; border-bottom: 4px solid #102027; }
+        .btn-edu { background: #37474f; border-bottom: 4px solid #102027; margin-bottom: 10px; font-size: 0.9rem; }
         .btn-wa { background: #25D366; border-bottom: 4px solid #128C7E; }
         .btn-accent { background: var(--accent); border-bottom: 4px solid #7f0000; }
+
+        /* STAFF LINKS GRID */
+        .staff-links-grid { display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
 
         footer { background: #fff; padding: 40px; text-align: center; border-top: 2px solid #eee; margin-top: 50px; }
         @media (max-width: 768px) { .t-profile-container { flex-direction: column; } }
@@ -98,10 +102,15 @@
 
     <div class="card" style="border: 2px dashed var(--p);">
         <h3 style="color: var(--p);">🛠️ શિક્ષક શક્તિ</h3>
-        <button onclick="teacherLogin()" class="btn btn-gold" style="margin-top:15px;">🔐 એડમિન લોગિન</button>
-        <div id="staff-links" style="display: none; margin-top: 15px;">
+        <button onclick="teacherLogin()" id="login-btn" class="btn btn-gold" style="margin-top:15px;">🔐 એડમિન લોગિન</button>
+        
+        <div id="staff-links" class="staff-links-grid">
             <a href="https://www.ssagujarat.org/" target="_blank" class="btn btn-edu">SSA એન્ટ્રી</a>
             <a href="https://gshala.schoolnetindia.com/" target="_blank" class="btn btn-edu">G-Shala</a>
+            <a href="https://childtracking.gujarat.gov.in/" target="_blank" class="btn btn-edu">Child Tracking</a>
+            <a href="https://www.digitalgujarat.gov.in/" target="_blank" class="btn btn-edu">Digital Gujarat</a>
+            <a href="https://web.whatsapp.com/" target="_blank" class="btn btn-edu" style="background:#25D366; border-bottom-color:#128C7E;">WhatsApp Web</a>
+            <a href="https://nileshsrg.github.io/falu/" target="_blank" class="btn btn-edu" style="background:var(--s); border-bottom-color:#b34e00;">School Site</a>
         </div>
     </div>
 
@@ -111,7 +120,7 @@
             <option value="">-- શિક્ષક પસંદ કરો (૧ થી ૧૫) --</option>
             <option value="1">૧. શ્રી નિલેશકુમાર પી. પટેલ</option>
             <option value="2">૨. શ્રી રાજેન્દ્રકુમાર બી. પટેલ</option>
-            </select>
+        </select>
         <div id="t-display"></div>
     </div>
 
@@ -182,8 +191,18 @@
         d.innerHTML = `<div class="t-profile-container"><div class="t-info-box"><div class="t-info-item"><b>વતન:</b> ${t.l1}</div><div class="t-info-item"><b>લાયકાત:</b> ${t.l2}</div><div class="t-info-item"><b>નોકરી તા:</b> ${t.l3}</div><div class="t-info-item"><b>નિવૃત્તિ:</b> ${t.l4}</div></div><div class="t-center"><img src="${t.img}" class="t-img-big"><br><div class="t-name">${t.n}</div></div><div class="t-info-box"><div class="t-info-item"><b>કોડ:</b> ${t.r1}</div><div class="t-info-item"><b>ધોરણ:</b> ${t.r2}</div><div class="t-info-item"><b>વિષય:</b> ${t.r3}</div><div class="t-info-item"><b>સિદ્ધિ:</b> ${t.r4}</div></div></div>`;
     }
 
-    function teacherLogin() { if(prompt("પાસવર્ડ:") === "falu123") document.getElementById('staff-links').style.display='block'; }
-    function pL(u) { let p = prompt("પાસવર્ડ:"); if(p === "falu" + new Date().getDate()) window.open(u, "_blank"); else alert("ખોટો પાસવર્ડ!"); }
+    function teacherLogin() { 
+        if(prompt("પાસવર્ડ:") === "falu123") {
+            document.getElementById('staff-links').style.display='grid'; 
+            document.getElementById('login-btn').style.display='none';
+        } 
+    }
+    
+    function pL(u) { 
+        let p = prompt("પાસવર્ડ:"); 
+        if(p === "falu" + new Date().getDate()) window.open(u, "_blank"); 
+        else alert("ખોટો પાસવર્ડ!"); 
+    }
 
     window.onload = () => {
         document.getElementById('riddle-text').innerText = curR.q;
