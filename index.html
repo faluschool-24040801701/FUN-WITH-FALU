@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         :root { 
             --cream-bg: #fff8e1;
@@ -13,152 +14,150 @@
             --accent: #c62828;
             --kids-theme: #6a1b9a;
             --game-theme: #00796b;
+            --gold: #ffd700;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; font-family: 'Hind Vadodara', sans-serif; }
         
-        body { background-color: var(--cream-bg); min-height: 100vh; color: #333; }
+        body { background-color: var(--cream-bg); min-height: 100vh; color: #333; overflow-x: hidden; }
 
-        header { 
-            background: #ffffff; padding: 25px; text-align: center; border-bottom: 6px solid var(--p); 
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-        }
+        header { background: #ffffff; padding: 25px; text-align: center; border-bottom: 6px solid var(--p); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
         header h1 { color: var(--p); font-size: 1.8rem; font-weight: 700; }
         #live-clock { color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-top: 8px; }
 
         .marquee-bar { background: var(--s); color: white; padding: 10px 0; font-weight: 700; text-align: center; }
 
-        .container { 
-            padding: 40px 15px; max-width: 1200px; margin: auto; 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; 
-        }
+        .container { padding: 40px 15px; max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         
-        .card { 
-            background: #fff; border-radius: 25px; padding: 25px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: 0.4s;
-            text-align: center; border: 1px solid #eee;
-        }
+        .card { background: #fff; border-radius: 25px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: 0.4s; text-align: center; border: 1px solid #eee; position: relative; }
         .card:hover { transform: translateY(-10px); }
 
-        .iks-card { border-top: 10px solid var(--s); grid-column: 1 / -1; text-align: left; }
-        .shlok { font-size: 1.4rem; color: #a12f00; font-weight: 700; display: block; margin: 15px 0; }
-        
-        .btn { 
-            padding: 15px; border-radius: 15px; font-weight: 700; color: white; border: none; 
-            display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; 
-            text-decoration: none; transition: 0.3s ease; box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        .btn span { margin-right: 12px; font-size: 1.5rem; }
-        .btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+        /* QUIZ STYLE */
+        .quiz-card { border: 3px solid var(--gold); background: linear-gradient(145deg, #ffffff, #fff9e6); }
+        .quiz-option { padding: 12px; margin: 8px 0; border: 2px solid #ddd; border-radius: 12px; cursor: pointer; transition: 0.3s; font-weight: 600; }
+        .quiz-option:hover { background: #fff3e0; border-color: var(--s); }
 
+        .btn { padding: 15px; border-radius: 15px; font-weight: 700; color: white; border: none; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; text-decoration: none; transition: 0.3s ease; box-shadow: 0 6px 12px rgba(0,0,0,0.15); cursor: pointer;}
+        .btn span { margin-right: 12px; font-size: 1.5rem; }
+        
         .btn-kids { background: linear-gradient(135deg, #9c27b0, #6a1b9a); border-bottom: 4px solid #4a148c; }
         .btn-game { background: linear-gradient(135deg, #00bfa5, #00796b); border-bottom: 4px solid #004d40; }
         .btn-edu { background: #37474f; border-bottom: 4px solid #102027; }
-        .btn-seb { background: #d32f2f; border-bottom: 4px solid #b71c1c; }
         .btn-wa { background: #2e7d32; border-bottom: 4px solid #1b5e20; }
         .btn-accent { background: var(--accent); }
-        .btn-primary { background: var(--p); }
+        .btn-gold { background: #b8860b; border-bottom: 4px solid #5d4305; }
 
-        /* STAFF SECTION NEW STYLE */
+        /* STAFF SECTION */
         .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
-        .staff-sel { width: 100%; max-width: 500px; padding: 15px; border-radius: 15px; border: 2px solid var(--p); font-size: 1.2rem; margin-bottom: 30px; font-weight: bold; }
-
         .profile-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; align-items: center; margin-top: 20px; }
         .side-btns { display: flex; flex-direction: column; gap: 10px; }
         .s-btn { padding: 12px; border-radius: 10px; font-size: 0.9rem; color: white; text-decoration: none; font-weight: bold; background: var(--p); text-align: center; border-bottom: 3px solid #000051; }
-        .s-btn-alt { background: var(--game-theme); border-bottom: 3px solid #004d40; }
-
         .main-info { background: #f9f9f9; padding: 20px; border-radius: 20px; border: 1px solid #ddd; }
-        .t-img { width: 130px; height: 130px; border-radius: 50%; border: 5px solid var(--p); object-fit: cover; margin-bottom: 10px; }
-        
-        .info-tab { width: 100%; border-collapse: collapse; }
-        .info-tab td { padding: 10px; border-bottom: 1px solid #eee; text-align: left; }
-        .info-tab td:first-child { font-weight: 700; color: var(--p); width: 40%; }
+        .t-img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid var(--p); object-fit: cover; }
 
         footer { background: #fff; padding: 40px 20px; text-align: center; border-top: 2px solid #eee; }
-        .legal { background: #fffbe9; border: 1px dashed #ffd600; padding: 20px; border-radius: 15px; font-size: 0.9rem; max-width: 900px; margin: auto; }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @media (max-width: 768px) { .profile-grid { grid-template-columns: 1fr; } .side-btns { flex-direction: row; flex-wrap: wrap; justify-content: center; } }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
 <header>
     <h1>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</h1>
-    <p>તાલુકો: વિજાપુર | DISE કોડ: 24040801701 | પિનકોડ: 384570</p>
     <div id="live-clock">સમય લોડ થઈ રહ્યો છે...</div>
 </header>
 
 <div class="marquee-bar"><marquee id="tht">જ્ઞાન એ અમૂલ્ય ધન છે.</marquee></div>
 
 <div class="container">
-    <div class="card iks-card">
+    
+    <div class="card quiz-card">
+        <h3 style="color: var(--s);">🧠 આજનો સ્માર્ટ સવાલ</h3>
+        <p id="q-text" style="margin: 15px 0; font-weight: 700; font-size: 1.1rem;">ભારતનું રાષ્ટ્રીય ફૂલ કયું છે?</p>
+        <div id="quiz-options">
+            <div class="quiz-option" onclick="checkAns(this, false)">ગુલાબ</div>
+            <div class="quiz-option" onclick="checkAns(this, true)">કમળ</div>
+            <div class="quiz-option" onclick="checkAns(this, false)">ગલગોટો</div>
+        </div>
+        <div id="quiz-msg" style="margin-top: 10px; font-weight: bold; height: 20px;"></div>
+    </div>
+
+    <div class="card" style="border: 2px dashed var(--p);">
+        <h3 style="color: var(--p);">🛠️ શિક્ષક શક્તિ (Staff Only)</h3>
+        <p style="font-size: 0.8rem; margin-bottom: 15px; color: #666;">બધી સરકારી એન્ટ્રી એક જ જગ્યાએ</p>
+        <button onclick="teacherLogin()" class="btn btn-gold"><span>🔐</span> એડમિન લોગિન</button>
+        <div id="staff-links" style="display: none; animation: slideUp 0.5s ease; margin-top: 15px;">
+            <a href="https://www.ssagujarat.org/" target="_blank" class="btn btn-edu">SSA એન્ટ્રી</a>
+            <a href="https://childtrackinggujarat.org/" target="_blank" class="btn btn-edu">ચાઈલ્ડ ટ્રેકિંગ</a>
+            <a href="https://attendance-staging.gujarat.gov.in/" target="_blank" class="btn btn-edu">ઓનલાઈન હાજરી</a>
+        </div>
+    </div>
+
+    <div class="card iks-card" style="grid-column: 1 / -1; text-align: left; border-top: 10px solid var(--s);">
         <h3 style="color:var(--accent);">🔱 ભારતીય જ્ઞાન પરંપરા (IKS)</h3>
-        <p id="iks-r" style="font-weight: 700; color: #555; margin-top: 10px;"></p>
-        <span id="iks-s" class="shlok"></span>
-        <p id="iks-m" style="font-style: italic; color: #333; border-top: 1px solid #eee; padding-top: 10px;"></p>
+        <span id="iks-s" style="font-size: 1.3rem; color: #a12f00; font-weight: 700; display: block; margin: 10px 0;"></span>
+        <p id="iks-m" style="font-style: italic; color: #333;"></p>
     </div>
 
-    <div class="card" style="border-top: 12px solid var(--kids-theme);">
-        <h3 style="color: var(--kids-theme); margin-bottom: 25px;">✨ GCERT શૈક્ષણિક સંસાધનો</h3>
+    <div class="card" style="border-top: 10px solid var(--kids-theme);">
+        <h3 style="color: var(--kids-theme); margin-bottom: 20px;">✨ GCERT સંસાધનો</h3>
         <a href="https://gcert.gujarat.gov.in/gcert/ResourceDocument" target="_blank" class="btn btn-kids"><span>📖</span> ૧. દિન વિશેષ GCERT</a>
-        <a href="https://gcert.gujarat.gov.in/gcert/EkkadamGallery" target="_blank" class="btn btn-kids"><span>🚀</span> ૨. એક કદમ આગળ_GCERT</a>
-        <a href="https://gcert.gujarat.gov.in/gcert/JeevanGallery" target="_blank" class="btn btn-kids"><span>🎨</span> ૩. જીવન શિક્ષણ_GCERT</a>
+        <a href="https://gcert.gujarat.gov.in/gcert/EkkadamGallery" target="_blank" class="btn btn-kids"><span>🚀</span> ૨. એક કદમ આગળ</a>
+        <a href="https://gcert.gujarat.gov.in/gcert/JeevanGallery" target="_blank" class="btn btn-kids"><span>🎨</span> ૩. જીવન શિક્ષણ</a>
     </div>
 
-    <div class="card" style="border-top: 12px solid var(--game-theme);">
-        <h3 style="color: var(--game-theme); margin-bottom: 25px;">🎮 રમત-રમત માં નવું શીખો</h3>
-        <a href="https://cugujarat.ac.in/ChildrensCorner/" target="_blank" class="btn btn-game"><span>🧸</span> ૧. ચિલ્ડ્રન યુનિ. (Children Corner)</a>
-        <a href="https://www.youtube.com/@gcertgandhinagar8400/search?query=વાર્તા" target="_blank" class="btn btn-game"><span>📺</span> ૨. બોધ વાર્તાઓ અને રમત (GCERT TV)</a>
-        <a href="https://readalong.google.com/" target="_blank" class="btn btn-game"><span>🗣️</span> ૩. વાર્તા વાંચો (Read Along)</a>
-        <a href="https://quickdraw.withgoogle.com/?locale=gu" target="_blank" class="btn btn-game"><span>🖌️</span> ૪. ચિત્ર ઓળખો (AI ગેમ)</a>
-    </div>
-
-    <div class="card" style="border-top: 12px solid #37474f;">
-        <h3 style="color: #37474f; margin-bottom: 25px;">💻 Digital પ્લેટફોર્મ</h3>
-        <a href="https://gshala.gujarat.gov.in/" target="_blank" class="btn btn-edu"><span>🎓</span> G-SHALA પોર્ટલ</a>
-        <a href="https://gcert.gujarat.gov.in/" target="_blank" class="btn btn-edu"><span>📚</span> GCERT ઓફિશિયલ</a>
-        <a href="https://sebexam.org/" target="_blank" class="btn btn-seb"><span>📝</span> SEB EXAM (પરીક્ષા બોર્ડ)</a>
-        <a href="https://ssagujarat.org/" target="_blank" class="btn btn-edu"><span>📊</span> SSA-GUJARAT</a>
-    </div>
-
-    <div class="card" style="border-top: 12px solid var(--accent);">
-        <h3 style="color: var(--p); margin-bottom: 25px;">🔐 સુરક્ષિત ગેલેરી</h3>
-        <button onclick="pL('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn btn-accent"><span>🖼️</span> ૧. શાળા પ્રવૃત્તિઓ</button>
-        <button onclick="pL('https://photos.app.goo.gl/9EVZZUvj3arZ4YfT8')" class="btn btn-primary"><span>🎉</span> ૨. શૈક્ષણિક ઉત્સવો</button>
-        <a href="https://wa.me/919574456156?text=નમસ્તે નિલેશભાઈ, પાસવર્ડ જોઈએ છે." target="_blank" class="btn btn-wa"><span>💬</span> વોટ્સએપ સંપર્ક</a>
+    <div class="card" style="border-top: 10px solid var(--game-theme);">
+        <h3 style="color: var(--game-theme); margin-bottom: 20px;">🎮 રમત અને વાર્તા</h3>
+        <a href="https://cugujarat.ac.in/ChildrensCorner/" target="_blank" class="btn btn-game"><span>🧸</span> ૧. ચિલ્ડ્રન યુનિ.</a>
+        <a href="https://www.youtube.com/@gcertgandhinagar8400/search?query=વાર્તા" target="_blank" class="btn btn-game"><span>📺</span> ૨. બોધ વાર્તાઓ અને રમત</a>
+        <a href="https://readalong.google.com/" target="_blank" class="btn btn-game"><span>🗣️</span> ૩. વાર્તા વાંચો</a>
     </div>
 
     <div class="card staff-section">
         <h3 style="color: var(--p); margin-bottom: 20px;">👨‍🏫 શાળા પરિવાર પરિચય</h3>
-        <select class="staff-sel" onchange="showTeacher(this.value)">
+        <select style="width: 100%; max-width: 450px; padding: 15px; border-radius: 12px; border: 2px solid var(--p); font-weight: bold;" onchange="showTeacher(this.value)">
             <option value="">-- શિક્ષક પસંદ કરો (૧ થી ૧૫) --</option>
             <option value="1">૧. શ્રી નિલેશકુમાર પી. પટેલ</option>
             <option value="2">૨. શ્રી રાજેન્દ્રકુમાર બી. પટેલ</option>
             <option value="3">૩. ખાલી વિગત (એડિટ કરો)</option>
-            <option value="4">૪. ખાલી વિગત (એડિટ કરો)</option>
-            <option value="5">૫. ખાલી વિગત (એડિટ કરો)</option>
-            <option value="6">૬. ખાલી વિગત (એડિટ કરો)</option>
-            <option value="7">૭. ખાલી વિગત (એડિટ કરો)</option>
-            <option value="8">૮. ખાલી વિગત (એડિટ કરો)</option>
-            <option value="9">૯. ખાલી વિગત (એડિટ કરો)</option>
-            <option value="10">૧૦. ખાલી વિગત (એડિટ કરો)</option>
-            <option value="11">૧૧. ખાલી વિગત (એડિટ કરો)</option>
-            <option value="12">૧૨. ખાલી વિગત (એડિટ કરો)</option>
-            <option value="13">૧૩. ખાલી વિગત (એડિટ કરો)</option>
-            <option value="14">૧૪. ખાલી વિગત (એડિટ કરો)</option>
-            <option value="15">૧૫. ખાલી વિગત (એડિટ કરો)</option>
         </select>
         <div id="t-display"></div>
     </div>
+
+    <div class="card" style="border-top: 10px solid var(--accent);">
+        <h3 style="color: var(--p); margin-bottom: 20px;">🔐 સુરક્ષિત ગેલેરી</h3>
+        <button onclick="pL('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn btn-accent"><span>🖼️</span> શાળા પ્રવૃત્તિઓ</button>
+        <a href="https://wa.me/919574456156" target="_blank" class="btn btn-wa"><span>💬</span> વોટ્સએપ સંપર્ક</a>
+    </div>
+
 </div>
 
 <footer>
-    <div class="legal"><b>⚖️ નોટિસ:</b> તમામ સામગ્રી પીએમશ્રી ફલુ શાળાની માલિકીની છે.</div>
-    <div style="margin-top: 30px; font-weight: 700;">Design by <span style="color:var(--s)">Nilesh Patel (SRG-MATHS)</span></div>
+    <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b></p>
+    <p style="margin-top: 10px;">ડિઝાઈન: <span style="color: var(--s);">નિલેશ પટેલ (SRG-MATHS)</span></p>
 </footer>
 
 <script>
+    // ક્વિઝ લોજિક
+    function checkAns(el, isCorrect) {
+        const msg = document.getElementById('quiz-msg');
+        if(isCorrect) {
+            msg.innerHTML = "🎉 સાચો જવાબ! ખૂબ સરસ બાળક!";
+            msg.style.color = "green";
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+        } else {
+            msg.innerHTML = "❌ ફરી પ્રયત્ન કરો!";
+            msg.style.color = "red";
+        }
+    }
+
+    // ટીચર લોગિન
+    function teacherLogin() {
+        let p = prompt("શિક્ષક કોડ (Password) નાખો:");
+        if(p === "falu123") { 
+            document.getElementById('staff-links').style.display = 'block';
+        } else if (p !== null) { alert("ખોટો કોડ!"); }
+    }
+
+    // સમય અપડેટ
     function updateTime() {
         const now = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
@@ -166,59 +165,45 @@
     }
     setInterval(updateTime, 1000);
 
+    // ગેલેરી પાસવર્ડ
     function pL(u) {
-        var d = new Date().getDate(); 
-        var p = prompt("પાસવર્ડ:"); 
-        if (p === "falu" + d) { window.open(u, "_blank"); } 
-        else if (p !== null) { alert("ખોટો પાસવર્ડ!"); }
+        let d = new Date().getDate();
+        if(prompt("પાસવર્ડ:") === "falu" + d) { window.open(u, "_blank"); }
     }
 
+    // શિક્ષક ડેટા
     const tData = {
-        "1": { n: "શ્રી નિલેશકુમાર પી. પટેલ", v: "જેપુર", s: "ગણિત-વિજ્ઞાન", a: "જિલ્લા શ્રેષ્ઠ શિક્ષક 2021", i: "https://files.catbox.moe/8b8w7y.jpg" },
-        "2": { n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", v: "વિજાપુર", s: "સામાજિક વિજ્ઞાન", a: "અનુભવી શિક્ષક", i: "https://files.catbox.moe/vxtq6i.jpg" }
+        "1": { n: "શ્રી નિલેશકુમાર પી. પટેલ", v: "જેપુર", s: "ગણિત-વિજ્ઞાન", i: "https://files.catbox.moe/8b8w7y.jpg" },
+        "2": { n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", v: "વિજાપુર", s: "સામાજિક વિજ્ઞાન", i: "https://files.catbox.moe/vxtq6i.jpg" }
     };
 
     function showTeacher(id) {
         const d = document.getElementById('t-display');
         if(!id) { d.innerHTML = ""; return; }
-        const t = tData[id] || { n: "શિક્ષકનું નામ", v: "વતન", s: "વિષય", a: "સિદ્ધિ", i: "https://via.placeholder.com/150" };
+        const t = tData[id] || { n: "શિક્ષકનું નામ", v: "વતન", s: "વિષય", i: "https://via.placeholder.com/150" };
         d.innerHTML = `
             <div class="profile-grid" style="animation: slideUp 0.5s ease;">
                 <div class="side-btns">
-                    <a href="#" class="s-btn">📄 હાજરી</a>
-                    <a href="#" class="s-btn s-btn-alt">📂 પ્રોફાઇલ</a>
-                    <a href="#" class="s-btn">🏅 એવોર્ડ્સ</a>
+                    <a href="#" class="s-btn">📄 હાજરી પત્રક</a>
+                    <a href="#" class="s-btn">📂 પ્રોફાઇલ PDF</a>
                 </div>
                 <div class="main-info">
                     <img src="${t.i}" class="t-img">
                     <h4>${t.n}</h4>
-                    <table class="info-tab">
-                        <tr><td>📍 વતન:</td><td>${t.v}</td></tr>
-                        <tr><td>📖 વિષય:</td><td>${t.s}</td></tr>
-                        <tr><td>🏆 સિદ્ધિ:</td><td>${t.a}</td></tr>
-                    </table>
+                    <p>📍 વતન: ${t.v}<br>📖 વિષય: ${t.s}</p>
                 </div>
                 <div class="side-btns">
-                    <a href="#" class="s-btn">📞 સંપર્ક</a>
-                    <a href="#" class="s-btn s-btn-alt">🖼️ પ્રવૃત્તિ</a>
-                    <a href="#" class="s-btn">✉️ સંદેશ</a>
+                    <a href="#" class="s-btn">📞 સંપર્ક કરો</a>
+                    <a href="#" class="s-btn">🖼️ પ્રવૃત્તિઓ</a>
                 </div>
             </div>
         `;
     }
 
-    const iksD = [
-        {r:"ઋગ્વેદ ૧.૮૯.૧", s:"આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।", m:"અમારા માટે ચારે દિશાઓમાંથી કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.", t:"વિદ્યા વિનયથી શોભે છે."},
-        {r:"ગીતા ૪.૩૯", s:"શ્રદ્ધાવાંલ્લભતે જ્ઞાનં ।", m:"શ્રદ્ધાવાન મનુષ્ય જ્ઞાન પ્રાપ્ત કરે છે.", t:"પરિશ્રમ જ સફળતાની ચાવી છે."}
-    ];
-
     window.onload = () => {
         updateTime();
-        let it = iksD[new Date().getDate() % iksD.length];
-        document.getElementById('iks-r').innerText = "સંદર્ભ: " + it.r;
-        document.getElementById('iks-s').innerText = it.s;
-        document.getElementById('iks-m').innerText = "અર્થ: " + it.m;
-        document.getElementById('tht').innerText = "📢 સુવિચાર: " + it.t;
+        document.getElementById('iks-s').innerText = "આ નો ભદ્રા: ક્રતવો યન્તુ વિશ્વત: ।";
+        document.getElementById('iks-m').innerText = "અર્થ: અમારા માટે ચારે દિશાઓમાંથી કલ્યાણકારી વિચારો પ્રાપ્ત થાઓ.";
     };
 </script>
 </body>
