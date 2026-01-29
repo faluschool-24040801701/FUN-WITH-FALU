@@ -56,9 +56,13 @@
         .legal-footer { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 1px solid #ddd; margin-top: 20px; text-align: justify; font-size: 0.85rem; color: #444; }
         @media (max-width: 768px) { .t-profile-container { flex-direction: column; } }
 
-        /* સ્લાઈડર માટે વધારાનું CSS */
         .slider-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 50%; font-size: 18px; transition: 0.3s; }
         .slider-nav:hover { background: var(--p); }
+
+        /* --- પાસવર્ડ હાઇડ કરવા માટેનું નવું CSS --- */
+        #custom-pass-box { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 25px; border-radius: 20px; box-shadow: 0 0 50px rgba(0,0,0,0.3); z-index: 10001; text-align: center; border: 3px solid var(--p); width: 300px; }
+        #custom-pass-box input { padding: 12px; margin: 15px 0; width: 100%; border-radius: 10px; border: 2px solid #ddd; text-align: center; font-size: 1.2rem; outline: none; }
+        .overlay-bg { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10000; backdrop-filter: blur(3px); }
     </style>
 </head>
 <body>
@@ -174,6 +178,15 @@
     </div>
 </div>
 
+<div id="overlay-bg" class="overlay-bg"></div>
+<div id="custom-pass-box">
+    <h4 id="pass-title" style="color:var(--p)">પાસવર્ડ</h4>
+    <input type="password" id="pass-input" placeholder="અહીં લખો...">
+    <br>
+    <button id="pass-submit" class="btn-std" style="background:var(--p); color:white; border:none;">ઓકે</button>
+    <button onclick="closePass()" class="btn-std">રદ કરો</button>
+</div>
+
 <footer>
     <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b></p>
     <div class="legal-footer">
@@ -185,13 +198,13 @@
 <script>
     // --- સાત ફોટાનું ઓટોમેટિક સ્લાઈડર ---
     const schoolPhotos = [
-        { img: "https://files.catbox.moe/l5cynv.jpg", txt: "૧. શાળા પ્રવેશદ્વાર અને પ્રાંગણ" },
-        { img: "https://files.catbox.moe/ifn7m2.png", txt: "૨. પ્રાર્થના સભા: સંસ્કારનું સિંચન" },
-        { img: "https://files.catbox.moe/p0v7e6.jpg", txt: "૩. વર્ગખંડ પ્રવૃત્તિ અને શિક્ષણ" },
-        { img: "https://files.catbox.moe/kjfg4m.jpg", txt: "૪. રમત-ગમત અને શારીરિક વિકાસ" },
-        { img: "https://files.catbox.moe/k1s7ah.jpg", txt: "૫. પ્રયોગશાળામાં વિજ્ઞાનના ચમત્કાર" },
-        { img: "https://files.catbox.moe/5j23xq.jpg", txt: "૬. સાંસ્કૃતિક કાર્યક્રમની ઝલક" },
-        { img: "https://files.catbox.moe/8as3q4.jpg", txt: "૭. ડિજિટલ લર્નિંગ અને સ્માર્ટ ક્લાસ" }
+        { img: "https://files.catbox.moe/l5cynv.jpg", txt: "૧. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
+        { img: "https://files.catbox.moe/ifn7m2.png", txt: "૨. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
+        { img: "https://files.catbox.moe/p0v7e6.jpg", txt: "૩. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
+        { img: "https://files.catbox.moe/kjfg4m.jpg", txt: "૪. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
+        { img: "https://files.catbox.moe/k1s7ah.jpg", txt: "૫. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
+        { img: "https://files.catbox.moe/5j23xq.jpg", txt: "૬. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
+        { img: "https://files.catbox.moe/8as3q4.jpg", txt: "૭. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" }
     ];
 
     let currentSlide = 0;
@@ -374,23 +387,57 @@
         }
     }
 
-    function teacherLogin() { 
-        if(prompt("પાસવર્ડ:") === "falu123") {
-            document.getElementById('staff-links').style.display='grid'; 
-            document.getElementById('login-btn').style.display='none';
-        } 
+    // --- પાસવર્ડ હાઇડ કરવાનું લોજિક ---
+    let currentPassTask = null;
+
+    function openPass(task, title) {
+        currentPassTask = task;
+        document.getElementById('pass-title').innerText = title;
+        document.getElementById('pass-input').value = "";
+        document.getElementById('overlay-bg').style.display = 'block';
+        document.getElementById('custom-pass-box').style.display = 'block';
+        document.getElementById('pass-input').focus();
     }
-    
-    function pL(u) { 
-        let p = prompt("પાસવર્ડ:"); 
-        if(p === "falu" + new Date().getDate()) window.open(u, "_blank"); 
-        else alert("ખોટો પાસવર્ડ!"); 
+
+    function closePass() {
+        document.getElementById('overlay-bg').style.display = 'none';
+        document.getElementById('custom-pass-box').style.display = 'none';
     }
+
+    document.getElementById('pass-submit').onclick = function() {
+        const p = document.getElementById('pass-input').value;
+        const day = new Date().getDate();
+
+        if (currentPassTask === 'admin') {
+            if (p === "falu123") {
+                document.getElementById('staff-links').style.display = 'grid';
+                document.getElementById('login-btn').style.display = 'none';
+                closePass();
+            } else { alert("ખોટો પાસવર્ડ!"); }
+        } else if (currentPassTask.startsWith('gallery')) {
+            if (p === "falu" + day) {
+                const url = currentPassTask.split('|')[1];
+                window.open(url, "_blank");
+                closePass();
+            } else { alert("ખોટો પાસવર્ડ!"); }
+        }
+    };
+
+    // એન્ટર કી દબાવવા પર પણ સબમિટ થાય
+    document.getElementById('pass-input').addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            document.getElementById('pass-submit').click();
+        }
+    });
+
+    // જૂના ફંક્શનને નવા પોપઅપ સાથે જોડ્યા
+    function teacherLogin() { openPass('admin', '🔐 એડમિન લોગિન'); }
+    function pL(u) { openPass('gallery|' + u, '🔐 ગેલેરી પાસવર્ડ'); }
 
     window.onload = () => {
         loadDailyVideo();
-        showSlide(0); // સ્લાઈડર શરૂ કરો
-        setInterval(nextSlide, 5000); // દર 5 સેકન્ડે ફોટો બદલાશે
+        showSlide(0); 
+        setInterval(nextSlide, 5000); 
         
         document.getElementById('riddle-text').innerText = curR.q;
         const day = new Date().getDate();
