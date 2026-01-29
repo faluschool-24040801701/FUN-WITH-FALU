@@ -72,16 +72,17 @@
 </div>
 
 <div class="container">
-    <div class="card" style="grid-column: 1 / -1; border: 3px solid var(--game-theme);">
-        <h2 style="color: var(--game-theme);">🔬 વર્ચ્યુઅલ સાયન્સ મ્યુઝિયમ</h2>
-        <p>પ્રયોગ પસંદ કરો અને તમારી પોતાની લેબમાં કામ શરૂ કરો!</p>
-        <div style="margin: 15px 0;">
-            <button onclick="openLab('https://phet.colorado.edu/sims/html/fractions-intro/latest/fractions-intro_gu.html')" class="btn-std">🔢 અપૂર્ણાંક રમત</button>
-            <button onclick="openLab('https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html')" class="btn-std">⚛️ પરમાણુ બનાવવો</button>
-            <button onclick="openLab('https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_en.html')" class="btn-std">⚡ વિદ્યુત પરિપથ</button>
-        </div>
-        <iframe id="lab-iframe" class="lab-frame"></iframe>
+   <div class="card" style="grid-column: 1 / -1; border: 3px solid var(--game-theme);">
+    <h2 style="color: var(--game-theme);">🔬 વર્ચ્યુઅલ સાયન્સ મ્યુઝિયમ</h2>
+    <p>પ્રયોગ પસંદ કરો અને તમારી પોતાની લેબમાં કામ શરૂ કરો!</p>
+    <div style="margin: 15px 0;">
+        <button onclick="openLab('https://phet.colorado.edu/sims/html/fractions-intro/latest/fractions-intro_gu.html')" class="btn-std">🔢 અપૂર્ણાંક રમત</button>
+        <button onclick="openLab('https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html')" class="btn-std">⚛️ પરમાણુ બનાવવો</button>
+        <button onclick="openLab('https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_en.html')" class="btn-std">⚡ વિદ્યુત પરિપથ</button>
+        <button id="close-lab-btn" onclick="closeLab()" class="btn-std" style="display:none; background: #c62828; color: white; border-color: #c62828;">❌ લેબ બંધ કરો</button>
     </div>
+    <iframe id="lab-iframe" class="lab-frame"></iframe>
+</div>
 
     <div class="card floating-zone">
         <h2 style="color: var(--kids-theme);">🚀 જ્ઞાન-ગમ્મત AI ઝોન</h2>
@@ -266,3 +267,4 @@
 </script>
 </body>
 </html>
+
