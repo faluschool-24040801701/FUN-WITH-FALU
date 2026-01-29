@@ -29,9 +29,7 @@
         .btn-std:hover { background: var(--kids-theme); color: white; }
         .act-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 20px; }
         .act-card { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: pointer; border-bottom: 4px solid var(--s); transition: 0.3s; }
-        .act-card:hover { transform: scale(1.05); }
 
-        /* New Lab Style */
         .lab-frame { width: 100%; height: 500px; border: 5px solid var(--game-theme); border-radius: 15px; margin-top: 15px; display: none; }
 
         .riddle-card { border: 3px solid var(--game-theme); background: linear-gradient(145deg, #e0f2f1, #ffffff); }
@@ -72,21 +70,20 @@
 </div>
 
 <div class="container">
-   <div class="card" style="grid-column: 1 / -1; border: 3px solid var(--game-theme);">
-    <h2 style="color: var(--game-theme);">🔬 વર્ચ્યુઅલ સાયન્સ મ્યુઝિયમ</h2>
-    <p>પ્રયોગ પસંદ કરો અને તમારી પોતાની લેબમાં કામ શરૂ કરો!</p>
-    <div style="margin: 15px 0;">
-        <button onclick="openLab('https://phet.colorado.edu/sims/html/fractions-intro/latest/fractions-intro_gu.html')" class="btn-std">🔢 અપૂર્ણાંક રમત</button>
-        <button onclick="openLab('https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html')" class="btn-std">⚛️ પરમાણુ બનાવવો</button>
-        <button onclick="openLab('https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_en.html')" class="btn-std">⚡ વિદ્યુત પરિપથ</button>
-        <button id="close-lab-btn" onclick="closeLab()" class="btn-std" style="display:none; background: #c62828; color: white; border-color: #c62828;">❌ લેબ બંધ કરો</button>
+    <div class="card" style="grid-column: 1 / -1; border: 3px solid var(--game-theme);">
+        <h2 style="color: var(--game-theme);">🔬 વર્ચ્યુઅલ સાયન્સ મ્યુઝિયમ</h2>
+        <p>પ્રયોગ પસંદ કરો અને તમારી પોતાની લેબમાં કામ શરૂ કરો!</p>
+        <div style="margin: 15px 0;">
+            <button onclick="openLab('https://phet.colorado.edu/sims/html/fractions-intro/latest/fractions-intro_gu.html')" class="btn-std">🔢 અપૂર્ણાંક રમત</button>
+            <button onclick="openLab('https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html')" class="btn-std">⚛️ પરમાણુ બનાવવો</button>
+            <button onclick="openLab('https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_en.html')" class="btn-std">⚡ વિદ્યુત પરિપથ</button>
+            <button id="close-lab-btn" onclick="closeLab()" class="btn-std" style="display:none; background: var(--accent); color: white; border-color: var(--accent);">❌ લેબ બંધ કરો</button>
+        </div>
+        <iframe id="lab-iframe" class="lab-frame"></iframe>
     </div>
-    <iframe id="lab-iframe" class="lab-frame"></iframe>
-</div>
 
     <div class="card floating-zone">
         <h2 style="color: var(--kids-theme);">🚀 જ્ઞાન-ગમ્મત AI ઝોન</h2>
-        <p style="margin-top:5px;">રમતા રમતા ભણવા માટે તમારું ધોરણ પસંદ કરો</p>
         <div style="margin: 15px 0;">
             <button onclick="loadAct('low')" class="btn-std">ધોરણ ૧ થી ૫</button>
             <button onclick="loadAct('high')" class="btn-std">ધોરણ ૬ થી ૮</button>
@@ -96,43 +93,24 @@
 
     <div class="card riddle-card">
         <h3 style="color: var(--game-theme);">🧩 આજનો ગાણિતિક કોયડો</h3>
-        <p id="riddle-text" style="margin: 15px 0; font-weight: 700; font-size: 1.1rem;"></p>
+        <p id="riddle-text" style="margin: 15px 0; font-weight: 700;"></p>
         <input type="text" id="user-ans" class="ans-input" placeholder="જવાબ લખો...">
         <button onclick="checkRiddle()" class="riddle-btn">જવાબ તપાસો</button>
-        <div id="feedback" style="font-weight:700; margin-top:10px;"></div>
+        <div id="feedback" style="margin-top:10px;"></div>
     </div>
 
     <div class="card" style="border-top: 10px solid #FF0000;">
         <h3 style="color: #FF0000; margin-bottom: 15px;">📺 આજનો વિશેષ વીડિયો</h3>
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; margin-bottom: 15px; background: #000;">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; background: #000;">
             <iframe id="school-video-player" src="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0" allowfullscreen></iframe>
         </div>
-        <p id="video-name-display" style="font-weight: bold; margin-bottom: 10px;"></p>
-        <a href="https://www.youtube.com/@faluprimaryschool1701" target="_blank" class="btn btn-yt">🎬 ચેનલ સબસ્ક્રાઇબ કરો</a>
-    </div>
-
-    <div class="card" style="border-top: 10px solid var(--accent);">
-        <h3 style="color: var(--p); margin-bottom: 20px;">🔐 સુરક્ષિત ગેલેરી</h3>
-        <button onclick="pL('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn btn-accent">🖼️ ૧. શાળા પ્રવૃત્તિઓ</button>
-        <button onclick="pL('https://photos.app.goo.gl/9EVZZUvj3arZ4YfT8')" class="btn btn-accent">📂 ૨. શાળા પ્રોજેક્ટ</button>
-        <a href="https://wa.me/919574456156?text=નમસ્તે નિલેશ સર, મને ગેલેરીનો પાસવર્ડ આપો." target="_blank" class="btn btn-wa">💬 પાસવર્ડ મેળવો</a>
-    </div>
-
-    <div class="card" style="border: 2px dashed var(--p);">
-        <h3 style="color: var(--p);">🛠️ શિક્ષક શક્તિ</h3>
-        <button onclick="teacherLogin()" id="login-btn" class="btn btn-gold" style="margin-top:15px;">🔐 એડમિન લોગિન</button>
-        <div id="staff-links" class="staff-links-grid">
-            <a href="https://www.ssagujarat.org/" target="_blank" class="btn btn-edu">SSA એન્ટ્રી</a>
-            <a href="https://gshala.schoolnetindia.com/" target="_blank" class="btn btn-edu">G-Shala</a>
-            <a href="https://www.ssgujarat.org/CTELogin.aspx/" target="_blank" class="btn btn-edu">Child Tracking</a>
-            <a href="https://www.digitalgujarat.gov.in/" target="_blank" class="btn btn-edu">Digital Gujarat</a>
-        </div>
+        <p id="video-name-display" style="font-weight: bold; margin-top: 10px;"></p>
     </div>
 
     <div class="card staff-section">
         <h3 style="color: var(--p); margin-bottom: 20px;">👨‍🏫 શાળા પરિવાર પરિચય</h3>
         <select id="t-select" style="width: 100%; max-width: 500px; padding: 15px; border-radius: 15px; border: 2px solid var(--p); font-weight: bold;" onchange="showT(this.value)">
-            <option value="">-- શિક્ષક પસંદ કરો (૧ થી ૧૫) --</option>
+            <option value="">-- શિક્ષક પસંદ કરો --</option>
             <option value="1">૧. શ્રી નિલેશકુમાર પી. પટેલ</option>
             <option value="2">૨. શ્રી રાજેન્દ્રકુમાર બી. પટેલ</option>
             <option value="3">૩. શ્રી (નામ લખો)</option>
@@ -155,33 +133,39 @@
 
 <footer>
     <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b></p>
-    <div class="legal-footer">
-        <b>⚠️ કાયદાકીય નોંધ:</b> આ વેબસાઈટ પરનું તમામ કન્ટેન્ટ, ફોટા અને IKS માહિતી શૈક્ષણિક હેતુ માટે છે.
-    </div>
     <p style="margin-top:10px;">ડિઝાઈન: <span style="color: var(--s); font-weight:700;">નિલેશ પટેલ (SRG-MATHS)</span></p>
 </footer>
 
 <script>
-    // --- New Lab Logic ---
     function openLab(url) {
         const frame = document.getElementById('lab-iframe');
+        const closeBtn = document.getElementById('close-lab-btn');
         frame.src = url;
         frame.style.display = 'block';
+        closeBtn.style.display = 'inline-block';
         frame.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // --- તમારો પૂરેપૂરો ઓરિજિનલ ડેટા ---
+    function closeLab() {
+        const frame = document.getElementById('lab-iframe');
+        const closeBtn = document.getElementById('close-lab-btn');
+        frame.src = "";
+        frame.style.display = 'none';
+        closeBtn.style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     const iksDaily = {
         1: "શૂન્યની શોધ ભારત દ્વારા થઈ હતી. (સંદર્ભ: બ્રહ્મગુપ્ત)",
         2: "પાય (π) ની ચોક્કસ કિંમત આર્યભટ્ટે આપી હતી. (સંદર્ભ: આર્યભટીયમ)",
-        3: "પ્લાસ્ટિક સર્જરીના જનક મહર્ષિ સુશ્રુત હતા. (સંદર્ભ: સુશ્રુત સંહિતા)",
-        4: "આયુર્વેદ વિશ્વની સૌથી જૂની ચિકિત્સા પદ્ધતિ છે. (સંદર્ભ: ચરક સંહિતા)",
-        5: "દશાંશ પદ્ધતિનો ઉદ્ભવ પ્રાચીન ભારતમાં થયો હતો. (સંદર્ભ: વૈદિક ગણિત)",
-        6: "પાણિનીએ વિશ્વનું પ્રથમ વ્યાકરણ લખ્યું હતું. (સંદર્ભ: અષ્ટાધ્યાયી)",
+        3: "પ્લાસ્ટિક સર્જરીના જનક મહર્ષિ સુશ્રુત હતા.",
+        4: "આયુર્વેદ વિશ્વની સૌથી જૂની ચિકિત્સા પદ્ધતિ છે.",
+        5: "દશાંશ પદ્ધતિનો ઉદ્ભવ પ્રાચીન ભારતમાં થયો હતો.",
+        6: "પાણિનીએ વિશ્વનું પ્રથમ વ્યાકરણ લખ્યું હતું.",
         7: "પૃથ્વી ગોળ છે અને પોતાની ધરી પર ફરે છે તેવું આર્યભટ્ટે કહ્યું હતું.",
         8: "અણુ સિદ્ધાંતના પ્રણેતા મહર્ષિ કણાદ હતા.",
         9: "વિશ્વની પ્રથમ યુનિવર્સિટી તક્ષશિલા ભારતમાં હતી.",
-        10: "योग વિદ્યા ભારતની અમૂલ્ય ભેટ છે.",
+        10: "યોગ વિદ્યા ભારતની અમૂલ્ય ભેટ છે.",
         11: "ચિહ્ન વિજ્ઞાનમાં ભારત અગ્રેસર રહ્યું છે.",
         12: "બૌધાયન પ્રમેય ભારતીય દેણ છે.",
         13: "નૌકાશાસ્ત્રની શરૂઆત સિંધુ સભ્યતાથી થઈ હતી.",
@@ -222,13 +206,11 @@
     const tData = {
         "1": { n: "શ્રી નિલેશકુમાર પી. પટેલ", img: "https://files.catbox.moe/8b8w7y.jpg", l1: "જેપુર", l2: "M.Sc, B.Ed", l3: "01/06/2010", l4: "31/05/2040", r1: "123456", r2: "6 થી 8", r3: "ગણિત-વિજ્ઞાન", r4: "SRG MATHS" },
         "2": { n: "શ્રી રાજેન્દ્રકુમાર બી. પટેલ", img: "https://files.catbox.moe/vxtq6i.jpg", l1: "વિજાપુર", l2: "B.A, B.Ed", l3: "15/07/2005", l4: "30/06/2035", r1: "654321", r2: "1 થી 5", r3: "સામાજિક વિજ્ઞાન", r4: "ઇનોવેટિવ ટીચર" }
-        // બાકીના શિક્ષકો ઉમેરવાની જગ્યા...
     };
 
     function showT(id) {
         const d = document.getElementById('t-display'); if(!id) { d.innerHTML=""; return; }
-        const t = tData[id];
-        if(!t) { d.innerHTML = "<p>આ શિક્ષકની વિગતો બાકી છે.</p>"; return; }
+        const t = tData[id]; if(!t) { d.innerHTML = "<p>વિગત ઉપલબ્ધ નથી.</p>"; return; }
         d.innerHTML = `<div class="t-profile-container"><div class="t-info-box"><div class="t-info-item"><b>વતન:</b> ${t.l1}</div><div class="t-info-item"><b>લાયકાત:</b> ${t.l2}</div><div class="t-info-item"><b>નોકરી તા:</b> ${t.l3}</div></div><div class="t-center"><img src="${t.img}" class="t-img-big"><br><div class="t-name">${t.n}</div></div><div class="t-info-box"><div class="t-info-item"><b>વિષય:</b> ${t.r3}</div><div class="t-info-item"><b>સિદ્ધિ:</b> ${t.r4}</div></div></div>`;
     }
 
@@ -250,15 +232,12 @@
         }
     }
 
-    function teacherLogin() { if(prompt("પાસવર્ડ:") === "falu123") document.getElementById('staff-links').style.display='grid'; }
-    function pL(u) { if(prompt("પાસવર્ડ:") === "falu" + new Date().getDate()) window.open(u, "_blank"); }
-
     window.onload = () => {
-        const day = new Date().getDate();
-        const wDay = new Date().getDay();
-        document.getElementById('iks-marquee').innerText = "🌟 IKS: " + (iksDaily[day] || iksDaily[1]) + " | 📜 સુવિચાર: " + (thoughtsDaily[day] || thoughtsDaily[1]);
-        document.getElementById('school-video-player').src = "https://www.youtube.com/embed/" + myWeeklyVideos[wDay].id;
-        document.getElementById('video-name-display').innerText = myWeeklyVideos[wDay].title;
+        const date = new Date().getDate();
+        const day = new Date().getDay();
+        document.getElementById('iks-marquee').innerText = "🌟 IKS: " + (iksDaily[date] || iksDaily[1]) + " | 📜 સુવિચાર: " + (thoughtsDaily[date] || thoughtsDaily[1]);
+        document.getElementById('school-video-player').src = "https://www.youtube.com/embed/" + myWeeklyVideos[day].id;
+        document.getElementById('video-name-display').innerText = myWeeklyVideos[day].title;
         document.getElementById('riddle-text').innerText = "૫૦ ના અડધા કેટલા થાય?";
         setInterval(() => {
             document.getElementById('live-clock').innerText = "📅 " + new Date().toLocaleTimeString('gu-IN');
@@ -267,4 +246,3 @@
 </script>
 </body>
 </html>
-
