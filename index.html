@@ -59,10 +59,14 @@
         .slider-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 50%; font-size: 18px; transition: 0.3s; }
         .slider-nav:hover { background: var(--p); }
 
-        /* --- પાસવર્ડ હાઇડ કરવા માટેનું નવું CSS --- */
         #custom-pass-box { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 25px; border-radius: 20px; box-shadow: 0 0 50px rgba(0,0,0,0.3); z-index: 10001; text-align: center; border: 3px solid var(--p); width: 300px; }
         #custom-pass-box input { padding: 12px; margin: 15px 0; width: 100%; border-radius: 10px; border: 2px solid #ddd; text-align: center; font-size: 1.2rem; outline: none; }
         .overlay-bg { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10000; backdrop-filter: blur(3px); }
+
+        /* --- AI Story Styles --- */
+        #ai-story-zone { display:none; margin-top: 20px; background: #fff; padding: 20px; border-radius: 20px; border: 2px dashed var(--kids-theme); }
+        .ai-select { padding: 10px; border-radius: 10px; border: 2px solid var(--kids-theme); margin: 5px; font-weight: bold; }
+        #story-result { background: #fdf7ff; padding: 15px; border-radius: 15px; margin-top: 15px; text-align: left; line-height: 1.6; display: none; border-left: 5px solid var(--kids-theme); }
     </style>
 </head>
 <body>
@@ -96,15 +100,34 @@
         <div style="margin: 15px 0;">
             <button onclick="loadAct('low')" class="btn-std">ધોરણ ૧ થી ૫</button>
             <button onclick="loadAct('high')" class="btn-std">ધોરણ ૬ થી ૮</button>
+            <button onclick="toggleAIStory()" class="btn-std" style="background: #ff4081; color: white; border-color: #ff4081;">📖 AI વાર્તા મેજિક</button>
             <button onclick="toggleSpecial()" class="btn-std" style="background: var(--kids-theme); color: white;">🌟 વિશેષ જાણીએ</button>
 
-<div id="special-links-zone" style="display:none; margin-top: 20px; background: white; padding: 15px; border-radius: 15px; border: 2px solid var(--kids-theme); text-align: left;">
-    <h4 style="color: var(--kids-theme); margin-bottom: 10px; border-bottom: 2px solid #eee;">GCERT સંસાધનો</h4>
-    <a href="https://gcert.gujarat.gov.in/gcert/EkkadamGallery/" target="_blank" style="display: block; padding: 8px; color: #333; text-decoration: none; font-weight: bold;">🔗 GCERT એક કદમ આગળ</a>
-    <a href="https://gcert.gujarat.gov.in/gcert/JeevanGallery" target="_blank" style="display: block; padding: 8px; color: #333; text-decoration: none; font-weight: bold;">📖 GCERT જીવન શિક્ષણ</a>
-    <a href="https://gcert.gujarat.gov.in/gcert/ResourceDocument" target="_blank" style="display: block; padding: 8px; color: #333; text-decoration: none; font-weight: bold;">📝 દિન વિશેષ</a>
-    <a href="https://gsstb.gujarat.gov.in/Gsstb/Textbook" target="_blank" style="display: block; padding: 8px; color: #333; text-decoration: none; font-weight: bold;">📝 પાઠયપુસ્તક</a>
-</div>
+            <div id="ai-story-zone">
+                <h4 style="color:var(--kids-theme)">📖 પોતાની વાર્તા બનાવો</h4>
+                <select id="story-char" class="ai-select">
+                    <option value="એક નાનકડો સિંહ">સિંહ 🦁</option>
+                    <option value="એક ચતુર સસલું">સસલું 🐰</option>
+                    <option value="એક દયાળુ હાથી">હાથી 🐘</option>
+                    <option value="એક સમજદાર પરી">પરી 🧚</option>
+                </select>
+                <select id="story-theme" class="ai-select">
+                    <option value="જંગલની સફર">જંગલ 🌲</option>
+                    <option value="આકાશની મુલાકાત">આકાશ ☁️</option>
+                    <option value="મિત્રતાની શક્તિ">મિત્રતા 🤝</option>
+                </select>
+                <button onclick="generateStory()" class="btn-std" style="background:var(--kids-theme); color:white;">વાર્તા બનાવો ✨</button>
+                <div id="story-result"></div>
+                <button id="speak-btn" onclick="speakStory()" class="btn-std" style="display:none; background:#4caf50; color:white; border:none;">🔊 સાંભળો</button>
+            </div>
+
+            <div id="special-links-zone" style="display:none; margin-top: 20px; background: white; padding: 15px; border-radius: 15px; border: 2px solid var(--kids-theme); text-align: left;">
+                <h4 style="color: var(--kids-theme); margin-bottom: 10px; border-bottom: 2px solid #eee;">GCERT સંસાધનો</h4>
+                <a href="https://gcert.gujarat.gov.in/gcert/EkkadamGallery/" target="_blank" style="display: block; padding: 8px; color: #333; text-decoration: none; font-weight: bold;">🔗 GCERT એક કદમ આગળ</a>
+                <a href="https://gcert.gujarat.gov.in/gcert/JeevanGallery" target="_blank" style="display: block; padding: 8px; color: #333; text-decoration: none; font-weight: bold;">📖 GCERT જીવન શિક્ષણ</a>
+                <a href="https://gcert.gujarat.gov.in/gcert/ResourceDocument" target="_blank" style="display: block; padding: 8px; color: #333; text-decoration: none; font-weight: bold;">📝 દિન વિશેષ</a>
+                <a href="https://gsstb.gujarat.gov.in/Gsstb/Textbook" target="_blank" style="display: block; padding: 8px; color: #333; text-decoration: none; font-weight: bold;">📝 પાઠયપુસ્તક</a>
+            </div>
         </div>
         <div id="act-display" class="act-grid"></div>
     </div>
@@ -196,12 +219,11 @@
 </footer>
 
 <script>
-    // --- સાત ફોટાનું ઓટોમેટિક સ્લાઈડર ---
     const schoolPhotos = [
         { img: "https://files.catbox.moe/l5cynv.jpg", txt: "૧. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
         { img: "https://files.catbox.moe/kjfg4m.jpg", txt: "૨. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
         { img: "https://files.catbox.moe/p0v7e6.jpg", txt: "૩. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
-        { img: "https://files.catbox.moe/kjfg4m.jpg", txt: "૪. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
+        { img: "https://files.catbox.moe/ifn7m2.png", txt: "૪. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
         { img: "https://files.catbox.moe/k1s7ah.jpg", txt: "૫. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
         { img: "https://files.catbox.moe/5j23xq.jpg", txt: "૬. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" },
         { img: "https://files.catbox.moe/8as3q4.jpg", txt: "૭. રંગોત્સવ 2026 ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત" }
@@ -230,15 +252,14 @@
         showSlide(currentSlide);
     }
 
-    // --- YouTube વીડિયો રોટેશન ---
     const myWeeklyVideos = [
-        { id: "rI-Pvo5MTi0", title: "આદિ યોગી | Yog Dance" },          // રવિવાર
-        { id: "gKMe_OH_NQE", title: "એક પાત્રીય અભિનય | ગૌરવવંતી ગુજરાત" }, // સોમવાર
-        { id: "s_8mQx8qIOw", title: "વક્તવ્ય | Speech By Preyasi Patel" }, // મંગળવાર
-        { id: "1PHbF8JcjqM", title: "Jai Ho | Patta Dance" },              // બુધવાર
-        { id: "ImSzHVTNG5c", title: "ડાકલા | રમતી આવે" },                   // ગુરુવાર
-        { id: "XCGyI9zr2nQ", title: "અક્કર ચક્કર | Akkar Chakkar" },       // શુક્રવાર
-        { id: "q_2szeWgpkw", title: "Pyramid Dance | ધોરણ 8" }              // શનિવાર
+        { id: "rI-Pvo5MTi0", title: "આદિ યોગી | Yog Dance" },          
+        { id: "gKMe_OH_NQE", title: "એક પાત્રીય અભિનય | ગૌરવવંતી ગુજરાત" }, 
+        { id: "s_8mQx8qIOw", title: "વક્તવ્ય | Speech By Preyasi Patel" }, 
+        { id: "1PHbF8JcjqM", title: "Jai Ho | Patta Dance" },              
+        { id: "ImSzHVTNG5c", title: "ડાકલા | રમતી આવે" },                    
+        { id: "XCGyI9zr2nQ", title: "અક્કર ચક્કર | Akkar Chakkar" },       
+        { id: "q_2szeWgpkw", title: "Pyramid Dance | ધોરણ 8" }              
     ];
 
     function loadDailyVideo() {
@@ -258,7 +279,7 @@
         7: "પૃથ્વી ગોળ છે અને પોતાની ધરી પર ફરે છે તેવું આર્યભટ્ટે કહ્યું હતું. (સંદર્ભ: આર્યભટીયમ)",
         8: "અણુ સિદ્ધાંતના પ્રણેતા મહર્ષિ કણાદ હતા. (સંદર્ભ: વૈશેષિક સૂત્ર)",
         9: "વિશ્વની પ્રથમ યુનિવર્સિટી તક્ષશિલા ભારતમાં હતી. (સંદર્ભ: પ્રાચીન ઇતિહાસ)",
-        10: "योग વિદ્યા ભારતની અમૂલ્ય ભેટ છે. (સંદર્ભ: પતંજલિ યોગસૂત્ર)",
+        10: "યોગ વિદ્યા ભારતની અમૂલ્ય ભેટ છે. (સંદર્ભ: પતંજલિ યોગસૂત્ર)",
         11: "ચિહ્ન વિજ્ઞાનમાં ભારત અગ્રેસર રહ્યું છે. (સંદર્ભ: ભાસ્કરાચાર્ય)",
         12: "બૌધાયન પ્રમેય ભારતીય દેણ છે. (સંદર્ભ: શુલ્બ સૂત્ર)",
         13: "નૌકાશાસ્ત્રની શરૂઆત સિંધુ સભ્યતાથી થઈ હતી. (સંદર્ભ: લોથલ)",
@@ -387,7 +408,6 @@
         }
     }
 
-    // --- પાસવર્ડ હાઇડ કરવાનું લોજિક ---
     let currentPassTask = null;
 
     function openPass(task, title) {
@@ -423,16 +443,50 @@
         }
     };
 
-    // એન્ટર કી દબાવવા પર પણ સબમિટ થાય
     document.getElementById('pass-input').addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
             document.getElementById('pass-submit').click();
         }
     });
 
-    // જૂના ફંક્શનને નવા પોપઅપ સાથે જોડ્યા
     function teacherLogin() { openPass('admin', '🔐 એડમિન લોગિન'); }
     function pL(u) { openPass('gallery|' + u, '🔐 ગેલેરી પાસવર્ડ'); }
+
+    // --- AI Story Logic ---
+    function toggleAIStory() {
+        const zone = document.getElementById('ai-story-zone');
+        zone.style.display = zone.style.display === 'none' ? 'block' : 'none';
+        if(zone.style.display === 'block') zone.scrollIntoView({behavior:'smooth'});
+    }
+
+    function generateStory() {
+        const char = document.getElementById('story-char').value;
+        const theme = document.getElementById('story-theme').value;
+        const res = document.getElementById('story-result');
+        const speakBtn = document.getElementById('speak-btn');
+        
+        let story = "";
+        if(theme === "જંગલની સફર") {
+            story = `એક સમયે ફલુ ગામના જંગલમાં ${char} રહેતું હતું. આજે તે જંગલની સફરે નીકળ્યું. રસ્તામાં તેને એક સોનેરી નદી મળી. ${char} એ નદી પાસે જઈને મીઠું પાણી પીધું અને બધા પક્ષીઓ સાથે મળીને ગીતો ગાયા. તેને ખૂબ મજા આવી!`;
+        } else if(theme === "આકાશની મુલાકાત") {
+            story = `એક દિવસ ${char} આકાશમાં ઉડવા લાગ્યું. તે વાદળોની ઉપર ગયું અને તારાઓ સાથે વાતો કરવા લાગ્યું. તેને ત્યાં એક મોટો ચંદ્ર મળ્યો. ચંદ્રએ તેને જાદુઈ લાડુ આપ્યો. ${char} તો ખુશ થઈ ગયું!`;
+        } else {
+            story = `એક મોટું મેદાન હતું, ત્યાં ${char} રમતું હતું. તેને એક નવો મિત્ર મળ્યો. બંનેએ સાથે મળીને મુશ્કેલીમાં મુકાયેલા એક પક્ષીને બચાવ્યું. તે દિવસથી ${char} સમજી ગયું કે મિત્રતામાં જ સાચી શક્તિ છે.`;
+        }
+        
+        res.innerText = story;
+        res.style.display = "block";
+        speakBtn.style.display = "inline-block";
+        confetti({particleCount: 50, origin: {y: 0.7}});
+    }
+
+    function speakStory() {
+        const text = document.getElementById('story-result').innerText;
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.lang = 'gu-IN';
+        window.speechSynthesis.speak(msg);
+    }
 
     window.onload = () => {
         loadDailyVideo();
@@ -449,4 +503,3 @@
 </script>
 </body>
 </html>
-
