@@ -75,6 +75,14 @@
         <div style="margin: 15px 0;">
             <button onclick="loadAct('low')" class="btn-std">ધોરણ ૧ થી ૫</button>
             <button onclick="loadAct('high')" class="btn-std">ધોરણ ૬ થી ૮</button>
+            <button onclick="toggleSpecial()" class="btn-std" style="background: var(--kids-theme); color: white;">🌟 વિશેષ જાણીએ</button>
+
+<div id="special-links-zone" style="display:none; margin-top: 20px; background: white; padding: 15px; border-radius: 15px; border: 2px solid var(--kids-theme); text-align: left;">
+    <h4 style="color: var(--kids-theme); margin-bottom: 10px; border-bottom: 2px solid #eee;">GCERT સંસાધનો</h4>
+    <a href="https://gcert.gujarat.gov.in/" target="_blank" style="display: block; padding: 8px; color: #333; text-decoration: none; font-weight: bold;">🔗 GCERT મુખ્ય વેબસાઈટ</a>
+    <a href="https://gcert.gujarat.gov.in/gcert/resource/e-books.htm" target="_blank" style="display: block; padding: 8px; color: #333; text-decoration: none; font-weight: bold;">📖 GCERT ઈ-બુક્સ</a>
+    <a href="https://gcert.gujarat.gov.in/gcert/resource/curriculum.htm" target="_blank" style="display: block; padding: 8px; color: #333; text-decoration: none; font-weight: bold;">📝 નવો અભ્યાસક્રમ</a>
+</div>
         </div>
         <div id="act-display" class="act-grid"></div>
     </div>
@@ -271,7 +279,18 @@
         if(!t || t.n === "નામ લખો") { d.innerHTML = "<p style='margin-top:20px;'>આ શિક્ષકની વિગતો બાકી છે.</p>"; return; }
         d.innerHTML = `<div class="t-profile-container"><div class="t-info-box"><div class="t-info-item"><b>વતન:</b> ${t.l1}</div><div class="t-info-item"><b>લાયકાત:</b> ${t.l2}</div><div class="t-info-item"><b>નોકરી તા:</b> ${t.l3}</div><div class="t-info-item"><b>નિવૃત્તિ:</b> ${t.l4}</div></div><div class="t-center"><img src="${t.img || 'https://via.placeholder.com/170'}" class="t-img-big"><br><div class="t-name">${t.n}</div></div><div class="t-info-box"><div class="t-info-item"><b>કોડ:</b> ${t.r1}</div><div class="t-info-item"><b>ધોરણ:</b> ${t.r2}</div><div class="t-info-item"><b>વિષય:</b> ${t.r3}</div><div class="t-info-item"><b>સિદ્ધિ:</b> ${t.r4}</div></div></div>`;
     }
-
+function toggleSpecial() {
+    const zone = document.getElementById('special-links-zone');
+    if (zone.style.display === 'none') {
+        zone.style.display = 'block';
+        // લિંક્સ દેખાય ત્યારે સુંદર રીતે ત્યાં સ્ક્રૉલ થશે
+        zone.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        // ફટાકડા ફોડવા માટે
+        confetti({ particleCount: 40, spread: 60, origin: { y: 0.8 } });
+    } else {
+        zone.style.display = 'none';
+    }
+}
     function teacherLogin() { 
         if(prompt("પાસવર્ડ:") === "falu123") {
             document.getElementById('staff-links').style.display='grid'; 
@@ -297,5 +316,6 @@
 </script>
 </body>
 </html>
+
 
 
