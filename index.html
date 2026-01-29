@@ -64,6 +64,12 @@
     <div id="live-clock">લોડિંગ...</div>
 </header>
 
+<div id="daily-highlight-container" style="text-align: center; margin: 20px auto; padding: 15px; background: white; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-top: 8px solid var(--s); max-width: 800px; display: none;">
+    <h3 id="highlight-title" style="color: var(--p); margin-bottom: 12px; font-weight: 700;">🌟 આજનું વિશેષ આકર્ષણ</h3>
+    <img id="highlight-img" src="" alt="Highlight" style="width: 100%; height: auto; border-radius: 15px; border: 4px solid #f1f1f1; max-height: 450px; object-fit: contain;">
+    <p id="highlight-caption" style="font-weight: 700; color: #444; margin-top: 12px; font-size: 1.1rem; background: #fff8e1; display: inline-block; padding: 5px 20px; border-radius: 50px;"></p>
+</div>
+
 <div class="marquee-bar">
     <marquee id="iks-marquee">લોડિંગ IKS અને સુવિચાર...</marquee>
 </div>
@@ -166,19 +172,41 @@
 </footer>
 
 <script>
-    // --- YouTube વીડિયો રોટેશન સેટિંગ્સ ---
+    // --- આજનું આકર્ષણ (7 દિવસના ફોટા) ---
+    // અહીં તમે લિંક્સ બદલી શકો છો
+    const weeklyHighlights = {
+        0: { img: "https://files.catbox.moe/pnbdch.jpg", txt: "🌞 રવિવાર: રજાનો દિવસ - નવું શીખવાનો દિવસ!" },
+        1: { img: "https://files.catbox.moe/1da7b9.JPG", txt: "🙏 સોમવાર: નવી શરૂઆત, પ્રાર્થના સભા" },
+        2: { img: "https://files.catbox.moe/sm55vq.JPG", txt: "📚 મંગળવાર: પુસ્તકાલય અને જ્ઞાનની દુનિયા" },
+        3: { img: "https://files.catbox.moe/wtnpfb.JPG", txt: "🎨 બુધવાર: કળા અને કૌશલ્યનો દિવસ" },
+        4: { img: "https://files.catbox.moe/ks3uil.JPG", txt: "🔬 ગુરુવાર: વિજ્ઞાન અને પ્રયોગો" },
+        5: { img: "https://files.catbox.moe/z9quwx.JPG", txt: "🏃 શુક્રવાર: રમત-ગમત અને સ્વાસ્થ્ય" },
+        6: { img: "https://files.catbox.moe/ctnaor.JPG", txt: "🎭 શનિવાર: બાલસભા અને સાંસ્કૃતિક પ્રવૃત્તિ" }
+    };
+
+    function loadHighlight() {
+        const today = new Date().getDay();
+        const data = weeklyHighlights[today];
+        if(data) {
+            document.getElementById('highlight-img').src = data.img;
+            document.getElementById('highlight-caption').innerText = data.txt;
+            document.getElementById('daily-highlight-container').style.display = 'block';
+        }
+    }
+
+    // --- YouTube વીડિયો રોટેશન ---
     const myWeeklyVideos = [
         { id: "rI-Pvo5MTi0", title: "આદિ યોગી | Yog Dance" },          // રવિવાર
         { id: "gKMe_OH_NQE", title: "એક પાત્રીય અભિનય | ગૌરવવંતી ગુજરાત" }, // સોમવાર
         { id: "s_8mQx8qIOw", title: "વક્તવ્ય | Speech By Preyasi Patel" }, // મંગળવાર
-        { id: "1PHbF8JcjqM", title: "Jai Ho | Patta Dance" },            // બુધવાર
-        { id: "ImSzHVTNG5c", title: "ડાકલા | રમતી આવે" },                 // ગુરુવાર
-        { id: "XCGyI9zr2nQ", title: "અક્કર ચક્કર | Akkar Chakkar" },      // શુક્રવાર
-        { id: "q_2szeWgpkw", title: "Pyramid Dance | ધોરણ 8" }            // શનિવાર
+        { id: "1PHbF8JcjqM", title: "Jai Ho | Patta Dance" },             // બુધવાર
+        { id: "ImSzHVTNG5c", title: "ડાકલા | રમતી આવે" },                  // ગુરુવાર
+        { id: "XCGyI9zr2nQ", title: "અક્કર ચક્કર | Akkar Chakkar" },       // શુક્રવાર
+        { id: "q_2szeWgpkw", title: "Pyramid Dance | ધોરણ 8" }             // શનિવાર
     ];
 
     function loadDailyVideo() {
-        const today = new Date().getDay(); // 0 થી 6 મેળવે
+        const today = new Date().getDay();
         const video = myWeeklyVideos[today];
         document.getElementById('school-video-player').src = "https://www.youtube.com/embed/" + video.id + "?rel=0";
         document.getElementById('video-name-display').innerText = video.title;
@@ -241,14 +269,15 @@
        "6": { n: "શ્રી દીપાબેન એચ. ભટ્ટ", img: "https://files.catbox.moe/z9quwx.JPG", l1: "હિંમતનગર", l2: "B.A, P.T.C", l3: "17/11/1997", l4: "31/03/2037", r1: "10086329", r2: "6 થી 8", r3: "ભાષા", r4: "-" },
        "7": { n: "શ્રી ભારતીબેન એન. પટેલ", img: "https://files.catbox.moe/ctnaor.JPG", l1: "ફુદેડા", l2: "P.T.C", l3: "17/11/1997", l4: "30/06/2036", r1: "10086331", r2: "3 થી 5", r3: "ગણિત-પર્યાવરણ", r4: "-" },
        "8": { n: "શ્રી અતુલભાઈ જી. પટેલ", img: "https://files.catbox.moe/zmjgpe.JPG", l1: "માણસા", l2: "P.T.C", l3: "11/06/2001", l4: "31/10/2037", r1: "10086327", r2: "1 થી 2", r3: "ગુજરાતી-ગણિત", r4: "CRC-ફલુ" },
-        "9": { n: "શ્રી સુનીલભાઈ જી. પટેલ", img: "https://files.catbox.moe/pknfin.JPG", l1: "જેપુર", l2: "M.Sc, B.Ed", l3: "29/01/2014", l4: "30/04/2043", r1: "10079790", r2: "6 થી 8", r3: "ગણિત-વિજ્ઞાન", r4: "-" },
-        "10": { n: "શ્રી ભીખાભાઈ એમ. ચૌહાણ", img: "https://files.catbox.moe/z2w4jz.JPG", l1: "દેવપુરા", l2: "M.A, B.Ed", l3: "25/01/2000", l4: "30/06/2030", r1: "10086333", r2: "6 થી 8", r3: "સામાજિક વિજ્ઞાન", r4: "-" },
-        "11": { n: "શ્રી ચંદ્રિકાબેન એમ. પટેલ", img: "https://files.catbox.moe/glytm3.png", l1: "ફુદેડા", l2: "M.A, B.Ed", l3: "10/12/2004", l4: "28/02/2039", r1: "10086334", r2: "6 થી 8", r3: "ભાષા", r4: "-" },
-        "12": { n: "શ્રી વિષ્ણુબેન એન. ચૌહાણ", img: "https://files.catbox.moe/q05fgj.JPG", l1: "હીરપુરા", l2: "C.P.Ed", l3: "કરાર આધારિત", l4: "કરાર આધારિત", r1: "11576814", r2: "BV થી 8", r3: "ખેલ સહાયક", r4: "-" },
-        "13": { n: "શ્રી સુરજસિંહ ડી. રાઠોડ", img: "https://files.catbox.moe/47v5h9.JPG", l1: "ફલુ", l2: "D.P.Ed", l3: "કરાર આધારિત", l4: "કરાર આધારિત", r1: "NOT ALLOT", r2: "BV થી 8", r3: "વ્યાયામ શિક્ષક", r4: "-" },
-        "14": { n: "શ્રી રીટાબેન પી. પટેલ", img: "https://files.catbox.moe/rx0k8k.JPG", l1: "જેપુર", l2: "A.T.D", l3: "કરાર આધારિત", l4: "કરાર આધારિત", r1: "NOT ALLOT", r2: "BV થી 8", r3: "ચિત્ર શિક્ષક", r4: "-" },
-        "15": { n: "શ્રી મિત એમ. પટેલ", img: "https://files.catbox.moe/gz0kp9.JPG", l1: "રણસીપુર", l2: "B.E, COMPUTER", l3: "કરાર આધારિત", l4: "કરાર આધારિત", r1: "NOT ALLOT", r2: "6 થી 8", r3: "કોમ્પ્યુટર શિક્ષક", r4: "-" }
+       "9": { n: "શ્રી સુનીલભાઈ જી. પટેલ", img: "https://files.catbox.moe/pknfin.JPG", l1: "જેપુર", l2: "M.Sc, B.Ed", l3: "29/01/2014", l4: "30/04/2043", r1: "10079790", r2: "6 થી 8", r3: "ગણિત-વિજ્ઞાન", r4: "-" },
+       "10": { n: "શ્રી ભીખાભાઈ એમ. ચૌહાણ", img: "https://files.catbox.moe/z2w4jz.JPG", l1: "દેવપુરા", l2: "M.A, B.Ed", l3: "25/01/2000", l4: "30/06/2030", r1: "10086333", r2: "6 થી 8", r3: "સામાજિક વિજ્ઞાન", r4: "-" },
+       "11": { n: "શ્રી ચંદ્રિકાબેન એમ. પટેલ", img: "https://files.catbox.moe/glytm3.png", l1: "ફુદેડા", l2: "M.A, B.Ed", l3: "10/12/2004", l4: "28/02/2039", r1: "10086334", r2: "6 થી 8", r3: "ભાષા", r4: "-" },
+       "12": { n: "શ્રી વિષ્ણુબેન એન. ચૌહાણ", img: "https://files.catbox.moe/q05fgj.JPG", l1: "હીરપુરા", l2: "C.P.Ed", l3: "કરાર આધારિત", l4: "કરાર આધારિત", r1: "11576814", r2: "BV થી 8", r3: "ખેલ સહાયક", r4: "-" },
+       "13": { n: "શ્રી સુરજસિંહ ડી. રાઠોડ", img: "https://files.catbox.moe/47v5h9.JPG", l1: "ફલુ", l2: "D.P.Ed", l3: "કરાર આધારિત", l4: "કરાર આધારિત", r1: "NOT ALLOT", r2: "BV થી 8", r3: "વ્યાયામ શિક્ષક", r4: "-" },
+       "14": { n: "શ્રી રીટાબેન પી. પટેલ", img: "https://files.catbox.moe/rx0k8k.JPG", l1: "જેપુર", l2: "A.T.D", l3: "કરાર આધારિત", l4: "કરાર આધારિત", r1: "NOT ALLOT", r2: "BV થી 8", r3: "ચિત્ર શિક્ષક", r4: "-" },
+       "15": { n: "શ્રી મિત એમ. પટેલ", img: "https://files.catbox.moe/gz0kp9.JPG", l1: "રણસીપુર", l2: "B.E, COMPUTER", l3: "કરાર આધારિત", l4: "કરાર આધારિત", r1: "NOT ALLOT", r2: "6 થી 8", r3: "કોમ્પ્યુટર શિક્ષક", r4: "-" }
     };
+
     const riddles = [
         { q: "૫૦ ના અડધા કેટલા થાય?", a: "25", s: "૫૦ ને ૨ વડે ભાગતા ૨૫ મળે." },
         { q: "૧ થી ૧૦૦ માં ૯ કેટલી વાર આવે?", a: "20", s: "કુલ ૨૦ વાર આવે." },
@@ -286,42 +315,42 @@
         });
     }
 
-  function showT(id) {
-    const d = document.getElementById('t-display'); 
-    if(!id) { d.innerHTML=""; return; }
-    const t = tData[id]; 
-    if(!t) { d.innerHTML = "<p>વિગત બાકી છે.</p>"; return; }
-    
-    d.innerHTML = `
-    <div class="t-profile-container">
-        <div class="t-info-box">
-            <div class="t-info-item"><b>વતન:</b> <span class="t-val">${t.l1}</span></div>
-            <div class="t-info-item"><b>લાયકાત:</b> <span class="t-val">${t.l2}</span></div>
-            <div class="t-info-item"><b>નોકરી તા:</b> <span class="t-val">${t.l3}</span></div>
-        </div>
-        <div class="t-center">
-            <img src="${t.img}" class="t-img-big">
-            <br><div class="t-name">${t.n}</div>
-        </div>
-        <div class="t-info-box">
-            <div class="t-info-item"><b>વિષય:</b> <span class="t-val">${t.r3}</span></div>
-            <div class="t-info-item"><b>સિદ્ધિ:</b> <span class="t-val">${t.r4}</span></div>
-            <div class="t-info-item"><b>નિવૃત્તિ:</b> <span class="t-val">${t.l4}</span></div>
-        </div>
-    </div>`;
-}
-function toggleSpecial() {
-    const zone = document.getElementById('special-links-zone');
-    if (zone.style.display === 'none') {
-        zone.style.display = 'block';
-        // લિંક્સ દેખાય ત્યારે સુંદર રીતે ત્યાં સ્ક્રૉલ થશે
-        zone.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        // ફટાકડા ફોડવા માટે
-        confetti({ particleCount: 40, spread: 60, origin: { y: 0.8 } });
-    } else {
-        zone.style.display = 'none';
+    function showT(id) {
+        const d = document.getElementById('t-display'); 
+        if(!id) { d.innerHTML=""; return; }
+        const t = tData[id]; 
+        if(!t) { d.innerHTML = "<p>વિગત બાકી છે.</p>"; return; }
+        
+        d.innerHTML = `
+        <div class="t-profile-container">
+            <div class="t-info-box">
+                <div class="t-info-item"><b>વતન:</b> <span class="t-val">${t.l1}</span></div>
+                <div class="t-info-item"><b>લાયકાત:</b> <span class="t-val">${t.l2}</span></div>
+                <div class="t-info-item"><b>નોકરી તા:</b> <span class="t-val">${t.l3}</span></div>
+            </div>
+            <div class="t-center">
+                <img src="${t.img}" class="t-img-big">
+                <br><div class="t-name">${t.n}</div>
+            </div>
+            <div class="t-info-box">
+                <div class="t-info-item"><b>વિષય:</b> <span class="t-val">${t.r3}</span></div>
+                <div class="t-info-item"><b>સિદ્ધિ:</b> <span class="t-val">${t.r4}</span></div>
+                <div class="t-info-item"><b>નિવૃત્તિ:</b> <span class="t-val">${t.l4}</span></div>
+            </div>
+        </div>`;
     }
-}
+
+    function toggleSpecial() {
+        const zone = document.getElementById('special-links-zone');
+        if (zone.style.display === 'none') {
+            zone.style.display = 'block';
+            zone.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            confetti({ particleCount: 40, spread: 60, origin: { y: 0.8 } });
+        } else {
+            zone.style.display = 'none';
+        }
+    }
+
     function teacherLogin() { 
         if(prompt("પાસવર્ડ:") === "falu123") {
             document.getElementById('staff-links').style.display='grid'; 
@@ -336,7 +365,8 @@ function toggleSpecial() {
     }
 
     window.onload = () => {
-        loadDailyVideo(); // આ ફંક્શન રોજ નવો વીડિયો લોડ કરશે
+        loadDailyVideo();
+        loadHighlight(); // નવું હાઈલાઈટ ફંક્શન
         document.getElementById('riddle-text').innerText = curR.q;
         const day = new Date().getDate();
         document.getElementById('iks-marquee').innerText = "🌟 આજનું IKS: " + (iksDaily[day] || iksDaily[1]) + " | 📜 સુવિચાર: " + (thoughtsDaily[day] || thoughtsDaily[1]) + " | ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાતમાં આપનું સ્વાગત છે.";
@@ -347,13 +377,3 @@ function toggleSpecial() {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
