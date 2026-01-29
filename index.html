@@ -306,7 +306,7 @@
         <div class="t-info-box">
             <div class="t-info-item"><b>વિષય:</b> <span class="t-val">${t.r3}</span></div>
             <div class="t-info-item"><b>સિદ્ધિ:</b> <span class="t-val">${t.r4}</span></div>
-            <div class="t-info-item"><b>રિટાયર્ડ:</b> <span class="t-val">${t.l4}</span></div>
+            <div class="t-info-item"><b>નિવૃત્તિ:</b> <span class="t-val">${t.l4}</span></div>
         </div>
     </div>`;
 }
@@ -339,7 +339,7 @@ function toggleSpecial() {
         loadDailyVideo(); // આ ફંક્શન રોજ નવો વીડિયો લોડ કરશે
         document.getElementById('riddle-text').innerText = curR.q;
         const day = new Date().getDate();
-        document.getElementById('iks-marquee').innerText = "🌟 આજનું IKS: " + (iksDaily[day] || iksDaily[1]) + " | 📜 સુવિચાર: " + (thoughtsDaily[day] || thoughtsDaily[1]) + " | શાળામાં આપનું સ્વાગત છે.";
+        document.getElementById('iks-marquee').innerText = "🌟 આજનું IKS: " + (iksDaily[day] || iksDaily[1]) + " | 📜 સુવિચાર: " + (thoughtsDaily[day] || thoughtsDaily[1]) + " | ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાતમાં આપનું સ્વાગત છે.";
         setInterval(() => {
             document.getElementById('live-clock').innerText = "📅 " + new Date().toLocaleTimeString('gu-IN');
         }, 1000);
@@ -347,6 +347,7 @@ function toggleSpecial() {
 </script>
 </body>
 </html>
+
 
 
 
