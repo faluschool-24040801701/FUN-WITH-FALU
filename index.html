@@ -38,7 +38,7 @@
         .staff-section { grid-column: 1 / -1; border-top: 10px solid var(--p); }
         .t-profile-container { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; background: #fdfdfd; padding: 20px; border-radius: 30px; }
         .t-info-box { flex: 1; min-width: 260px; text-align: left; }
-        .t-info-item { background: white; margin: 8px 0; padding: 10px 15px; border-radius: 12px; border-left: 5px solid var(--p); box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-size: 0.85rem; }
+        .t-info-item { background: #f8f9fa; margin: 8px 0; padding: 10px 15px; border-radius: 12px; border-left: 5px solid var(--p); box-shadow: 2px 3px 8px rgba(0,0,0,0.05); font-size: 0.90rem; display: flex; justify-content: space-between; align-items: center; }
         .t-center { text-align: center; min-width: 220px; }
         .t-img-big { width: 170px; height: 170px; border-radius: 50%; border: 5px solid var(--p); object-fit: cover; margin-bottom: 10px; background: #eee; }
         .t-name { color: var(--p); font-weight: 700; background: var(--gold); padding: 5px 20px; border-radius: 50px; display: inline-block; font-size: 1.1rem; }
@@ -286,12 +286,30 @@
         });
     }
 
-    function showT(id) {
-        const d = document.getElementById('t-display'); if(!id) { d.innerHTML=""; return; }
-        const t = tData[id];
-        if(!t || t.n === "નામ લખો") { d.innerHTML = "<p style='margin-top:20px;'>આ શિક્ષકની વિગતો બાકી છે.</p>"; return; }
-        d.innerHTML = `<div class="t-profile-container"><div class="t-info-box"><div class="t-info-item"><b>વતન:</b> ${t.l1}</div><div class="t-info-item"><b>લાયકાત:</b> ${t.l2}</div><div class="t-info-item"><b>નોકરી તા:</b> ${t.l3}</div><div class="t-info-item"><b>નિવૃત્તિ:</b> ${t.l4}</div></div><div class="t-center"><img src="${t.img || 'https://via.placeholder.com/170'}" class="t-img-big"><br><div class="t-name">${t.n}</div></div><div class="t-info-box"><div class="t-info-item"><b>કોડ:</b> ${t.r1}</div><div class="t-info-item"><b>ધોરણ:</b> ${t.r2}</div><div class="t-info-item"><b>વિષય:</b> ${t.r3}</div><div class="t-info-item"><b>સિદ્ધિ:</b> ${t.r4}</div></div></div>`;
-    }
+  function showT(id) {
+    const d = document.getElementById('t-display'); 
+    if(!id) { d.innerHTML=""; return; }
+    const t = tData[id]; 
+    if(!t) { d.innerHTML = "<p>વિગત બાકી છે.</p>"; return; }
+    
+    d.innerHTML = `
+    <div class="t-profile-container">
+        <div class="t-info-box">
+            <div class="t-info-item"><b>વતન:</b> <span class="t-val">${t.l1}</span></div>
+            <div class="t-info-item"><b>લાયકાત:</b> <span class="t-val">${t.l2}</span></div>
+            <div class="t-info-item"><b>નોકરી તા:</b> <span class="t-val">${t.l3}</span></div>
+        </div>
+        <div class="t-center">
+            <img src="${t.img}" class="t-img-big">
+            <br><div class="t-name">${t.n}</div>
+        </div>
+        <div class="t-info-box">
+            <div class="t-info-item"><b>વિષય:</b> <span class="t-val">${t.r3}</span></div>
+            <div class="t-info-item"><b>સિદ્ધિ:</b> <span class="t-val">${t.r4}</span></div>
+            <div class="t-info-item"><b>રિટાયર્ડ:</b> <span class="t-val">${t.l4}</span></div>
+        </div>
+    </div>`;
+}
 function toggleSpecial() {
     const zone = document.getElementById('special-links-zone');
     if (zone.style.display === 'none') {
@@ -329,6 +347,7 @@ function toggleSpecial() {
 </script>
 </body>
 </html>
+
 
 
 
