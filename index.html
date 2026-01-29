@@ -55,6 +55,10 @@
         footer { background: #fff; padding: 40px; text-align: center; border-top: 2px solid #eee; margin-top: 50px; }
         .legal-footer { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 1px solid #ddd; margin-top: 20px; text-align: justify; font-size: 0.85rem; color: #444; }
         @media (max-width: 768px) { .t-profile-container { flex-direction: column; } }
+
+        /* સ્લાઈડર માટે વધારાનું CSS */
+        .slider-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 50%; font-size: 18px; transition: 0.3s; }
+        .slider-nav:hover { background: var(--p); }
     </style>
 </head>
 <body>
@@ -64,10 +68,17 @@
     <div id="live-clock">લોડિંગ...</div>
 </header>
 
-<div id="daily-highlight-container" style="text-align: center; margin: 20px auto; padding: 15px; background: white; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-top: 8px solid var(--s); max-width: 800px; display: none;">
-    <h3 id="highlight-title" style="color: var(--p); margin-bottom: 12px; font-weight: 700;">🌟 આજનું વિશેષ આકર્ષણ</h3>
-    <img id="highlight-img" src="" alt="Highlight" style="width: 100%; height: auto; border-radius: 15px; border: 4px solid #f1f1f1; max-height: 450px; object-fit: contain;">
-    <p id="highlight-caption" style="font-weight: 700; color: #444; margin-top: 12px; font-size: 1.1rem; background: #fff8e1; display: inline-block; padding: 5px 20px; border-radius: 50px;"></p>
+<div id="school-slider-container" style="text-align: center; margin: 20px auto; padding: 15px; background: white; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-top: 8px solid var(--s); max-width: 800px; position: relative; overflow: hidden;">
+    <h3 style="color: var(--p); margin-bottom: 12px; font-weight: 700;">🌟 શાળા પ્રવૃત્તિ નિદર્શન</h3>
+    
+    <div style="position: relative; display: flex; justify-content: center; align-items: center;">
+        <img id="slider-img" src="https://files.catbox.moe/l5cynv.jpg" style="width: 100%; height: auto; border-radius: 15px; border: 4px solid #f1f1f1; max-height: 450px; object-fit: contain; transition: opacity 0.5s ease-in-out;">
+        
+        <button onclick="prevSlide()" class="slider-nav" style="left: 10px;">❮</button>
+        <button onclick="nextSlide()" class="slider-nav" style="right: 10px;">❯</button>
+    </div>
+
+    <p id="slider-caption" style="font-weight: 700; color: #444; margin-top: 12px; font-size: 1.1rem; background: #fff3e0; display: inline-block; padding: 5px 25px; border-radius: 50px; min-width: 250px;"></p>
 </div>
 
 <div class="marquee-bar">
@@ -172,26 +183,38 @@
 </footer>
 
 <script>
-    // --- આજનું આકર્ષણ (7 દિવસના ફોટા) ---
-    // અહીં તમે લિંક્સ બદલી શકો છો
-    const weeklyHighlights = {
-        0: { img: "https://files.catbox.moe/pnbdch.jpg", txt: "🌞 રવિવાર: રજાનો દિવસ - નવું શીખવાનો દિવસ!" },
-        1: { img: "https://files.catbox.moe/1da7b9.JPG", txt: "🙏 સોમવાર: નવી શરૂઆત, પ્રાર્થના સભા" },
-        2: { img: "https://files.catbox.moe/sm55vq.JPG", txt: "📚 મંગળવાર: પુસ્તકાલય અને જ્ઞાનની દુનિયા" },
-        3: { img: "https://files.catbox.moe/wtnpfb.JPG", txt: "🎨 બુધવાર: કળા અને કૌશલ્યનો દિવસ" },
-        4: { img: "https://files.catbox.moe/ks3uil.JPG", txt: "🔬 ગુરુવાર: વિજ્ઞાન અને પ્રયોગો" },
-        5: { img: "https://files.catbox.moe/l5cynv.jpg", txt: "🏃 શુક્રવાર: રંગોત્સવ 2026" },
-        6: { img: "https://files.catbox.moe/ctnaor.JPG", txt: "🎭 શનિવાર: બાલસભા અને સાંસ્કૃતિક પ્રવૃત્તિ" }
-    };
+    // --- સાત ફોટાનું ઓટોમેટિક સ્લાઈડર ---
+    const schoolPhotos = [
+        { img: "https://files.catbox.moe/l5cynv.jpg", txt: "૧. શાળા પ્રવેશદ્વાર અને પ્રાંગણ" },
+        { img: "https://files.catbox.moe/ifn7m2.png", txt: "૨. પ્રાર્થના સભા: સંસ્કારનું સિંચન" },
+        { img: "https://files.catbox.moe/p0v7e6.jpg", txt: "૩. વર્ગખંડ પ્રવૃત્તિ અને શિક્ષણ" },
+        { img: "https://files.catbox.moe/kjfg4m.jpg", txt: "૪. રમત-ગમત અને શારીરિક વિકાસ" },
+        { img: "https://files.catbox.moe/k1s7ah.jpg", txt: "૫. પ્રયોગશાળામાં વિજ્ઞાનના ચમત્કાર" },
+        { img: "https://files.catbox.moe/5j23xq.jpg", txt: "૬. સાંસ્કૃતિક કાર્યક્રમની ઝલક" },
+        { img: "https://files.catbox.moe/8as3q4.jpg", txt: "૭. ડિજિટલ લર્નિંગ અને સ્માર્ટ ક્લાસ" }
+    ];
 
-    function loadHighlight() {
-        const today = new Date().getDay();
-        const data = weeklyHighlights[today];
-        if(data) {
-            document.getElementById('highlight-img').src = data.img;
-            document.getElementById('highlight-caption').innerText = data.txt;
-            document.getElementById('daily-highlight-container').style.display = 'block';
-        }
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        const imgElement = document.getElementById('slider-img');
+        const capElement = document.getElementById('slider-caption');
+        imgElement.style.opacity = 0;
+        setTimeout(() => {
+            imgElement.src = schoolPhotos[index].img;
+            capElement.innerText = schoolPhotos[index].txt;
+            imgElement.style.opacity = 1;
+        }, 300);
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % schoolPhotos.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + schoolPhotos.length) % schoolPhotos.length;
+        showSlide(currentSlide);
     }
 
     // --- YouTube વીડિયો રોટેશન ---
@@ -199,10 +222,10 @@
         { id: "rI-Pvo5MTi0", title: "આદિ યોગી | Yog Dance" },          // રવિવાર
         { id: "gKMe_OH_NQE", title: "એક પાત્રીય અભિનય | ગૌરવવંતી ગુજરાત" }, // સોમવાર
         { id: "s_8mQx8qIOw", title: "વક્તવ્ય | Speech By Preyasi Patel" }, // મંગળવાર
-        { id: "1PHbF8JcjqM", title: "Jai Ho | Patta Dance" },             // બુધવાર
-        { id: "ImSzHVTNG5c", title: "ડાકલા | રમતી આવે" },                  // ગુરુવાર
+        { id: "1PHbF8JcjqM", title: "Jai Ho | Patta Dance" },              // બુધવાર
+        { id: "ImSzHVTNG5c", title: "ડાકલા | રમતી આવે" },                   // ગુરુવાર
         { id: "XCGyI9zr2nQ", title: "અક્કર ચક્કર | Akkar Chakkar" },       // શુક્રવાર
-        { id: "q_2szeWgpkw", title: "Pyramid Dance | ધોરણ 8" }             // શનિવાર
+        { id: "q_2szeWgpkw", title: "Pyramid Dance | ધોરણ 8" }              // શનિવાર
     ];
 
     function loadDailyVideo() {
@@ -222,7 +245,7 @@
         7: "પૃથ્વી ગોળ છે અને પોતાની ધરી પર ફરે છે તેવું આર્યભટ્ટે કહ્યું હતું. (સંદર્ભ: આર્યભટીયમ)",
         8: "અણુ સિદ્ધાંતના પ્રણેતા મહર્ષિ કણાદ હતા. (સંદર્ભ: વૈશેષિક સૂત્ર)",
         9: "વિશ્વની પ્રથમ યુનિવર્સિટી તક્ષશિલા ભારતમાં હતી. (સંદર્ભ: પ્રાચીન ઇતિહાસ)",
-        10: "યોગ વિદ્યા ભારતની અમૂલ્ય ભેટ છે. (સંદર્ભ: પતંજલિ યોગસૂત્ર)",
+        10: "योग વિદ્યા ભારતની અમૂલ્ય ભેટ છે. (સંદર્ભ: પતંજલિ યોગસૂત્ર)",
         11: "ચિહ્ન વિજ્ઞાનમાં ભારત અગ્રેસર રહ્યું છે. (સંદર્ભ: ભાસ્કરાચાર્ય)",
         12: "બૌધાયન પ્રમેય ભારતીય દેણ છે. (સંદર્ભ: શુલ્બ સૂત્ર)",
         13: "નૌકાશાસ્ત્રની શરૂઆત સિંધુ સભ્યતાથી થઈ હતી. (સંદર્ભ: લોથલ)",
@@ -255,7 +278,7 @@
         16: "ઉદ્યમ વિના સિદ્ધિ નથી.", 17: "મન હોય તો માળવે જવાય.", 18: "મુશ્કેલીમાં તક છુપાયેલી હોય છે.",
         19: "વાંચશે ગુજરાત, જીતશે ગુજરાત.", 20: "સારા પુસ્તકો સારા મિત્રો છે.", 21: "શિક્ષણ જીવનનો પ્રકાશ છે.",
         22: "ખામી નહીં, ખૂબી શોધો.", 23: "એકાગ્રતા જ્ઞાનની જનની છે.", 24: "ક્ષમા વીરોનું આભૂષણ છે.",
-        25: "योग કરો, સ્વસ્થ રહો.", 26: "આશા અમર છે.", 27: "સંતોષ જ પરમ સુખ છે.",
+        25: "યોગ કરો, સ્વસ્થ રહો.", 26: "આશા અમર છે.", 27: "સંતોષ જ પરમ સુખ છે.",
         28: "પ્રામાણિકતા શ્રેષ્ઠ નીતિ છે.", 29: "વિચારો પર દિવસ નિર્ભર છે.", 30: "ટીપે ટીપે સરોવર ભરાય.",
         31: "સતત પ્રયત્ન એ જ સફળતા."
     };
@@ -366,7 +389,9 @@
 
     window.onload = () => {
         loadDailyVideo();
-        loadHighlight(); // નવું હાઈલાઈટ ફંક્શન
+        showSlide(0); // સ્લાઈડર શરૂ કરો
+        setInterval(nextSlide, 5000); // દર 5 સેકન્ડે ફોટો બદલાશે
+        
         document.getElementById('riddle-text').innerText = curR.q;
         const day = new Date().getDate();
         document.getElementById('iks-marquee').innerText = "🌟 આજનું IKS: " + (iksDaily[day] || iksDaily[1]) + " | 📜 સુવિચાર: " + (thoughtsDaily[day] || thoughtsDaily[1]) + " | ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાતમાં આપનું સ્વાગત છે.";
@@ -377,4 +402,3 @@
 </script>
 </body>
 </html>
-
