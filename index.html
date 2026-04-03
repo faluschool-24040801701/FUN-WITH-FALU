@@ -68,42 +68,50 @@
         .ai-select { padding: 10px; border-radius: 10px; border: 2px solid var(--kids-theme); margin: 5px; font-weight: bold; }
         #story-result { background: #fdf7ff; padding: 15px; border-radius: 15px; margin-top: 15px; text-align: left; line-height: 1.6; display: none; border-left: 5px solid var(--kids-theme); }
 
-        /* --- નવું ફ્લોટિંગ હાજરી બટન CSS (માત્ર આ નવું ઉમેર્યું છે) --- */
-        .floating-attendance-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #1a237e 0%, #4f46e5 100%);
-            color: white;
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        /* --- નવું 3D એનિમેટેડ એટેન્ડન્સ કાર્ડ CSS --- */
+        .attendance-card-3d {
+            grid-column: 1 / -1;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 25px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 8px 8px 16px #d1d1d1, -8px -8px 16px #ffffff;
+            transition: 0.4s ease-in-out;
             cursor: pointer;
             text-decoration: none;
-            z-index: 10002;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 3px solid white;
-            animation: bounceBtn 3s infinite;
+            display: block;
+            border-top: 8px solid var(--p);
+            margin-top: 10px;
         }
-        .floating-attendance-btn:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        .attendance-card-3d:hover {
+            transform: translateY(-8px);
+            box-shadow: 12px 12px 24px #bebebe, -12px -12px 24px #ffffff;
+            background: linear-gradient(145deg, #f8faff, #ffffff);
         }
-        .floating-attendance-btn span { font-size: 26px; line-height: 1; }
-        .floating-attendance-btn small { font-size: 10px; font-weight: bold; margin-top: 2px; }
-        @keyframes bounceBtn {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+        .attendance-card-3d h2 {
+            color: var(--p);
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
-        @media (max-width: 600px) {
-            .floating-attendance-btn { width: 65px; height: 65px; bottom: 20px; right: 20px; }
-            .floating-attendance-btn span { font-size: 22px; }
-            .floating-attendance-btn small { font-size: 9px; }
+        .pulse-icon {
+            background: var(--p);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            animation: pulse-ring 2s infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(26, 35, 126, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(26, 35, 126, 0); }
+            100% { transform: scale(0.9); }
         }
     </style>
 </head>
@@ -198,9 +206,15 @@
     <div class="card" style="border-top: 10px solid var(--accent);">
         <h3 style="color: var(--p); margin-bottom: 20px;">🔐 સુરક્ષિત ગેલેરી</h3>
         <button onclick="pL('https://photos.app.goo.gl/DokNwx3YM3Whs2Mj9')" class="btn btn-accent"><span>🖼️</span> ૧. શાળા પ્રવૃત્તિઓ</button>
-        <button onclick="pL('https://photos.app.goo.gl/9EVZZUvj3arZ4YfT8')" class="btn btn-accent"><span>📂</span> ૨. શાળા પ્રોજેક્ટ</button>
+        <button onclick="pL('https://photos.app.goo.gl/9EVZZUvj3arZ4YT8')" class="btn btn-accent"><span>📂</span> ૨. શાળા પ્રોજેક્ટ</button>
         <a href="https://wa.me/919574456156?text=નમસ્તે નિલેશ સર, મને ગેલેરીનો પાસવર્ડ આપવા વિનંતી." target="_blank" class="btn btn-wa"><span>💬</span> પાસવર્ડ મેળવવા વોટ્સએપ</a>
     </div>
+
+    <a href="https://script.google.com/macros/s/AKfycbx18h2s1WK4LBteZNJv4rWvioUkwkqx068YmtslQmGAA2bCX7bScYWMwFSOjvumF_WChA/exec" 
+       target="_blank" class="attendance-card-3d">
+        <h2><div class="pulse-icon">📊</div> દૈનિક હાજરી અને મધ્યાહન ભોજન પોર્ટલ</h2>
+        <p style="color: #666; margin-top: 5px; font-weight: 600;">ક્લિક કરીને આજની ઓનલાઇન હાજરી સબમિટ કરો</p>
+    </a>
 
     <div class="card" style="border: 2px dashed var(--p);">
         <h3 style="color: var(--p);">🛠️ શિક્ષક શક્તિ</h3>
@@ -247,13 +261,6 @@
     <button id="pass-submit" class="btn-std" style="background:var(--p); color:white; border:none;">ઓકે</button>
     <button onclick="closePass()" class="btn-std">રદ કરો</button>
 </div>
-
-<a href="https://script.google.com/macros/s/AKfycbx18h2s1WK4LBteZNJv4rWvioUkwkqx068YmtslQmGAA2bCX7bScYWMwFSOjvumF_WChA/exec" 
-   target="_blank" 
-   class="floating-attendance-btn">
-    <span>📊</span>
-    <small>હાજરી</small>
-</a>
 
 <footer>
     <p><b>ફલુ અનુપમ પ્રાથમિક શાળા પીએમશ્રી-ગુજરાત</b></p>
@@ -352,12 +359,12 @@
         1: "વિદ્યા વિનયથી શોભે છે.", 2: "પુસ્તકો જાગ્રત દેવતાઓ છે.", 3: "પરિશ્રમ એ જ પારસમણિ છે.", 
         4: "સત્ય પરમ ધર્મ છે.", 5: "માતૃદેવો ભવ: પિતૃદેવો ભવ:.", 6: "સ્વચ્છતા ત્યાં પ્રભુતા.",
         7: "સમય પાલન સફળતાની ચાવી છે.", 8: "જ્ઞાન વહેંચવાથી વધે છે.", 9: "અહિંસા પરમો ધર્મ:.",
-        10: "નિષ્ફળતા સફળતાની પ્રથમ સીડી છે.", 11: "ચિંતન કરો, ચિંતા નહીં.", 12: "સેવા પરમો ધર્મ:.",
+        10: "નિષ્ફળતા સફળતાની પ્રથમ સીડી છે.", 11: "ચિંતન કરો, ચિલ્તા નહીં.", 12: "સેવા પરમો ધર્મ:.",
         13: "સાચું બોલવું એ મોટી તપસ્યા છે.", 14: "દયા એ ધર્મનું મૂળ છે.", 15: "નમ્રતા વિદ્યાનું આભૂષણ છે.",
         16: "ઉદ્યમ વિના સિદ્ધિ નથી.", 17: "મન હોય તો માળવે જવાય.", 18: "મુશ્કેલીમાં તક છુપાયેલી હોય છે.",
         19: "વાંચશે ગુજરાત, જીતશે ગુજરાત.", 20: "સારા પુસ્તકો સારા મિત્રો છે.", 21: "શિક્ષણ જીવનનો પ્રકાશ છે.",
         22: "ખામી નહીં, ખૂબી શોધો.", 23: "એકાગ્રતા જ્ઞાનની જનની છે.", 24: "ક્ષમા વીરોનું આભૂષણ છે.",
-        25: "યોગ કરો, સ્વસ્થ રહો.", 26: "આશા અમર છે.", 27: "સંતોષ જ પરમ સુખ છે.",
+        25: "योग કરો, સ્વસ્થ રહો.", 26: "આશા અમર છે.", 27: "સંતોષ જ પરમ સુખ છે.",
         28: "પ્રામાણિકતા શ્રેષ્ઠ નીતિ છે.", 29: "વિચારો પર દિવસ નિર્ભર છે.", 30: "ટીપે ટીપે સરોવર ભરાય.",
         31: "સતત પ્રયત્ન એ જ સફળતા."
     };
